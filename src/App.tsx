@@ -22,6 +22,7 @@ const App = () => {
         contentInsetAdjustmentBehavior="automatic"
       >
         <Text>Hello World</Text>
+        <Text>I'm Aaron</Text>
       </ScrollView>
     </SafeAreaView>
   );

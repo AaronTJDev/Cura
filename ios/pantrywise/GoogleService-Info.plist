@@ -3,9 +3,9 @@
 <plist version="1.0">
 <dict>
 	<key>CLIENT_ID</key>
-	<string>870341804980-elj52rk2091rj97h5etk4eabnmc5qnsr.apps.googleusercontent.com</string>
+	<string>870341804980-d3n21aceaa7vgmlmugn40hae0g13q9hm.apps.googleusercontent.com</string>
 	<key>REVERSED_CLIENT_ID</key>
-	<string>com.googleusercontent.apps.870341804980-elj52rk2091rj97h5etk4eabnmc5qnsr</string>
+	<string>com.googleusercontent.apps.870341804980-d3n21aceaa7vgmlmugn40hae0g13q9hm</string>
 	<key>API_KEY</key>
 	<string>AIzaSyBBN0FH4REWxaMf4avzzmrWr0kMii3nMgo</string>
 	<key>GCM_SENDER_ID</key>
@@ -13,7 +13,7 @@
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
-	<string>com.pantrywiseapp</string>
+	<string>com.pantrywise</string>
 	<key>PROJECT_ID</key>
 	<string>pantrywise-98f83</string>
 	<key>STORAGE_BUCKET</key>
@@ -29,6 +29,6 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:870341804980:ios:5a5458cc521e64b5ec28e1</string>
+	<string>1:870341804980:ios:393ea9a1c8fa0831ec28e1</string>
 </dict>
 </plist>

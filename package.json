@@ -3,11 +3,13 @@
   "version": "0.0.1",
   "private": true,
   "scripts": {
-    "android": "react-native run-android",
-    "ios": "react-native run-ios",
     "start": "react-native start",
     "test": "jest",
-    "lint": "eslint . --ext .js,.jsx,.ts,.tsx"
+    "lint": "eslint . --ext .js,.jsx,.ts,.tsx",
+    "compile-android": "react-native run-android --no-packager",
+    "compile-ios": "react-native run-ios --no-packager --simulator=\"iPhone 13\"",
+    "android": "run-p start compile-android",
+    "ios": "run-p start compile-ios"
   },
   "dependencies": {
     "react": "17.0.2",
@@ -26,6 +28,7 @@
     "eslint": "^7.14.0",
     "jest": "^26.6.3",
     "metro-react-native-babel-preset": "^0.66.2",
+    "npm-run-all": "^4.1.5",
     "react-test-renderer": "17.0.2",
     "typescript": "^4.4.4"
   },
