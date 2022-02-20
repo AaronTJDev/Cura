@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "870341804980",
+    "project_id": "pantrywise-98f83",
+    "storage_bucket": "pantrywise-98f83.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:870341804980:android:ea864e5a45d18561ec28e1",
+        "android_client_info": {
+          "package_name": "com.pantrywiseapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "870341804980-o8dotkc0ckh1n9f9pnfu09m60b0leusc.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAKyjs5G73pZaNqmdcP3TK89Dqc6NkY1eU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "870341804980-o8dotkc0ckh1n9f9pnfu09m60b0leusc.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "870341804980-elj52rk2091rj97h5etk4eabnmc5qnsr.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.pantrywiseapp"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
