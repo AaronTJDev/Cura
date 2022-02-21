@@ -1,3 +1,11 @@
+import { Action, Dispatch } from "redux";
+
+type AsyncActionType = { 
+  start: string;
+  success: string;
+  error: string;
+};
+
 export const actionTypeGenerator = (prefix: string) => {
   return {
     async: function asyncTypeGenerator(action: string) {
@@ -11,37 +19,19 @@ export const actionTypeGenerator = (prefix: string) => {
   };
 }
 
-type AsyncActionType = { 
-  start: string;
-  success: string;
-  error: string;
-};
-
-const loadingReducer = (key: string) => (state: any, action: any) => {
-  return {
-    ...state,
-    [key]: true,
-  };
-};
-
-const successReducer = (key: string) => (state: any, action: any) => {
-  return {
-    ...state,
-    [key]: action.payload,
-  };
-};
-
-const errorReducer = (key: string) => (state: any, action: any) => {
-  return {
-    ...state,
-    [key]: action.payload,
-  };
-};
-
-export function asyncReducer(actionType: AsyncActionType, key: string) {
-  return [
-    [actionType.start, loadingReducer(key)],
-    [actionType.success, successReducer(key)],
-    [actionType.error, errorReducer(key)]
-  ];
+export const asyncAction = (
+  promise: Promise<any>,
+  action: AsyncActionType,
+  dispatch: Dispatch<Action>
+  ) => {
+    dispatch({ type: action.start });
+    promise
+      .then((value: any) => dispatch({
+        type: action.success,
+        payload: value
+      }))
+      .catch((error: any) => dispatch({
+        type: action.error,
+        error
+      }));
 }

@@ -1,7 +1,6 @@
-import { AccountStore } from "./account/types";
+import { configureStore } from "@reduxjs/toolkit";
+import accountReducer from "./account/reducers";
 
-export interface AppStore {
-  account: AccountStore;
-}
+const store = configureStore({ reducer: accountReducer });
 
-export const reducers = {};
+export default store;

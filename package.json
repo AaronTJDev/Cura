@@ -12,8 +12,11 @@
     "ios": "run-p start compile-ios"
   },
   "dependencies": {
+    "@reduxjs/toolkit": "^1.7.2",
     "react": "17.0.2",
-    "react-native": "0.67.2"
+    "react-native": "0.67.2",
+    "react-redux": "^7.2.6",
+    "redux": "^4.1.2"
   },
   "devDependencies": {
     "@babel/core": "^7.12.9",
