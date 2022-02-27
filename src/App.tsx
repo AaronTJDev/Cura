@@ -1,21 +1,25 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import store from './redux';
 import { Provider } from 'react-redux';
 import { NavigationContainer } from '@react-navigation/native';
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import BottomTabs from './components/BottomTabs';
+import { initiateIconLibrary } from './lib/icons';
 
 /** Components */
 import Home from './components/Home';
 
-const Stack = createNativeStackNavigator();
+const Tab = createBottomTabNavigator();
 
 const App = () => {
+  useEffect(() => {
+    initiateIconLibrary();
+  },[])
+  
   return (
     <NavigationContainer>
       <Provider store={store}>
-        <Stack.Navigator initialRouteName='Home'>
-          <Stack.Screen name="Home" component={Home} />
-        </Stack.Navigator>
+        <BottomTabs/>
       </Provider>
     </NavigationContainer>
   );
