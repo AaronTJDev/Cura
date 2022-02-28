@@ -1,5 +1,18 @@
 export const colors = {
-
+  main: {
+    primaryLight: '#DAC6BE',
+    primary: '#7C6354',
+    primaryDark: '#564439',
+    black: '#070707',
+    white: '#FBFCFF',
+    gray: 'F4F6F6'
+  },
+  indicators: {
+    success: '#C6CA53',
+    error: '#EF2D56',
+    warning: '#ED7D3A',
+    rating: '#F9CB40'
+  }
 };
 
 export const fonts = {
