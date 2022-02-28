@@ -8,16 +8,54 @@
 
 /* Begin PBXBuildFile section */
 		00E356F31AD99517003FC87E /* pantrywiseTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* pantrywiseTests.m */; };
+		03686C0821064D3BBD17FE14 /* CrimsonPro-Italic-VariableFont_wght.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C4D0F6A3867C49E7B6F2A8FD /* CrimsonPro-Italic-VariableFont_wght.ttf */; };
 		13B07FBC1A68108700A75B9A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* AppDelegate.m */; };
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
+		16C12E9597AF4E31824AF2E0 /* CrimsonPro-ExtraBoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5C537804E6194E9C890FB084 /* CrimsonPro-ExtraBoldItalic.ttf */; };
+		20A4F6D5796A4695B6672CA0 /* CrimsonPro-MediumItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 7BF9E5AA76B5478586F874E9 /* CrimsonPro-MediumItalic.ttf */; };
+		222021FD6770433CA939224C /* CrimsonPro-ExtraBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8061FB18F6CA4E3DA6A41FE0 /* CrimsonPro-ExtraBold.ttf */; };
+		323483FA232F43DE8788450E /* CrimsonPro-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2196A1453E624B3786426968 /* CrimsonPro-Medium.ttf */; };
+		3CF91978D32C4C0EB653ABDE /* CrimsonPro-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CA397AB38E9741F98345C6E7 /* CrimsonPro-Black.ttf */; };
+		4490A70AA8B743AB8BE92166 /* CrimsonPro-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2BC0AB7DF2D643A79B630D12 /* CrimsonPro-Regular.ttf */; };
+		45F42718099A49BD887C6199 /* CrimsonPro-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 084FA0FAC5AA44D997258221 /* CrimsonPro-Bold.ttf */; };
+		56569A0B10C24A9B99629698 /* CrimsonPro-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = DB7E05E2F1D9410AB3F81334 /* CrimsonPro-SemiBold.ttf */; };
+		56870ABC001244DF9C1353FA /* NunitoSans-BlackItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0887498F7F45400EAD86C220 /* NunitoSans-BlackItalic.ttf */; };
+		59749DA8AD07441EB55E60E8 /* CrimsonPro-ExtraLight.ttf in Resources */ = {isa = PBXBuildFile; fileRef = EB1D569FBE5D45618C394E2F /* CrimsonPro-ExtraLight.ttf */; };
 		6172F2D35A4C3AA820D92908 /* libPods-pantrywise.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6423831EA8574132BED9D8CC /* libPods-pantrywise.a */; };
+		64F7E257BFE84192B65EB63D /* NunitoSans-BoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = EF7E35AEF82A4958BAF78B89 /* NunitoSans-BoldItalic.ttf */; };
+		659A98C3CA6C409DAA1E0CED /* CrimsonPro-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E34E2FB997314BAB88E6A9DD /* CrimsonPro-Light.ttf */; };
 		676CB44027C21CF3009CD1A3 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 676CB43F27C21CF3009CD1A3 /* FirebaseAuth */; };
 		676CB44227C21CF3009CD1A3 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 676CB44127C21CF3009CD1A3 /* FirebaseFirestore */; };
 		676CB44427C21CF3009CD1A3 /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = 676CB44327C21CF3009CD1A3 /* FirebaseStorage */; };
 		67D2D11C27C2A94600A43B7D /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 67D2D11B27C2A94500A43B7D /* GoogleService-Info.plist */; };
+		79CB12D356DC4536AD530A9E /* NunitoSans-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0FA66AD228F84AB7AF080E3C /* NunitoSans-Light.ttf */; };
 		7EF68E3733C33B6898317E18 /* libPods-pantrywise-pantrywiseTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = ABFE59519B596E51CEFDCCC0 /* libPods-pantrywise-pantrywiseTests.a */; };
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
+		8C27819BBAAB45DDA594EB63 /* CrimsonPro-BoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 376413DAA8BB4EB4944B154F /* CrimsonPro-BoldItalic.ttf */; };
+		8E2539498BAC449FBF5AECE8 /* NunitoSans-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = DF272C502E5C4598BC853E42 /* NunitoSans-Italic.ttf */; };
+		9317B27537D04E81A59F9EBA /* NunitoSans-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 6FAD09DAF0BD4476AFEDB496 /* NunitoSans-SemiBold.ttf */; };
+		97F16BD7AE3E4BECBA066AC8 /* Comfortaa-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9440FF96E33D453DB1E94C3D /* Comfortaa-SemiBold.ttf */; };
+		989C2FA22A104F5CA6DC0859 /* CrimsonPro-SemiBoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 6237A8AEABEF4AE7A9C8C18E /* CrimsonPro-SemiBoldItalic.ttf */; };
+		A374063D93B34A98AAEE3EE7 /* Comfortaa-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3FDF2D9ABEDA4C9597FF2239 /* Comfortaa-Bold.ttf */; };
+		A5FD22CA3A5948B592309F15 /* NunitoSans-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = AACEC68EC11B4A10A68AD1E3 /* NunitoSans-Regular.ttf */; };
+		A85A3B7B11F943439BD6FA1E /* CrimsonPro-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0A57B0E48A3C455F80D459B5 /* CrimsonPro-Italic.ttf */; };
+		B29E6B541A5D4290A9DD1286 /* CrimsonPro-ExtraLightItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 619017C797A54708A491FCD6 /* CrimsonPro-ExtraLightItalic.ttf */; };
+		BEE6CA2227E0471EB46861F1 /* NunitoSans-LightItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CC16C09752EA4B47AD8DE803 /* NunitoSans-LightItalic.ttf */; };
+		C37BCC19697C43CA9E7911EC /* CrimsonPro-VariableFont_wght.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3FCE93DD5834487DAAC12DA2 /* CrimsonPro-VariableFont_wght.ttf */; };
+		C5CEBEDF09D5493CBF4AC447 /* Comfortaa-VariableFont_wght.ttf in Resources */ = {isa = PBXBuildFile; fileRef = AD8FC0FA34194DD9B316988B /* Comfortaa-VariableFont_wght.ttf */; };
+		C66E11ABB8A14F7C8B7ECE10 /* NunitoSans-ExtraBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4EEC3650F55D459FA6C8F010 /* NunitoSans-ExtraBold.ttf */; };
+		D4AD368B8A674854A52D23C4 /* Comfortaa-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 40EEEAF0A2654CAC8E0298F9 /* Comfortaa-Light.ttf */; };
+		D602BB7AE09F49A0996E69C6 /* NunitoSans-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 10EA0F3045E9466CA11AA177 /* NunitoSans-Bold.ttf */; };
+		DACDE9AF0DE1443894C47C91 /* NunitoSans-ExtraLightItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9CDD84DDED6E4CBD99C41ED9 /* NunitoSans-ExtraLightItalic.ttf */; };
+		E520615531204FD89D7E369A /* NunitoSans-SemiBoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 6971C01D66534A2383340D7A /* NunitoSans-SemiBoldItalic.ttf */; };
+		EC7B0A273D614FBB818CF86E /* NunitoSans-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0BC0BB982E864A8689B59A60 /* NunitoSans-Black.ttf */; };
+		F0BD03A435A441F2ADBD07E2 /* CrimsonPro-BlackItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 113DD2AF1C5340E29FB550A9 /* CrimsonPro-BlackItalic.ttf */; };
+		F6486858D981473FBEFAF179 /* Comfortaa-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A845229AEBB14BB283656BBB /* Comfortaa-Medium.ttf */; };
+		F7F08FDFB1504DCEA8971A08 /* NunitoSans-ExtraBoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4C05320B085B4C3F88645B55 /* NunitoSans-ExtraBoldItalic.ttf */; };
+		F84FDE3A5A56450B9E385F91 /* Comfortaa-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 72FAD8DF3A984A208D484407 /* Comfortaa-Regular.ttf */; };
+		FAD06A35E2C043E38037A2D5 /* NunitoSans-ExtraLight.ttf in Resources */ = {isa = PBXBuildFile; fileRef = EC1D24A762834655A7F88E0A /* NunitoSans-ExtraLight.ttf */; };
+		FCFD0815DD92411A8602B329 /* CrimsonPro-LightItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B1A775D7234E47309D688AAE /* CrimsonPro-LightItalic.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -34,6 +72,13 @@
 		00E356EE1AD99517003FC87E /* pantrywiseTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = pantrywiseTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		00E356F11AD99517003FC87E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		00E356F21AD99517003FC87E /* pantrywiseTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = pantrywiseTests.m; sourceTree = "<group>"; };
+		084FA0FAC5AA44D997258221 /* CrimsonPro-Bold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "CrimsonPro-Bold.ttf"; path = "../assets/fonts/CrimsonPro-Bold.ttf"; sourceTree = "<group>"; };
+		0887498F7F45400EAD86C220 /* NunitoSans-BlackItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "NunitoSans-BlackItalic.ttf"; path = "../assets/fonts/NunitoSans-BlackItalic.ttf"; sourceTree = "<group>"; };
+		0A57B0E48A3C455F80D459B5 /* CrimsonPro-Italic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "CrimsonPro-Italic.ttf"; path = "../assets/fonts/CrimsonPro-Italic.ttf"; sourceTree = "<group>"; };
+		0BC0BB982E864A8689B59A60 /* NunitoSans-Black.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "NunitoSans-Black.ttf"; path = "../assets/fonts/NunitoSans-Black.ttf"; sourceTree = "<group>"; };
+		0FA66AD228F84AB7AF080E3C /* NunitoSans-Light.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "NunitoSans-Light.ttf"; path = "../assets/fonts/NunitoSans-Light.ttf"; sourceTree = "<group>"; };
+		10EA0F3045E9466CA11AA177 /* NunitoSans-Bold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "NunitoSans-Bold.ttf"; path = "../assets/fonts/NunitoSans-Bold.ttf"; sourceTree = "<group>"; };
+		113DD2AF1C5340E29FB550A9 /* CrimsonPro-BlackItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "CrimsonPro-BlackItalic.ttf"; path = "../assets/fonts/CrimsonPro-BlackItalic.ttf"; sourceTree = "<group>"; };
 		13B07F961A680F5B00A75B9A /* pantrywise.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = pantrywise.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		13B07FAF1A68108700A75B9A /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = pantrywise/AppDelegate.h; sourceTree = "<group>"; };
 		13B07FB01A68108700A75B9A /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AppDelegate.m; path = pantrywise/AppDelegate.m; sourceTree = "<group>"; };
@@ -41,14 +86,45 @@
 		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = pantrywise/Info.plist; sourceTree = "<group>"; };
 		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = pantrywise/main.m; sourceTree = "<group>"; };
 		1D0AE47A65C8663E3B452821 /* Pods-pantrywise-pantrywiseTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-pantrywise-pantrywiseTests.release.xcconfig"; path = "Target Support Files/Pods-pantrywise-pantrywiseTests/Pods-pantrywise-pantrywiseTests.release.xcconfig"; sourceTree = "<group>"; };
+		2196A1453E624B3786426968 /* CrimsonPro-Medium.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "CrimsonPro-Medium.ttf"; path = "../assets/fonts/CrimsonPro-Medium.ttf"; sourceTree = "<group>"; };
+		2BC0AB7DF2D643A79B630D12 /* CrimsonPro-Regular.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "CrimsonPro-Regular.ttf"; path = "../assets/fonts/CrimsonPro-Regular.ttf"; sourceTree = "<group>"; };
+		376413DAA8BB4EB4944B154F /* CrimsonPro-BoldItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "CrimsonPro-BoldItalic.ttf"; path = "../assets/fonts/CrimsonPro-BoldItalic.ttf"; sourceTree = "<group>"; };
+		3FCE93DD5834487DAAC12DA2 /* CrimsonPro-VariableFont_wght.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "CrimsonPro-VariableFont_wght.ttf"; path = "../assets/fonts/Crimson_Pro/CrimsonPro-VariableFont_wght.ttf"; sourceTree = "<group>"; };
+		3FDF2D9ABEDA4C9597FF2239 /* Comfortaa-Bold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "Comfortaa-Bold.ttf"; path = "../assets/fonts/Comfortaa-Bold.ttf"; sourceTree = "<group>"; };
+		40EEEAF0A2654CAC8E0298F9 /* Comfortaa-Light.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "Comfortaa-Light.ttf"; path = "../assets/fonts/Comfortaa-Light.ttf"; sourceTree = "<group>"; };
+		4C05320B085B4C3F88645B55 /* NunitoSans-ExtraBoldItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "NunitoSans-ExtraBoldItalic.ttf"; path = "../assets/fonts/NunitoSans-ExtraBoldItalic.ttf"; sourceTree = "<group>"; };
+		4EEC3650F55D459FA6C8F010 /* NunitoSans-ExtraBold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "NunitoSans-ExtraBold.ttf"; path = "../assets/fonts/NunitoSans-ExtraBold.ttf"; sourceTree = "<group>"; };
+		5C537804E6194E9C890FB084 /* CrimsonPro-ExtraBoldItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "CrimsonPro-ExtraBoldItalic.ttf"; path = "../assets/fonts/CrimsonPro-ExtraBoldItalic.ttf"; sourceTree = "<group>"; };
+		619017C797A54708A491FCD6 /* CrimsonPro-ExtraLightItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "CrimsonPro-ExtraLightItalic.ttf"; path = "../assets/fonts/CrimsonPro-ExtraLightItalic.ttf"; sourceTree = "<group>"; };
+		6237A8AEABEF4AE7A9C8C18E /* CrimsonPro-SemiBoldItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "CrimsonPro-SemiBoldItalic.ttf"; path = "../assets/fonts/CrimsonPro-SemiBoldItalic.ttf"; sourceTree = "<group>"; };
 		6423831EA8574132BED9D8CC /* libPods-pantrywise.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-pantrywise.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		67D2D11B27C2A94500A43B7D /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "pantrywise/GoogleService-Info.plist"; sourceTree = "<group>"; };
+		6971C01D66534A2383340D7A /* NunitoSans-SemiBoldItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "NunitoSans-SemiBoldItalic.ttf"; path = "../assets/fonts/NunitoSans-SemiBoldItalic.ttf"; sourceTree = "<group>"; };
 		6C97AB639B58BBB4B15BBE30 /* Pods-pantrywise-pantrywiseTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-pantrywise-pantrywiseTests.debug.xcconfig"; path = "Target Support Files/Pods-pantrywise-pantrywiseTests/Pods-pantrywise-pantrywiseTests.debug.xcconfig"; sourceTree = "<group>"; };
+		6FAD09DAF0BD4476AFEDB496 /* NunitoSans-SemiBold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "NunitoSans-SemiBold.ttf"; path = "../assets/fonts/NunitoSans-SemiBold.ttf"; sourceTree = "<group>"; };
+		72FAD8DF3A984A208D484407 /* Comfortaa-Regular.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "Comfortaa-Regular.ttf"; path = "../assets/fonts/Comfortaa-Regular.ttf"; sourceTree = "<group>"; };
+		7BF9E5AA76B5478586F874E9 /* CrimsonPro-MediumItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "CrimsonPro-MediumItalic.ttf"; path = "../assets/fonts/CrimsonPro-MediumItalic.ttf"; sourceTree = "<group>"; };
+		8061FB18F6CA4E3DA6A41FE0 /* CrimsonPro-ExtraBold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "CrimsonPro-ExtraBold.ttf"; path = "../assets/fonts/CrimsonPro-ExtraBold.ttf"; sourceTree = "<group>"; };
 		81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = pantrywise/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		9440FF96E33D453DB1E94C3D /* Comfortaa-SemiBold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "Comfortaa-SemiBold.ttf"; path = "../assets/fonts/Comfortaa-SemiBold.ttf"; sourceTree = "<group>"; };
+		9CDD84DDED6E4CBD99C41ED9 /* NunitoSans-ExtraLightItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "NunitoSans-ExtraLightItalic.ttf"; path = "../assets/fonts/NunitoSans-ExtraLightItalic.ttf"; sourceTree = "<group>"; };
+		A845229AEBB14BB283656BBB /* Comfortaa-Medium.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "Comfortaa-Medium.ttf"; path = "../assets/fonts/Comfortaa-Medium.ttf"; sourceTree = "<group>"; };
+		AACEC68EC11B4A10A68AD1E3 /* NunitoSans-Regular.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "NunitoSans-Regular.ttf"; path = "../assets/fonts/NunitoSans-Regular.ttf"; sourceTree = "<group>"; };
 		ABFE59519B596E51CEFDCCC0 /* libPods-pantrywise-pantrywiseTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-pantrywise-pantrywiseTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		AD8FC0FA34194DD9B316988B /* Comfortaa-VariableFont_wght.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "Comfortaa-VariableFont_wght.ttf"; path = "../assets/fonts/Comfortaa-VariableFont_wght.ttf"; sourceTree = "<group>"; };
+		B1A775D7234E47309D688AAE /* CrimsonPro-LightItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "CrimsonPro-LightItalic.ttf"; path = "../assets/fonts/CrimsonPro-LightItalic.ttf"; sourceTree = "<group>"; };
 		C0A881CF5CF3F2B244570E2A /* Pods-pantrywise.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-pantrywise.debug.xcconfig"; path = "Target Support Files/Pods-pantrywise/Pods-pantrywise.debug.xcconfig"; sourceTree = "<group>"; };
+		C4D0F6A3867C49E7B6F2A8FD /* CrimsonPro-Italic-VariableFont_wght.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "CrimsonPro-Italic-VariableFont_wght.ttf"; path = "../assets/fonts/Crimson_Pro/CrimsonPro-Italic-VariableFont_wght.ttf"; sourceTree = "<group>"; };
+		CA397AB38E9741F98345C6E7 /* CrimsonPro-Black.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "CrimsonPro-Black.ttf"; path = "../assets/fonts/CrimsonPro-Black.ttf"; sourceTree = "<group>"; };
+		CC16C09752EA4B47AD8DE803 /* NunitoSans-LightItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "NunitoSans-LightItalic.ttf"; path = "../assets/fonts/NunitoSans-LightItalic.ttf"; sourceTree = "<group>"; };
 		D00AAFFCFCFDA5787532823F /* Pods-pantrywise.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-pantrywise.release.xcconfig"; path = "Target Support Files/Pods-pantrywise/Pods-pantrywise.release.xcconfig"; sourceTree = "<group>"; };
+		DB7E05E2F1D9410AB3F81334 /* CrimsonPro-SemiBold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "CrimsonPro-SemiBold.ttf"; path = "../assets/fonts/CrimsonPro-SemiBold.ttf"; sourceTree = "<group>"; };
+		DF272C502E5C4598BC853E42 /* NunitoSans-Italic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "NunitoSans-Italic.ttf"; path = "../assets/fonts/NunitoSans-Italic.ttf"; sourceTree = "<group>"; };
+		E34E2FB997314BAB88E6A9DD /* CrimsonPro-Light.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "CrimsonPro-Light.ttf"; path = "../assets/fonts/CrimsonPro-Light.ttf"; sourceTree = "<group>"; };
+		EB1D569FBE5D45618C394E2F /* CrimsonPro-ExtraLight.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "CrimsonPro-ExtraLight.ttf"; path = "../assets/fonts/CrimsonPro-ExtraLight.ttf"; sourceTree = "<group>"; };
+		EC1D24A762834655A7F88E0A /* NunitoSans-ExtraLight.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "NunitoSans-ExtraLight.ttf"; path = "../assets/fonts/NunitoSans-ExtraLight.ttf"; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
+		EF7E35AEF82A4958BAF78B89 /* NunitoSans-BoldItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "NunitoSans-BoldItalic.ttf"; path = "../assets/fonts/NunitoSans-BoldItalic.ttf"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -131,6 +207,7 @@
 				83CBBA001A601CBA00E9B192 /* Products */,
 				2D16E6871FA4F8E400B85C8A /* Frameworks */,
 				E233CBF5F47BEE60B243DCF8 /* Pods */,
+				A2E9F62C41684E6AAED6D738 /* Resources */,
 			);
 			indentWidth = 2;
 			sourceTree = "<group>";
@@ -144,6 +221,52 @@
 				00E356EE1AD99517003FC87E /* pantrywiseTests.xctest */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		A2E9F62C41684E6AAED6D738 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				3FDF2D9ABEDA4C9597FF2239 /* Comfortaa-Bold.ttf */,
+				40EEEAF0A2654CAC8E0298F9 /* Comfortaa-Light.ttf */,
+				A845229AEBB14BB283656BBB /* Comfortaa-Medium.ttf */,
+				72FAD8DF3A984A208D484407 /* Comfortaa-Regular.ttf */,
+				9440FF96E33D453DB1E94C3D /* Comfortaa-SemiBold.ttf */,
+				AD8FC0FA34194DD9B316988B /* Comfortaa-VariableFont_wght.ttf */,
+				C4D0F6A3867C49E7B6F2A8FD /* CrimsonPro-Italic-VariableFont_wght.ttf */,
+				3FCE93DD5834487DAAC12DA2 /* CrimsonPro-VariableFont_wght.ttf */,
+				CA397AB38E9741F98345C6E7 /* CrimsonPro-Black.ttf */,
+				113DD2AF1C5340E29FB550A9 /* CrimsonPro-BlackItalic.ttf */,
+				084FA0FAC5AA44D997258221 /* CrimsonPro-Bold.ttf */,
+				376413DAA8BB4EB4944B154F /* CrimsonPro-BoldItalic.ttf */,
+				8061FB18F6CA4E3DA6A41FE0 /* CrimsonPro-ExtraBold.ttf */,
+				5C537804E6194E9C890FB084 /* CrimsonPro-ExtraBoldItalic.ttf */,
+				EB1D569FBE5D45618C394E2F /* CrimsonPro-ExtraLight.ttf */,
+				619017C797A54708A491FCD6 /* CrimsonPro-ExtraLightItalic.ttf */,
+				0A57B0E48A3C455F80D459B5 /* CrimsonPro-Italic.ttf */,
+				E34E2FB997314BAB88E6A9DD /* CrimsonPro-Light.ttf */,
+				B1A775D7234E47309D688AAE /* CrimsonPro-LightItalic.ttf */,
+				2196A1453E624B3786426968 /* CrimsonPro-Medium.ttf */,
+				7BF9E5AA76B5478586F874E9 /* CrimsonPro-MediumItalic.ttf */,
+				2BC0AB7DF2D643A79B630D12 /* CrimsonPro-Regular.ttf */,
+				DB7E05E2F1D9410AB3F81334 /* CrimsonPro-SemiBold.ttf */,
+				6237A8AEABEF4AE7A9C8C18E /* CrimsonPro-SemiBoldItalic.ttf */,
+				0BC0BB982E864A8689B59A60 /* NunitoSans-Black.ttf */,
+				0887498F7F45400EAD86C220 /* NunitoSans-BlackItalic.ttf */,
+				10EA0F3045E9466CA11AA177 /* NunitoSans-Bold.ttf */,
+				EF7E35AEF82A4958BAF78B89 /* NunitoSans-BoldItalic.ttf */,
+				4EEC3650F55D459FA6C8F010 /* NunitoSans-ExtraBold.ttf */,
+				4C05320B085B4C3F88645B55 /* NunitoSans-ExtraBoldItalic.ttf */,
+				EC1D24A762834655A7F88E0A /* NunitoSans-ExtraLight.ttf */,
+				9CDD84DDED6E4CBD99C41ED9 /* NunitoSans-ExtraLightItalic.ttf */,
+				DF272C502E5C4598BC853E42 /* NunitoSans-Italic.ttf */,
+				0FA66AD228F84AB7AF080E3C /* NunitoSans-Light.ttf */,
+				CC16C09752EA4B47AD8DE803 /* NunitoSans-LightItalic.ttf */,
+				AACEC68EC11B4A10A68AD1E3 /* NunitoSans-Regular.ttf */,
+				6FAD09DAF0BD4476AFEDB496 /* NunitoSans-SemiBold.ttf */,
+				6971C01D66534A2383340D7A /* NunitoSans-SemiBoldItalic.ttf */,
+			);
+			name = Resources;
+			path = "";
 			sourceTree = "<group>";
 		};
 		E233CBF5F47BEE60B243DCF8 /* Pods */ = {
@@ -262,6 +385,44 @@
 				81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
 				67D2D11C27C2A94600A43B7D /* GoogleService-Info.plist in Resources */,
+				A374063D93B34A98AAEE3EE7 /* Comfortaa-Bold.ttf in Resources */,
+				D4AD368B8A674854A52D23C4 /* Comfortaa-Light.ttf in Resources */,
+				F6486858D981473FBEFAF179 /* Comfortaa-Medium.ttf in Resources */,
+				F84FDE3A5A56450B9E385F91 /* Comfortaa-Regular.ttf in Resources */,
+				97F16BD7AE3E4BECBA066AC8 /* Comfortaa-SemiBold.ttf in Resources */,
+				C5CEBEDF09D5493CBF4AC447 /* Comfortaa-VariableFont_wght.ttf in Resources */,
+				03686C0821064D3BBD17FE14 /* CrimsonPro-Italic-VariableFont_wght.ttf in Resources */,
+				C37BCC19697C43CA9E7911EC /* CrimsonPro-VariableFont_wght.ttf in Resources */,
+				3CF91978D32C4C0EB653ABDE /* CrimsonPro-Black.ttf in Resources */,
+				F0BD03A435A441F2ADBD07E2 /* CrimsonPro-BlackItalic.ttf in Resources */,
+				45F42718099A49BD887C6199 /* CrimsonPro-Bold.ttf in Resources */,
+				8C27819BBAAB45DDA594EB63 /* CrimsonPro-BoldItalic.ttf in Resources */,
+				222021FD6770433CA939224C /* CrimsonPro-ExtraBold.ttf in Resources */,
+				16C12E9597AF4E31824AF2E0 /* CrimsonPro-ExtraBoldItalic.ttf in Resources */,
+				59749DA8AD07441EB55E60E8 /* CrimsonPro-ExtraLight.ttf in Resources */,
+				B29E6B541A5D4290A9DD1286 /* CrimsonPro-ExtraLightItalic.ttf in Resources */,
+				A85A3B7B11F943439BD6FA1E /* CrimsonPro-Italic.ttf in Resources */,
+				659A98C3CA6C409DAA1E0CED /* CrimsonPro-Light.ttf in Resources */,
+				FCFD0815DD92411A8602B329 /* CrimsonPro-LightItalic.ttf in Resources */,
+				323483FA232F43DE8788450E /* CrimsonPro-Medium.ttf in Resources */,
+				20A4F6D5796A4695B6672CA0 /* CrimsonPro-MediumItalic.ttf in Resources */,
+				4490A70AA8B743AB8BE92166 /* CrimsonPro-Regular.ttf in Resources */,
+				56569A0B10C24A9B99629698 /* CrimsonPro-SemiBold.ttf in Resources */,
+				989C2FA22A104F5CA6DC0859 /* CrimsonPro-SemiBoldItalic.ttf in Resources */,
+				EC7B0A273D614FBB818CF86E /* NunitoSans-Black.ttf in Resources */,
+				56870ABC001244DF9C1353FA /* NunitoSans-BlackItalic.ttf in Resources */,
+				D602BB7AE09F49A0996E69C6 /* NunitoSans-Bold.ttf in Resources */,
+				64F7E257BFE84192B65EB63D /* NunitoSans-BoldItalic.ttf in Resources */,
+				C66E11ABB8A14F7C8B7ECE10 /* NunitoSans-ExtraBold.ttf in Resources */,
+				F7F08FDFB1504DCEA8971A08 /* NunitoSans-ExtraBoldItalic.ttf in Resources */,
+				FAD06A35E2C043E38037A2D5 /* NunitoSans-ExtraLight.ttf in Resources */,
+				DACDE9AF0DE1443894C47C91 /* NunitoSans-ExtraLightItalic.ttf in Resources */,
+				8E2539498BAC449FBF5AECE8 /* NunitoSans-Italic.ttf in Resources */,
+				79CB12D356DC4536AD530A9E /* NunitoSans-Light.ttf in Resources */,
+				BEE6CA2227E0471EB46861F1 /* NunitoSans-LightItalic.ttf in Resources */,
+				A5FD22CA3A5948B592309F15 /* NunitoSans-Regular.ttf in Resources */,
+				9317B27537D04E81A59F9EBA /* NunitoSans-SemiBold.ttf in Resources */,
+				E520615531204FD89D7E369A /* NunitoSans-SemiBoldItalic.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
