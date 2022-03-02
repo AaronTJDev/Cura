@@ -1,21 +1,21 @@
-import React, { useEffect } from 'react';
-import { useDispatch } from 'react-redux';
-import { View, Text, TouchableOpacity } from 'react-native';
-import { login } from '../../redux/account/actions';
+import React from 'react';
+import {
+  StyleSheet,
+  View
+} from 'react-native';
+
+
+const styles = StyleSheet.create({
+  container: {
+    height: '100%',
+    width: '100%',
+  }
+});
 
 const Home = () => {
-  const dipatch = useDispatch();
-  
-  const handleLogin = () => {
-    login(dipatch).catch(console.error);
-  };
-
   return (
-    <View>
-      <Text>Home</Text>
-      <TouchableOpacity onPress={handleLogin}>
-        <Text>Go to Details</Text>
-      </TouchableOpacity>
+    <View style={styles.container}>
+
     </View>
   );
 }

@@ -43,11 +43,10 @@ export default function BottomTabs() {
 
   return (
     <Tab.Navigator
-      initialRouteName='Home'
+      initialRouteName='Account'
       screenOptions={{
         tabBarActiveTintColor: '#564439',
         tabBarInactiveTintColor: '#DAC6BE',
-        
       }}
     >
       {
@@ -64,7 +63,8 @@ export default function BottomTabs() {
                 tabBarIcon: ({ color }) => {
                   return (
                   <Icon icon={icon} color={color} size={18}/>
-                )}
+                )},
+                headerShown: tabBarLabel.toLowerCase() === 'account' ? false: true
               }}
             />
           )
