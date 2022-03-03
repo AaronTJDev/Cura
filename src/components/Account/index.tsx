@@ -6,6 +6,9 @@ import {
 } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 
+/** Components */
+import Login from './Login';
+
 /** Helpers */
 import { login } from '../../redux/account/actions';
 import { colors } from '../../lib/styles';
@@ -16,7 +19,8 @@ const styles = StyleSheet.create({
     width: '100%',
   },
   gradient: {
-    flex: 1
+    flex: 1,
+    justifyContent: 'center'
   }
 });
 
@@ -38,7 +42,7 @@ export default function Account() {
         start={{x: 0, y:0}}
         end={{x:0, y:1.25}}
       >
-
+        <Login/>
       </LinearGradient>
     </View>
   );

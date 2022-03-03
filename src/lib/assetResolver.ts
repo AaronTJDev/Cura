@@ -6,5 +6,8 @@ export const assetResolver = {
     accountActive: require('../../assets/icons/account_active.png'),
     cookbook: require('../../assets/icons/cookbook_active.png'),
     cookbookActive: require('../../assets/icons/cookbook_inactive.png'),
+  },
+  images: {
+    logo: require('../../assets/images/logo.png')
   }
 }
