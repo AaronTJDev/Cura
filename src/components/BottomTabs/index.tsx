@@ -16,7 +16,7 @@ interface ITab {
 }
 
 const styles = StyleSheet.create({
-  fontTest: {
+  tabBarLabel: {
     fontFamily: fonts.CrimsonProBlack
   }
 })
@@ -59,7 +59,7 @@ export default function BottomTabs() {
               component={component}
               options={{
                 tabBarLabel,
-                tabBarLabelStyle: styles.fontTest,
+                tabBarLabelStyle: styles.tabBarLabel,
                 tabBarIcon: ({ color }) => {
                   return (
                   <Icon icon={icon} color={color} size={18}/>

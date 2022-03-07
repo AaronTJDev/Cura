@@ -3,7 +3,7 @@ import { fab } from '@fortawesome/free-brands-svg-icons'
 import {
   faBook,
   faHouse,
-  faUser
+  faUser,
 } from '@fortawesome/free-solid-svg-icons'
 
 
