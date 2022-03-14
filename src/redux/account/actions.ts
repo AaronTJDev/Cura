@@ -1,6 +1,10 @@
-import { Action, Dispatch } from 'redux';
+import { Dispatch } from 'redux';
+import auth from '@react-native-firebase/auth';
+
+/** Helpers */
 import { accountActions } from './types';
 import { asyncAction } from '../helpers';
+import { logError } from '../../lib/helperes';
 
 export const login = (dispatch: Dispatch) => {
   const promise = new Promise((resolve, reject) => {
@@ -19,4 +23,16 @@ export const login = (dispatch: Dispatch) => {
   });
   asyncAction(promise, accountActions.login, dispatch);
   return promise;
+}
+
+export const createUserWithEmailAndPassword = 
+  (
+    dispatch: Dispatch,
+    email: string,
+    password: string
+  ) => {
+    console.log('email', email, 'password', password);
+    const accountCreatePromise = auth().createUserWithEmailAndPassword(email, password);
+    asyncAction(accountCreatePromise, accountActions.createAccount, dispatch);
+    return accountCreatePromise;
 }
