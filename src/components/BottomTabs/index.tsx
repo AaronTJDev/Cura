@@ -1,7 +1,7 @@
 import React from 'react';
 import { StyleSheet } from 'react-native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import Account from '../Account';
+import AccountScreen from '../../screens/AccountScreen';
 import Home from '../Home';
 import CookBook from '../CookBook';
 
@@ -37,7 +37,7 @@ export default function BottomTabs() {
     {
       icon: 'user',
       tabBarLabel: 'Account',
-      component: Account
+      component: AccountScreen
     }
   ]
 
@@ -64,7 +64,7 @@ export default function BottomTabs() {
                   return (
                   <Icon icon={icon} color={color} size={18}/>
                 )},
-                headerShown: tabBarLabel.toLowerCase() === 'account' ? false: true
+                headerShown: tabBarLabel.toLowerCase() === 'account' ? false : true,
               }}
             />
           )

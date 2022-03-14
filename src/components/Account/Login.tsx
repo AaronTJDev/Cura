@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React from 'react';
 import {
   Image,
   StyleSheet,
@@ -6,6 +6,7 @@ import {
   Text,
   TouchableOpacity
 } from 'react-native';
+import LinearGradient from 'react-native-linear-gradient';
 import { IconName } from '@fortawesome/fontawesome-svg-core';
 
 /** Components */
@@ -16,9 +17,15 @@ import { assetResolver } from '../../lib/assetResolver';
 import { colors, fonts } from '../../lib/styles';
 
 const styles = StyleSheet.create({
-  container: {
-    flex: .66,
-    alignItems: 'center'
+  gradient: {
+    flex: 1,
+    alignItems: 'center',
+  },
+  loginGroupContainer: {
+    flex: 1,
+    width: '100%',
+    alignItems: 'center',
+    justifyContent: 'center'
   },
   logo: {
     width: '66%',
@@ -40,22 +47,29 @@ const styles = StyleSheet.create({
 
 export default function Login() {
   return (
-    <View style={styles.container}>
-      <Image
-        style={styles.logo}
-        source={assetResolver.images.logo}
-      />
-      <SocialCTA brandIconName={'Apple' as IconName}/>
-      <SocialCTA brandIconName={'Google' as IconName}/>
-      <SocialCTA brandIconName={'Facebook' as IconName}/>
-      <View style={styles.emailAuthContainer}>
-        <TouchableOpacity>
-          <Text style={styles.authText}>Login</Text>
-        </TouchableOpacity>
-        <TouchableOpacity>
-          <Text style={styles.authText}>Sign Up With Email</Text>
-        </TouchableOpacity>
+    <LinearGradient
+      style={styles.gradient}
+      colors={[colors.main.white,colors.main.white,colors.main.primaryLight]}
+      start={{x: 0, y:0}}
+      end={{x:0, y:1.25}}
+    >
+      <View style={styles.loginGroupContainer}>
+        <Image
+          style={styles.logo}
+          source={assetResolver.images.logo}
+        />
+        <SocialCTA brandIconName={'Apple' as IconName}/>
+        <SocialCTA brandIconName={'Google' as IconName}/>
+        <SocialCTA brandIconName={'Facebook' as IconName}/>
+        <View style={styles.emailAuthContainer}>
+          <TouchableOpacity>
+            <Text style={styles.authText}>Login</Text>
+          </TouchableOpacity>
+          <TouchableOpacity>
+            <Text style={styles.authText}>Sign Up With Email</Text>
+          </TouchableOpacity>
+        </View>
       </View>
-    </View>
+    </LinearGradient>
   )
 };
