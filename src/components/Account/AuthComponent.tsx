@@ -45,7 +45,11 @@ const styles = StyleSheet.create({
   }
 });
 
-export default function Login() {
+export default function AuthComponent() {
+  const handleNavigate = (screen: string) => {
+    console.log(screen);
+  }
+
   return (
     <LinearGradient
       style={styles.gradient}
@@ -62,10 +66,14 @@ export default function Login() {
         <SocialCTA brandIconName={'Google' as IconName}/>
         <SocialCTA brandIconName={'Facebook' as IconName}/>
         <View style={styles.emailAuthContainer}>
-          <TouchableOpacity>
+          <TouchableOpacity
+            onPress={() => handleNavigate('Login')}
+          >
             <Text style={styles.authText}>Login</Text>
           </TouchableOpacity>
-          <TouchableOpacity>
+          <TouchableOpacity
+            onPress={() => handleNavigate('Signup')}
+          >
             <Text style={styles.authText}>Sign Up With Email</Text>
           </TouchableOpacity>
         </View>

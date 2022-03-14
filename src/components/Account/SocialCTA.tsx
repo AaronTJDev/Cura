@@ -36,7 +36,6 @@ const styles = StyleSheet.create({
 
 interface SocialCTAProps {
   brandIconName: IconName;
-  color?: string;
 }
 
 export default function SocialCTA(props: SocialCTAProps) {
