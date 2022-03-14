@@ -25,9 +25,6 @@
 		6172F2D35A4C3AA820D92908 /* libPods-pantrywise.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6423831EA8574132BED9D8CC /* libPods-pantrywise.a */; };
 		64F7E257BFE84192B65EB63D /* NunitoSans-BoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = EF7E35AEF82A4958BAF78B89 /* NunitoSans-BoldItalic.ttf */; };
 		659A98C3CA6C409DAA1E0CED /* CrimsonPro-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E34E2FB997314BAB88E6A9DD /* CrimsonPro-Light.ttf */; };
-		676CB44027C21CF3009CD1A3 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 676CB43F27C21CF3009CD1A3 /* FirebaseAuth */; };
-		676CB44227C21CF3009CD1A3 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 676CB44127C21CF3009CD1A3 /* FirebaseFirestore */; };
-		676CB44427C21CF3009CD1A3 /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = 676CB44327C21CF3009CD1A3 /* FirebaseStorage */; };
 		67D2D11C27C2A94600A43B7D /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 67D2D11B27C2A94500A43B7D /* GoogleService-Info.plist */; };
 		79CB12D356DC4536AD530A9E /* NunitoSans-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0FA66AD228F84AB7AF080E3C /* NunitoSans-Light.ttf */; };
 		7EF68E3733C33B6898317E18 /* libPods-pantrywise-pantrywiseTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = ABFE59519B596E51CEFDCCC0 /* libPods-pantrywise-pantrywiseTests.a */; };
@@ -72,13 +69,13 @@
 		00E356EE1AD99517003FC87E /* pantrywiseTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = pantrywiseTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		00E356F11AD99517003FC87E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		00E356F21AD99517003FC87E /* pantrywiseTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = pantrywiseTests.m; sourceTree = "<group>"; };
-		084FA0FAC5AA44D997258221 /* CrimsonPro-Bold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "CrimsonPro-Bold.ttf"; path = "../assets/fonts/CrimsonPro-Bold.ttf"; sourceTree = "<group>"; };
-		0887498F7F45400EAD86C220 /* NunitoSans-BlackItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "NunitoSans-BlackItalic.ttf"; path = "../assets/fonts/NunitoSans-BlackItalic.ttf"; sourceTree = "<group>"; };
-		0A57B0E48A3C455F80D459B5 /* CrimsonPro-Italic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "CrimsonPro-Italic.ttf"; path = "../assets/fonts/CrimsonPro-Italic.ttf"; sourceTree = "<group>"; };
-		0BC0BB982E864A8689B59A60 /* NunitoSans-Black.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "NunitoSans-Black.ttf"; path = "../assets/fonts/NunitoSans-Black.ttf"; sourceTree = "<group>"; };
-		0FA66AD228F84AB7AF080E3C /* NunitoSans-Light.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "NunitoSans-Light.ttf"; path = "../assets/fonts/NunitoSans-Light.ttf"; sourceTree = "<group>"; };
-		10EA0F3045E9466CA11AA177 /* NunitoSans-Bold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "NunitoSans-Bold.ttf"; path = "../assets/fonts/NunitoSans-Bold.ttf"; sourceTree = "<group>"; };
-		113DD2AF1C5340E29FB550A9 /* CrimsonPro-BlackItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "CrimsonPro-BlackItalic.ttf"; path = "../assets/fonts/CrimsonPro-BlackItalic.ttf"; sourceTree = "<group>"; };
+		084FA0FAC5AA44D997258221 /* CrimsonPro-Bold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "CrimsonPro-Bold.ttf"; path = "../assets/fonts/CrimsonPro-Bold.ttf"; sourceTree = "<group>"; };
+		0887498F7F45400EAD86C220 /* NunitoSans-BlackItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "NunitoSans-BlackItalic.ttf"; path = "../assets/fonts/NunitoSans-BlackItalic.ttf"; sourceTree = "<group>"; };
+		0A57B0E48A3C455F80D459B5 /* CrimsonPro-Italic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "CrimsonPro-Italic.ttf"; path = "../assets/fonts/CrimsonPro-Italic.ttf"; sourceTree = "<group>"; };
+		0BC0BB982E864A8689B59A60 /* NunitoSans-Black.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "NunitoSans-Black.ttf"; path = "../assets/fonts/NunitoSans-Black.ttf"; sourceTree = "<group>"; };
+		0FA66AD228F84AB7AF080E3C /* NunitoSans-Light.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "NunitoSans-Light.ttf"; path = "../assets/fonts/NunitoSans-Light.ttf"; sourceTree = "<group>"; };
+		10EA0F3045E9466CA11AA177 /* NunitoSans-Bold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "NunitoSans-Bold.ttf"; path = "../assets/fonts/NunitoSans-Bold.ttf"; sourceTree = "<group>"; };
+		113DD2AF1C5340E29FB550A9 /* CrimsonPro-BlackItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "CrimsonPro-BlackItalic.ttf"; path = "../assets/fonts/CrimsonPro-BlackItalic.ttf"; sourceTree = "<group>"; };
 		13B07F961A680F5B00A75B9A /* pantrywise.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = pantrywise.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		13B07FAF1A68108700A75B9A /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = pantrywise/AppDelegate.h; sourceTree = "<group>"; };
 		13B07FB01A68108700A75B9A /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AppDelegate.m; path = pantrywise/AppDelegate.m; sourceTree = "<group>"; };
@@ -86,45 +83,45 @@
 		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = pantrywise/Info.plist; sourceTree = "<group>"; };
 		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = pantrywise/main.m; sourceTree = "<group>"; };
 		1D0AE47A65C8663E3B452821 /* Pods-pantrywise-pantrywiseTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-pantrywise-pantrywiseTests.release.xcconfig"; path = "Target Support Files/Pods-pantrywise-pantrywiseTests/Pods-pantrywise-pantrywiseTests.release.xcconfig"; sourceTree = "<group>"; };
-		2196A1453E624B3786426968 /* CrimsonPro-Medium.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "CrimsonPro-Medium.ttf"; path = "../assets/fonts/CrimsonPro-Medium.ttf"; sourceTree = "<group>"; };
-		2BC0AB7DF2D643A79B630D12 /* CrimsonPro-Regular.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "CrimsonPro-Regular.ttf"; path = "../assets/fonts/CrimsonPro-Regular.ttf"; sourceTree = "<group>"; };
-		376413DAA8BB4EB4944B154F /* CrimsonPro-BoldItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "CrimsonPro-BoldItalic.ttf"; path = "../assets/fonts/CrimsonPro-BoldItalic.ttf"; sourceTree = "<group>"; };
-		3FCE93DD5834487DAAC12DA2 /* CrimsonPro-VariableFont_wght.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "CrimsonPro-VariableFont_wght.ttf"; path = "../assets/fonts/Crimson_Pro/CrimsonPro-VariableFont_wght.ttf"; sourceTree = "<group>"; };
-		3FDF2D9ABEDA4C9597FF2239 /* Comfortaa-Bold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "Comfortaa-Bold.ttf"; path = "../assets/fonts/Comfortaa-Bold.ttf"; sourceTree = "<group>"; };
-		40EEEAF0A2654CAC8E0298F9 /* Comfortaa-Light.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "Comfortaa-Light.ttf"; path = "../assets/fonts/Comfortaa-Light.ttf"; sourceTree = "<group>"; };
-		4C05320B085B4C3F88645B55 /* NunitoSans-ExtraBoldItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "NunitoSans-ExtraBoldItalic.ttf"; path = "../assets/fonts/NunitoSans-ExtraBoldItalic.ttf"; sourceTree = "<group>"; };
-		4EEC3650F55D459FA6C8F010 /* NunitoSans-ExtraBold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "NunitoSans-ExtraBold.ttf"; path = "../assets/fonts/NunitoSans-ExtraBold.ttf"; sourceTree = "<group>"; };
-		5C537804E6194E9C890FB084 /* CrimsonPro-ExtraBoldItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "CrimsonPro-ExtraBoldItalic.ttf"; path = "../assets/fonts/CrimsonPro-ExtraBoldItalic.ttf"; sourceTree = "<group>"; };
-		619017C797A54708A491FCD6 /* CrimsonPro-ExtraLightItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "CrimsonPro-ExtraLightItalic.ttf"; path = "../assets/fonts/CrimsonPro-ExtraLightItalic.ttf"; sourceTree = "<group>"; };
-		6237A8AEABEF4AE7A9C8C18E /* CrimsonPro-SemiBoldItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "CrimsonPro-SemiBoldItalic.ttf"; path = "../assets/fonts/CrimsonPro-SemiBoldItalic.ttf"; sourceTree = "<group>"; };
+		2196A1453E624B3786426968 /* CrimsonPro-Medium.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "CrimsonPro-Medium.ttf"; path = "../assets/fonts/CrimsonPro-Medium.ttf"; sourceTree = "<group>"; };
+		2BC0AB7DF2D643A79B630D12 /* CrimsonPro-Regular.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "CrimsonPro-Regular.ttf"; path = "../assets/fonts/CrimsonPro-Regular.ttf"; sourceTree = "<group>"; };
+		376413DAA8BB4EB4944B154F /* CrimsonPro-BoldItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "CrimsonPro-BoldItalic.ttf"; path = "../assets/fonts/CrimsonPro-BoldItalic.ttf"; sourceTree = "<group>"; };
+		3FCE93DD5834487DAAC12DA2 /* CrimsonPro-VariableFont_wght.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "CrimsonPro-VariableFont_wght.ttf"; path = "../assets/fonts/Crimson_Pro/CrimsonPro-VariableFont_wght.ttf"; sourceTree = "<group>"; };
+		3FDF2D9ABEDA4C9597FF2239 /* Comfortaa-Bold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Comfortaa-Bold.ttf"; path = "../assets/fonts/Comfortaa-Bold.ttf"; sourceTree = "<group>"; };
+		40EEEAF0A2654CAC8E0298F9 /* Comfortaa-Light.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Comfortaa-Light.ttf"; path = "../assets/fonts/Comfortaa-Light.ttf"; sourceTree = "<group>"; };
+		4C05320B085B4C3F88645B55 /* NunitoSans-ExtraBoldItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "NunitoSans-ExtraBoldItalic.ttf"; path = "../assets/fonts/NunitoSans-ExtraBoldItalic.ttf"; sourceTree = "<group>"; };
+		4EEC3650F55D459FA6C8F010 /* NunitoSans-ExtraBold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "NunitoSans-ExtraBold.ttf"; path = "../assets/fonts/NunitoSans-ExtraBold.ttf"; sourceTree = "<group>"; };
+		5C537804E6194E9C890FB084 /* CrimsonPro-ExtraBoldItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "CrimsonPro-ExtraBoldItalic.ttf"; path = "../assets/fonts/CrimsonPro-ExtraBoldItalic.ttf"; sourceTree = "<group>"; };
+		619017C797A54708A491FCD6 /* CrimsonPro-ExtraLightItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "CrimsonPro-ExtraLightItalic.ttf"; path = "../assets/fonts/CrimsonPro-ExtraLightItalic.ttf"; sourceTree = "<group>"; };
+		6237A8AEABEF4AE7A9C8C18E /* CrimsonPro-SemiBoldItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "CrimsonPro-SemiBoldItalic.ttf"; path = "../assets/fonts/CrimsonPro-SemiBoldItalic.ttf"; sourceTree = "<group>"; };
 		6423831EA8574132BED9D8CC /* libPods-pantrywise.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-pantrywise.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		67D2D11B27C2A94500A43B7D /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "pantrywise/GoogleService-Info.plist"; sourceTree = "<group>"; };
-		6971C01D66534A2383340D7A /* NunitoSans-SemiBoldItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "NunitoSans-SemiBoldItalic.ttf"; path = "../assets/fonts/NunitoSans-SemiBoldItalic.ttf"; sourceTree = "<group>"; };
+		6971C01D66534A2383340D7A /* NunitoSans-SemiBoldItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "NunitoSans-SemiBoldItalic.ttf"; path = "../assets/fonts/NunitoSans-SemiBoldItalic.ttf"; sourceTree = "<group>"; };
 		6C97AB639B58BBB4B15BBE30 /* Pods-pantrywise-pantrywiseTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-pantrywise-pantrywiseTests.debug.xcconfig"; path = "Target Support Files/Pods-pantrywise-pantrywiseTests/Pods-pantrywise-pantrywiseTests.debug.xcconfig"; sourceTree = "<group>"; };
-		6FAD09DAF0BD4476AFEDB496 /* NunitoSans-SemiBold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "NunitoSans-SemiBold.ttf"; path = "../assets/fonts/NunitoSans-SemiBold.ttf"; sourceTree = "<group>"; };
-		72FAD8DF3A984A208D484407 /* Comfortaa-Regular.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "Comfortaa-Regular.ttf"; path = "../assets/fonts/Comfortaa-Regular.ttf"; sourceTree = "<group>"; };
-		7BF9E5AA76B5478586F874E9 /* CrimsonPro-MediumItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "CrimsonPro-MediumItalic.ttf"; path = "../assets/fonts/CrimsonPro-MediumItalic.ttf"; sourceTree = "<group>"; };
-		8061FB18F6CA4E3DA6A41FE0 /* CrimsonPro-ExtraBold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "CrimsonPro-ExtraBold.ttf"; path = "../assets/fonts/CrimsonPro-ExtraBold.ttf"; sourceTree = "<group>"; };
+		6FAD09DAF0BD4476AFEDB496 /* NunitoSans-SemiBold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "NunitoSans-SemiBold.ttf"; path = "../assets/fonts/NunitoSans-SemiBold.ttf"; sourceTree = "<group>"; };
+		72FAD8DF3A984A208D484407 /* Comfortaa-Regular.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Comfortaa-Regular.ttf"; path = "../assets/fonts/Comfortaa-Regular.ttf"; sourceTree = "<group>"; };
+		7BF9E5AA76B5478586F874E9 /* CrimsonPro-MediumItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "CrimsonPro-MediumItalic.ttf"; path = "../assets/fonts/CrimsonPro-MediumItalic.ttf"; sourceTree = "<group>"; };
+		8061FB18F6CA4E3DA6A41FE0 /* CrimsonPro-ExtraBold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "CrimsonPro-ExtraBold.ttf"; path = "../assets/fonts/CrimsonPro-ExtraBold.ttf"; sourceTree = "<group>"; };
 		81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = pantrywise/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		9440FF96E33D453DB1E94C3D /* Comfortaa-SemiBold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "Comfortaa-SemiBold.ttf"; path = "../assets/fonts/Comfortaa-SemiBold.ttf"; sourceTree = "<group>"; };
-		9CDD84DDED6E4CBD99C41ED9 /* NunitoSans-ExtraLightItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "NunitoSans-ExtraLightItalic.ttf"; path = "../assets/fonts/NunitoSans-ExtraLightItalic.ttf"; sourceTree = "<group>"; };
-		A845229AEBB14BB283656BBB /* Comfortaa-Medium.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "Comfortaa-Medium.ttf"; path = "../assets/fonts/Comfortaa-Medium.ttf"; sourceTree = "<group>"; };
-		AACEC68EC11B4A10A68AD1E3 /* NunitoSans-Regular.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "NunitoSans-Regular.ttf"; path = "../assets/fonts/NunitoSans-Regular.ttf"; sourceTree = "<group>"; };
+		9440FF96E33D453DB1E94C3D /* Comfortaa-SemiBold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Comfortaa-SemiBold.ttf"; path = "../assets/fonts/Comfortaa-SemiBold.ttf"; sourceTree = "<group>"; };
+		9CDD84DDED6E4CBD99C41ED9 /* NunitoSans-ExtraLightItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "NunitoSans-ExtraLightItalic.ttf"; path = "../assets/fonts/NunitoSans-ExtraLightItalic.ttf"; sourceTree = "<group>"; };
+		A845229AEBB14BB283656BBB /* Comfortaa-Medium.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Comfortaa-Medium.ttf"; path = "../assets/fonts/Comfortaa-Medium.ttf"; sourceTree = "<group>"; };
+		AACEC68EC11B4A10A68AD1E3 /* NunitoSans-Regular.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "NunitoSans-Regular.ttf"; path = "../assets/fonts/NunitoSans-Regular.ttf"; sourceTree = "<group>"; };
 		ABFE59519B596E51CEFDCCC0 /* libPods-pantrywise-pantrywiseTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-pantrywise-pantrywiseTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		AD8FC0FA34194DD9B316988B /* Comfortaa-VariableFont_wght.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "Comfortaa-VariableFont_wght.ttf"; path = "../assets/fonts/Comfortaa-VariableFont_wght.ttf"; sourceTree = "<group>"; };
-		B1A775D7234E47309D688AAE /* CrimsonPro-LightItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "CrimsonPro-LightItalic.ttf"; path = "../assets/fonts/CrimsonPro-LightItalic.ttf"; sourceTree = "<group>"; };
+		AD8FC0FA34194DD9B316988B /* Comfortaa-VariableFont_wght.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Comfortaa-VariableFont_wght.ttf"; path = "../assets/fonts/Comfortaa-VariableFont_wght.ttf"; sourceTree = "<group>"; };
+		B1A775D7234E47309D688AAE /* CrimsonPro-LightItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "CrimsonPro-LightItalic.ttf"; path = "../assets/fonts/CrimsonPro-LightItalic.ttf"; sourceTree = "<group>"; };
 		C0A881CF5CF3F2B244570E2A /* Pods-pantrywise.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-pantrywise.debug.xcconfig"; path = "Target Support Files/Pods-pantrywise/Pods-pantrywise.debug.xcconfig"; sourceTree = "<group>"; };
-		C4D0F6A3867C49E7B6F2A8FD /* CrimsonPro-Italic-VariableFont_wght.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "CrimsonPro-Italic-VariableFont_wght.ttf"; path = "../assets/fonts/Crimson_Pro/CrimsonPro-Italic-VariableFont_wght.ttf"; sourceTree = "<group>"; };
-		CA397AB38E9741F98345C6E7 /* CrimsonPro-Black.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "CrimsonPro-Black.ttf"; path = "../assets/fonts/CrimsonPro-Black.ttf"; sourceTree = "<group>"; };
-		CC16C09752EA4B47AD8DE803 /* NunitoSans-LightItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "NunitoSans-LightItalic.ttf"; path = "../assets/fonts/NunitoSans-LightItalic.ttf"; sourceTree = "<group>"; };
+		C4D0F6A3867C49E7B6F2A8FD /* CrimsonPro-Italic-VariableFont_wght.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "CrimsonPro-Italic-VariableFont_wght.ttf"; path = "../assets/fonts/Crimson_Pro/CrimsonPro-Italic-VariableFont_wght.ttf"; sourceTree = "<group>"; };
+		CA397AB38E9741F98345C6E7 /* CrimsonPro-Black.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "CrimsonPro-Black.ttf"; path = "../assets/fonts/CrimsonPro-Black.ttf"; sourceTree = "<group>"; };
+		CC16C09752EA4B47AD8DE803 /* NunitoSans-LightItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "NunitoSans-LightItalic.ttf"; path = "../assets/fonts/NunitoSans-LightItalic.ttf"; sourceTree = "<group>"; };
 		D00AAFFCFCFDA5787532823F /* Pods-pantrywise.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-pantrywise.release.xcconfig"; path = "Target Support Files/Pods-pantrywise/Pods-pantrywise.release.xcconfig"; sourceTree = "<group>"; };
-		DB7E05E2F1D9410AB3F81334 /* CrimsonPro-SemiBold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "CrimsonPro-SemiBold.ttf"; path = "../assets/fonts/CrimsonPro-SemiBold.ttf"; sourceTree = "<group>"; };
-		DF272C502E5C4598BC853E42 /* NunitoSans-Italic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "NunitoSans-Italic.ttf"; path = "../assets/fonts/NunitoSans-Italic.ttf"; sourceTree = "<group>"; };
-		E34E2FB997314BAB88E6A9DD /* CrimsonPro-Light.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "CrimsonPro-Light.ttf"; path = "../assets/fonts/CrimsonPro-Light.ttf"; sourceTree = "<group>"; };
-		EB1D569FBE5D45618C394E2F /* CrimsonPro-ExtraLight.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "CrimsonPro-ExtraLight.ttf"; path = "../assets/fonts/CrimsonPro-ExtraLight.ttf"; sourceTree = "<group>"; };
-		EC1D24A762834655A7F88E0A /* NunitoSans-ExtraLight.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "NunitoSans-ExtraLight.ttf"; path = "../assets/fonts/NunitoSans-ExtraLight.ttf"; sourceTree = "<group>"; };
+		DB7E05E2F1D9410AB3F81334 /* CrimsonPro-SemiBold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "CrimsonPro-SemiBold.ttf"; path = "../assets/fonts/CrimsonPro-SemiBold.ttf"; sourceTree = "<group>"; };
+		DF272C502E5C4598BC853E42 /* NunitoSans-Italic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "NunitoSans-Italic.ttf"; path = "../assets/fonts/NunitoSans-Italic.ttf"; sourceTree = "<group>"; };
+		E34E2FB997314BAB88E6A9DD /* CrimsonPro-Light.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "CrimsonPro-Light.ttf"; path = "../assets/fonts/CrimsonPro-Light.ttf"; sourceTree = "<group>"; };
+		EB1D569FBE5D45618C394E2F /* CrimsonPro-ExtraLight.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "CrimsonPro-ExtraLight.ttf"; path = "../assets/fonts/CrimsonPro-ExtraLight.ttf"; sourceTree = "<group>"; };
+		EC1D24A762834655A7F88E0A /* NunitoSans-ExtraLight.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "NunitoSans-ExtraLight.ttf"; path = "../assets/fonts/NunitoSans-ExtraLight.ttf"; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
-		EF7E35AEF82A4958BAF78B89 /* NunitoSans-BoldItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "NunitoSans-BoldItalic.ttf"; path = "../assets/fonts/NunitoSans-BoldItalic.ttf"; sourceTree = "<group>"; };
+		EF7E35AEF82A4958BAF78B89 /* NunitoSans-BoldItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "NunitoSans-BoldItalic.ttf"; path = "../assets/fonts/NunitoSans-BoldItalic.ttf"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -141,9 +138,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				6172F2D35A4C3AA820D92908 /* libPods-pantrywise.a in Frameworks */,
-				676CB44427C21CF3009CD1A3 /* FirebaseStorage in Frameworks */,
-				676CB44027C21CF3009CD1A3 /* FirebaseAuth in Frameworks */,
-				676CB44227C21CF3009CD1A3 /* FirebaseFirestore in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -266,7 +260,6 @@
 				6971C01D66534A2383340D7A /* NunitoSans-SemiBoldItalic.ttf */,
 			);
 			name = Resources;
-			path = "";
 			sourceTree = "<group>";
 		};
 		E233CBF5F47BEE60B243DCF8 /* Pods */ = {
@@ -323,9 +316,6 @@
 			);
 			name = pantrywise;
 			packageProductDependencies = (
-				676CB43F27C21CF3009CD1A3 /* FirebaseAuth */,
-				676CB44127C21CF3009CD1A3 /* FirebaseFirestore */,
-				676CB44327C21CF3009CD1A3 /* FirebaseStorage */,
 			);
 			productName = pantrywise;
 			productReference = 13B07F961A680F5B00A75B9A /* pantrywise.app */;
@@ -358,7 +348,6 @@
 			);
 			mainGroup = 83CBB9F61A601CBA00E9B192;
 			packageReferences = (
-				676CB43E27C21CF3009CD1A3 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 			);
 			productRefGroup = 83CBBA001A601CBA00E9B192 /* Products */;
 			projectDirPath = "";
@@ -862,35 +851,6 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
-
-/* Begin XCRemoteSwiftPackageReference section */
-		676CB43E27C21CF3009CD1A3 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
-			requirement = {
-				branch = master;
-				kind = branch;
-			};
-		};
-/* End XCRemoteSwiftPackageReference section */
-
-/* Begin XCSwiftPackageProductDependency section */
-		676CB43F27C21CF3009CD1A3 /* FirebaseAuth */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 676CB43E27C21CF3009CD1A3 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
-			productName = FirebaseAuth;
-		};
-		676CB44127C21CF3009CD1A3 /* FirebaseFirestore */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 676CB43E27C21CF3009CD1A3 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
-			productName = FirebaseFirestore;
-		};
-		676CB44327C21CF3009CD1A3 /* FirebaseStorage */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 676CB43E27C21CF3009CD1A3 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
-			productName = FirebaseStorage;
-		};
-/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 83CBB9F71A601CBA00E9B192 /* Project object */;
 }
