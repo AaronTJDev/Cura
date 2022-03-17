@@ -45,9 +45,11 @@ const styles = StyleSheet.create({
   }
 });
 
-export default function AuthComponent() {
+export default function AuthComponent(props: any) {
+  const { navigation } = props;
   const handleNavigate = (screen: string) => {
-    console.log(screen);
+    console.log(screen, props);
+    navigation.navigate(screen);
   }
 
   return (
