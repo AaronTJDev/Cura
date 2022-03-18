@@ -5,7 +5,6 @@ import { createNativeStackNavigator, NativeStackNavigationProp } from '@react-na
 import AuthComponent from '../components/Account/AuthComponent';
 import SignupComponent from '../components/Account/SignupComponent';
 
-
 const AccountStack = createNativeStackNavigator();
 
 export default function AccountScreen(props: NativeStackNavigationProp<any>) {

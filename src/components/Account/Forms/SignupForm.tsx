@@ -1,6 +1,5 @@
 import React from 'react';
 import {
-  Animated,
   StyleSheet,
   Text,
   TextInput,
@@ -8,9 +7,11 @@ import {
   View
 } from 'react-native';
 import { Formik } from 'formik';
+import { useDispatch } from 'react-redux';
 
 /** Helpers */
 import { colors, fonts } from '../../../lib/styles';
+import { createUserWithEmailAndPassword } from '../../../redux/account/actions';
 
 const styles = StyleSheet.create({
   formContainer: {
@@ -51,6 +52,7 @@ interface SignupFormValues {
 }
 
 export default function SignupForm() {
+  const dispatch = useDispatch();
   const initialValues = {
     email: '',
     password: '',
@@ -58,7 +60,8 @@ export default function SignupForm() {
   }
 
   const handleSubmit = (values: SignupFormValues) => {
-    console.log(values);
+    const { email, password } = values;
+    createUserWithEmailAndPassword(dispatch, email, password);
   }
 
   return (
