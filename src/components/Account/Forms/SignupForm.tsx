@@ -16,7 +16,7 @@ import { createUserWithEmailAndPassword } from '../../../redux/account/actions';
 const styles = StyleSheet.create({
   formContainer: {
     width: '66%',
-    alignItems: 'center',
+    alignItems: 'center'
   },
   formInputView: {
     marginTop: 32,
@@ -28,7 +28,10 @@ const styles = StyleSheet.create({
     textAlign: 'left',
     alignSelf: 'flex-start',
     fontFamily: fonts.CrimsonProRegular,
-    fontSize: 16
+    fontSize: 16,
+    padding: 8,
+    width: '100%',
+    height: 36
   },
   registerButton: {
     marginTop: 43,

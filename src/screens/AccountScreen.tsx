@@ -5,6 +5,9 @@ import { createNativeStackNavigator, NativeStackNavigationProp } from '@react-na
 import AuthComponent from '../components/Account/AuthComponent';
 import SignupComponent from '../components/Account/SignupComponent';
 
+/** Helpers */
+import { fonts } from '../lib/styles';
+
 const AccountStack = createNativeStackNavigator();
 
 export default function AccountScreen(props: NativeStackNavigationProp<any>) {
@@ -25,7 +28,9 @@ export default function AccountScreen(props: NativeStackNavigationProp<any>) {
           component={SignupComponent}
           options={{
             headerShown: true,
-            
+            headerTitleStyle: {
+              fontFamily: fonts.NunitoSansSemiBold
+            }
           }}
         />
       </AccountStack.Navigator>
