@@ -1,18 +1,16 @@
 /**
  * @format
  */
-
 import {AppRegistry} from 'react-native';
-import { firebase } from '@react-native-firebase/auth';
-import App from './src/App';
 import {name as appName} from './app.json';
+import { firebase } from '@react-native-firebase/auth';
+
+/** Components */
+import App from './src/App';
 
 /** helpers */
-import env from './env';
 import { initiateIconLibrary } from './src/lib/icons';
-
-const initializeAppLibs = () => {
-  firebase.initializeApp(env.firebaseConfig);
+const initializeAppLibs = async () => {
   initiateIconLibrary();
 }
 

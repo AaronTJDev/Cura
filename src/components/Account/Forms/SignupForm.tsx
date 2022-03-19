@@ -27,8 +27,8 @@ const styles = StyleSheet.create({
   formInput: {
     textAlign: 'left',
     alignSelf: 'flex-start',
-    fontFamily: fonts.CrimsonProRegular,
-    fontSize: 16,
+    fontFamily: fonts.CrimsonProLight,
+    fontSize: 18,
     padding: 8,
     width: '100%',
     height: 36
@@ -102,6 +102,7 @@ export default function SignupForm() {
               onBlur={handleBlur('password')}
               value={values.password}
               textContentType={'password'}
+              secureTextEntry
             />
           </View>
           <TouchableOpacity

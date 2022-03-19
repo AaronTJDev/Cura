@@ -1,10 +1,10 @@
 import { Dispatch } from 'redux';
-import firebase from '@react-native-firebase/app';
+import auth from '@react-native-firebase/auth';
 
 /** Helpers */
 import { accountActions } from './types';
 import { asyncAction } from '../helpers';
-import { logError } from '../../lib/helperes';
+import { logError } from '../../lib/helpers';
 
 export const login = (dispatch: Dispatch) => {
   const promise = new Promise((resolve, reject) => {
@@ -32,9 +32,8 @@ export const createUserWithEmailAndPassword =
     password: string
   ) => {
     console.log('email', email, 'password', password);
-    const app = firebase.app();
     const accountCreatePromise = 
-      app.auth().createUserWithEmailAndPassword(email, password)
+      auth().createUserWithEmailAndPassword(email, password)
         .then((res) => {
           console.log('account created', res);
         })
