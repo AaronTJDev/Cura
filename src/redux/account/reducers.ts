@@ -1,26 +1,28 @@
-import { Action, createStore } from "redux";
+import { Action } from "redux";
 import { accountActions } from "./types";
 
 const initialState = {
-  data: {}
+  data: {},
+  loading: false
 }
 
-interface ActionPayload extends Action { payload: any }
+export interface ActionPayload extends Action { payload: any }
 
 const accountReducer = (state = initialState, action: ActionPayload) => {
   switch (action.type) {
-    case accountActions.login.start:
+    case accountActions.createAccount.start:
+      console.log('Start state hit');
       return {
         ...state,
         loading: true,
       };
-    case accountActions.login.success:
+    case accountActions.createAccount.success:
       return {
         ...state,
         loading: false,
         data: action.payload,
       };
-    case accountActions.login.error:
+    case accountActions.createAccount.error:
       return {
         ...state,
         loading: false,

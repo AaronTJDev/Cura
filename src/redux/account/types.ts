@@ -15,4 +15,5 @@ type AccountData = {
 
 export interface AccountStore {
   data: AccountData;
+  loading: boolean;
 }

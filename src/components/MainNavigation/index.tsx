@@ -21,7 +21,7 @@ const styles = StyleSheet.create({
   }
 })
 
-export default function BottomTabs() {
+export default function MainNavigation() {
   const Tab = createBottomTabNavigator();
   const tabs = [
     {
