@@ -11,7 +11,7 @@ import { useDispatch } from 'react-redux';
 
 /** Helpers */
 import { colors, fonts } from '../../../lib/styles';
-import { createUserWithEmailAndPassword } from '../../../redux/account/actions';
+import { createUserWithEmailAndPassword, login } from '../../../redux/account/actions';
 import { SignupSchema } from '../../../lib/validationSchemas';
 import { logError, navigate } from '../../../lib/helpers';
 
@@ -70,15 +70,13 @@ export default function SignupForm() {
 
   const handleSubmit = useCallback(async (values: SignupFormValues, { setFieldError }: any) => {
     const { email, password } = values;
-    createUserWithEmailAndPassword(dispatch, email, password)
-      .then((res) => {
-        navigate('Home')
-        return res;
-      })
-      .catch((err) => {
-        setFieldError('email', 'Email already in use');
-        throw err;
-      });
+    try {
+      await createUserWithEmailAndPassword(dispatch, email, password);
+      navigate('Home')
+    } catch (err) {
+      setFieldError('email', 'Email already in use');
+      throw err;
+    }
   }, [dispatch])
 
   return (

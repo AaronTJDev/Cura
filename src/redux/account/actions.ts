@@ -8,6 +8,7 @@ import { asyncAction } from '../helpers';
 export const login = (dispatch: Dispatch) => {
   const promise = new Promise((resolve, reject) => {
     const random = Math.random();
+    console.log('random', random)
     setTimeout(() => {
       if (random > 0.5) {
         resolve({

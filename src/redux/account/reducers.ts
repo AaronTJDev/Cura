@@ -16,10 +16,16 @@ const accountReducer = (state = initialState, action: ActionPayload) => {
         loading: true,
       };
     case accountActions.createAccount.success:
+      const user = {
+        email: action.payload?.user?.email,
+        uid: action.payload?.user?.uid,
+        isNewUser: action.payload?.additionalUserInfo?.isNewUser
+      }
+
       return {
         ...state,
         loading: false,
-        data: action.payload,
+        data: user,
       };
     case accountActions.createAccount.error:
       return {
