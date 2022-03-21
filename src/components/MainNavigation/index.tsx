@@ -1,12 +1,15 @@
-import React from 'react';
+import React, {useRef} from 'react';
 import { StyleSheet } from 'react-native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import { IconProp } from '@fortawesome/fontawesome-svg-core';
+import { FontAwesomeIcon as Icon } from '@fortawesome/react-native-fontawesome';
+
+/** Components */
 import AccountScreen from '../../screens/AccountScreen';
 import Home from '../Home';
 import CookBook from '../CookBook';
 
-import { IconProp } from '@fortawesome/fontawesome-svg-core';
-import { FontAwesomeIcon as Icon } from '@fortawesome/react-native-fontawesome';
+/** Helpers */
 import { fonts } from '../../lib/styles';
 
 interface ITab {

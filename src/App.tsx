@@ -7,10 +7,15 @@ import { NavigationContainer } from '@react-navigation/native';
 import MainNavigation from './components/MainNavigation';
 import Loader from './components/Loader';
 
+/** Helpers */
+import { navigationRef } from './lib/helpers';
+
 const App = () => {
 
   return (
-    <NavigationContainer>
+    <NavigationContainer
+      ref={navigationRef}
+    >
       <Provider store={store}>
         <MainNavigation/>
         <Loader/>

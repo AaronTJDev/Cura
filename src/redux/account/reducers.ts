@@ -11,7 +11,6 @@ export interface ActionPayload extends Action { payload: any }
 const accountReducer = (state = initialState, action: ActionPayload) => {
   switch (action.type) {
     case accountActions.createAccount.start:
-      console.log('Start state hit');
       return {
         ...state,
         loading: true,

@@ -45,7 +45,7 @@ const styles = StyleSheet.create({
   }
 });
 
-export default function AuthComponent(props: any) {
+export default function AccountComponent(props: any) {
   const { navigation } = props;
   const handleNavigate = (screen: string) => {
     console.log(screen, props);

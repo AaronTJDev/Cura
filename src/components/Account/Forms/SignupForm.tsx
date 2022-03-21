@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useCallback} from 'react';
 import {
   StyleSheet,
   Text,
@@ -6,14 +6,14 @@ import {
   TouchableOpacity,
   View
 } from 'react-native';
-import { Formik } from 'formik';
+import { Formik, FormikProps } from 'formik';
 import { useDispatch } from 'react-redux';
-
-
 
 /** Helpers */
 import { colors, fonts } from '../../../lib/styles';
 import { createUserWithEmailAndPassword } from '../../../redux/account/actions';
+import { SignupSchema } from '../../../lib/validationSchemas';
+import { logError, navigate } from '../../../lib/helpers';
 
 const styles = StyleSheet.create({
   formContainer: {
@@ -47,13 +47,17 @@ const styles = StyleSheet.create({
     color: colors.main.white,
     fontFamily: fonts.NunitoSansBold,
     fontSize: 16
+  },
+  errorMsg: {
+    color: colors.indicators.error,
+    top: 16
   }
 });
 
 interface SignupFormValues {
   email: string;
   password: string;
-  name: string;
+  username: string;
 }
 
 export default function SignupForm() {
@@ -61,29 +65,40 @@ export default function SignupForm() {
   const initialValues = {
     email: '',
     password: '',
-    name: ''
+    username: ''
   }
 
-  const handleSubmit = (values: SignupFormValues) => {
+  const handleSubmit = useCallback(async (values: SignupFormValues, { setFieldError }: any) => {
     const { email, password } = values;
-    createUserWithEmailAndPassword(dispatch, email, password);
-  }
+    createUserWithEmailAndPassword(dispatch, email, password)
+      .then((res) => {
+        navigate('Home')
+        return res;
+      })
+      .catch((err) => {
+        setFieldError('email', 'Email already in use');
+        throw err;
+      });
+  }, [dispatch])
 
   return (
     <Formik
       initialValues={initialValues}
       onSubmit={handleSubmit}
+      validationSchema={SignupSchema}
+      validateOnChange={false}
+      validateOnBlur={false}
     >
-      {({ handleChange, handleBlur, handleSubmit, values }) => (
+      {({ handleChange, handleBlur, handleSubmit, values, errors }) => (
         <View style={styles.formContainer}>
           <View style={styles.formInputView}>
             <TextInput
               style={styles.formInput}
-              placeholder='Name'
-              onChangeText={handleChange('name')}
-              onBlur={handleBlur('name')}
-              value={values.name}
-              textContentType={'name'}
+              placeholder='Username'
+              onChangeText={handleChange('username')}
+              onBlur={handleBlur('username')}
+              value={values.username}
+              textContentType={'username'}
             />
           </View>
           <View style={styles.formInputView}>
@@ -106,6 +121,15 @@ export default function SignupForm() {
               textContentType={'password'}
               secureTextEntry
             />
+          </View>
+          <View>
+            {
+              ((!!errors.username || !!errors.email || !!errors.password ) && 
+                <Text style={styles.errorMsg}>
+                  { errors.username || errors.email || errors.password }
+                </Text>
+              )
+            }
           </View>
           <TouchableOpacity
             style={styles.registerButton}

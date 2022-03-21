@@ -2,7 +2,7 @@ import React from 'react'
 import { createNativeStackNavigator, NativeStackNavigationProp } from '@react-navigation/native-stack';
 
 /** Components */
-import AuthComponent from '../components/Account/AuthComponent';
+import AccountComponent from '../components/Account/AccountComponent';
 import SignupComponent from '../components/Account/SignupComponent';
 
 /** Helpers */
@@ -21,7 +21,7 @@ export default function AccountScreen(props: NativeStackNavigationProp<any>) {
       >
         <AccountStack.Screen
           name="Auth"
-          component={AuthComponent}
+          component={AccountComponent}
         />
         <AccountStack.Screen
           name="Signup"
