@@ -89,7 +89,8 @@ export default function SignupForm() {
       onSubmit={handleCreateAccount}
       validationSchema={SignupSchema}
       validateOnChange={false}
-      validateOnBlur={false}>
+      validateOnBlur={false}
+    >
       {({ handleChange, handleBlur, handleSubmit, values, errors }) => (
         <View style={styles.formContainer}>
           <View style={styles.formInputView}>
@@ -100,7 +101,7 @@ export default function SignupForm() {
               onBlur={handleBlur('username')}
               value={values.username}
               textContentType={'username'}
-              autoCapitalize='none'
+              autoCapitalize="none"
             />
           </View>
           <View style={styles.formInputView}>
@@ -111,7 +112,7 @@ export default function SignupForm() {
               onBlur={handleBlur('email')}
               value={values.email}
               textContentType="emailAddress"
-              autoCapitalize='none'
+              autoCapitalize="none"
             />
           </View>
           <View style={styles.formInputView}>
@@ -134,7 +135,8 @@ export default function SignupForm() {
           </View>
           <TouchableOpacity
             style={styles.registerButton}
-            onPress={handleSubmit}>
+            onPress={handleSubmit}
+          >
             <Text style={styles.buttonText}>REGISTER</Text>
           </TouchableOpacity>
         </View>

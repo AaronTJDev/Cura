@@ -59,7 +59,8 @@ export default function SignupComponent() {
       style={styles.gradient}
       colors={[colors.main.white, colors.main.white, colors.main.primaryLight]}
       start={{ x: 0, y: 0 }}
-      end={{ x: 0, y: 1.25 }}>
+      end={{ x: 0, y: 1.25 }}
+    >
       <View style={styles.signupGroupContainer}>
         <Image style={styles.logo} source={assetResolver.images.logo} />
         <SignupForm />

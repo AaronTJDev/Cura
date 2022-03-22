@@ -63,7 +63,7 @@ export default function SignupForm() {
   const dispatch = useDispatch();
   const initialValues = {
     email: '',
-    password: ''
+    password: '',
   };
 
   const handleLogin = useCallback(
@@ -88,7 +88,8 @@ export default function SignupForm() {
       onSubmit={handleLogin}
       validationSchema={LoginSchema}
       validateOnChange={false}
-      validateOnBlur={false}>
+      validateOnBlur={false}
+    >
       {({ handleChange, handleBlur, handleSubmit, values, errors }) => (
         <View style={styles.formContainer}>
           <View style={styles.formInputView}>
@@ -99,7 +100,7 @@ export default function SignupForm() {
               onBlur={handleBlur('email')}
               value={values.email}
               textContentType="emailAddress"
-              autoCapitalize='none'
+              autoCapitalize="none"
             />
           </View>
           <View style={styles.formInputView}>
@@ -110,7 +111,7 @@ export default function SignupForm() {
               onBlur={handleBlur('password')}
               value={values.password}
               textContentType={'password'}
-              autoCapitalize='none'
+              autoCapitalize="none"
               secureTextEntry
             />
           </View>
@@ -123,7 +124,8 @@ export default function SignupForm() {
           </View>
           <TouchableOpacity
             style={styles.registerButton}
-            onPress={handleSubmit}>
+            onPress={handleSubmit}
+          >
             <Text style={styles.buttonText}>LOGIN</Text>
           </TouchableOpacity>
         </View>

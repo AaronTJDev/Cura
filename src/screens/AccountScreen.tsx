@@ -12,8 +12,8 @@ import { fonts } from '../lib/styles';
 
 const styles = StyleSheet.create({
   headerTitle: {
-    fontFamily: fonts.NunitoSansSemiBold
-  }
+    fontFamily: fonts.NunitoSansSemiBold,
+  },
 });
 
 const AccountStack = createNativeStackNavigator();
@@ -25,7 +25,8 @@ export default function AccountScreen() {
       screenOptions={{
         headerShown: false,
         headerBackTitleVisible: false,
-      }}>
+      }}
+    >
       <AccountStack.Screen name="Auth" component={AccountComponent} />
       <AccountStack.Screen
         name="Signup"

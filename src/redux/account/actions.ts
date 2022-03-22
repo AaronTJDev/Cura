@@ -5,15 +5,8 @@ import auth from '@react-native-firebase/auth';
 import { accountActions } from './types';
 import { asyncAction } from '../helpers';
 
-export const login = (
-  dispatch: Dispatch,
-  email: string,
-  password: string
-  ) => {
-  const loginPromise = auth().signInWithEmailAndPassword(
-    email,
-    password
-  )
+export const login = (dispatch: Dispatch, email: string, password: string) => {
+  const loginPromise = auth().signInWithEmailAndPassword(email, password);
   asyncAction(loginPromise, accountActions.login, dispatch);
   return loginPromise;
 };

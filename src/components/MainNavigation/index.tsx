@@ -50,7 +50,8 @@ export default function MainNavigation() {
       screenOptions={{
         tabBarActiveTintColor: '#564439',
         tabBarInactiveTintColor: '#DAC6BE',
-      }}>
+      }}
+    >
       {tabs.map((tab, index) => {
         const { component, icon, tabBarLabel } = tab as ITab;
         return (
