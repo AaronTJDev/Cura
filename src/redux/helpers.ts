@@ -1,4 +1,4 @@
-import {Action, Dispatch} from 'redux';
+import { Action, Dispatch } from 'redux';
 
 type AsyncActionType = {
   start: string;
@@ -24,7 +24,7 @@ export const asyncAction = (
   action: AsyncActionType,
   dispatch: Dispatch<Action>,
 ) => {
-  dispatch({type: action.start});
+  dispatch({ type: action.start });
   promise
     .then((value: any) =>
       dispatch({

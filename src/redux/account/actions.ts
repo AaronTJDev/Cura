@@ -1,9 +1,9 @@
-import {Dispatch} from 'redux';
+import { Dispatch } from 'redux';
 import auth from '@react-native-firebase/auth';
 
 /** Helpers */
-import {accountActions} from './types';
-import {asyncAction} from '../helpers';
+import { accountActions } from './types';
+import { asyncAction } from '../helpers';
 
 export const login = (dispatch: Dispatch) => {
   const promise = new Promise((resolve, reject) => {

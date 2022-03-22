@@ -1,10 +1,10 @@
 import React from 'react';
-import {StyleSheet} from 'react-native';
+import { StyleSheet } from 'react-native';
 import LottieView from 'lottie-react-native';
-import {useSelector} from 'react-redux';
+import { useSelector } from 'react-redux';
 
 /** Helpers */
-import {getIsAccountLoading} from '../redux/account/selectors';
+import { getIsAccountLoading } from '../redux/account/selectors';
 
 const styles = StyleSheet.create({
   loader: {

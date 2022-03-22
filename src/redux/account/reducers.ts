@@ -1,5 +1,5 @@
-import {Action} from 'redux';
-import {accountActions} from './types';
+import { Action } from 'redux';
+import { accountActions } from './types';
 
 const initialState = {
   data: {},

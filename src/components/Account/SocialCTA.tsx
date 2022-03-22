@@ -1,10 +1,10 @@
 import React from 'react';
-import {StyleSheet, TouchableOpacity, Text} from 'react-native';
-import {FontAwesomeIcon as Icon} from '@fortawesome/react-native-fontawesome';
-import {IconName} from '@fortawesome/fontawesome-svg-core';
+import { StyleSheet, TouchableOpacity, Text } from 'react-native';
+import { FontAwesomeIcon as Icon } from '@fortawesome/react-native-fontawesome';
+import { IconName } from '@fortawesome/fontawesome-svg-core';
 
 /** Helpers */
-import {colors, fonts} from '../../lib/styles';
+import { colors, fonts } from '../../lib/styles';
 
 const styles = StyleSheet.create({
   buttonContainer: {
@@ -35,7 +35,7 @@ interface SocialCTAProps {
 }
 
 export default function SocialCTA(props: SocialCTAProps) {
-  const {brandIconName} = props;
+  const { brandIconName } = props;
 
   return (
     <TouchableOpacity style={styles.buttonContainer}>

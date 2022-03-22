@@ -1,8 +1,8 @@
 import React from 'react';
-import {StyleSheet} from 'react-native';
-import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
-import {IconProp} from '@fortawesome/fontawesome-svg-core';
-import {FontAwesomeIcon as Icon} from '@fortawesome/react-native-fontawesome';
+import { StyleSheet } from 'react-native';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import { IconProp } from '@fortawesome/fontawesome-svg-core';
+import { FontAwesomeIcon as Icon } from '@fortawesome/react-native-fontawesome';
 
 /** Components */
 import AccountScreen from '../../screens/AccountScreen';
@@ -10,7 +10,7 @@ import Home from '../Home';
 import CookBook from '../CookBook';
 
 /** Helpers */
-import {fonts} from '../../lib/styles';
+import { fonts } from '../../lib/styles';
 
 interface ITab {
   icon: IconProp;
@@ -52,7 +52,7 @@ export default function MainNavigation() {
         tabBarInactiveTintColor: '#DAC6BE',
       }}>
       {tabs.map((tab, index) => {
-        const {component, icon, tabBarLabel} = tab as ITab;
+        const { component, icon, tabBarLabel } = tab as ITab;
         return (
           <Tab.Screen
             key={index}
@@ -61,7 +61,7 @@ export default function MainNavigation() {
             options={{
               tabBarLabel,
               tabBarLabelStyle: styles.tabBarLabel,
-              tabBarIcon: ({color}) => {
+              tabBarIcon: ({ color }) => {
                 return <Icon icon={icon} color={color} size={18} />;
               },
               headerShown:

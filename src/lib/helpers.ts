@@ -1,5 +1,5 @@
-import {Platform} from 'react-native';
-import {createNavigationContainerRef} from '@react-navigation/native';
+import { Platform } from 'react-native';
+import { createNavigationContainerRef } from '@react-navigation/native';
 
 export const logError = (error: any) => {
   console.error(error);

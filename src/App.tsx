@@ -1,14 +1,14 @@
 import React from 'react';
 import store from './redux';
-import {Provider} from 'react-redux';
-import {NavigationContainer} from '@react-navigation/native';
+import { Provider } from 'react-redux';
+import { NavigationContainer } from '@react-navigation/native';
 
 /** Components */
 import MainNavigation from './components/MainNavigation';
 import Loader from './components/Loader';
 
 /** Helpers */
-import {navigationRef} from './lib/helpers';
+import { navigationRef } from './lib/helpers';
 
 const App = () => {
   return (

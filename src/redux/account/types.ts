@@ -1,4 +1,4 @@
-import {actionTypeGenerator} from '../helpers';
+import { actionTypeGenerator } from '../helpers';
 
 const accountActionGenerator = actionTypeGenerator('ACCOUNT');
 export const accountActions = {

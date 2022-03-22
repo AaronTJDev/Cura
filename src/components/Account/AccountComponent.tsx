@@ -1,14 +1,14 @@
 import React from 'react';
-import {Image, StyleSheet, View, Text, TouchableOpacity} from 'react-native';
+import { Image, StyleSheet, View, Text, TouchableOpacity } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
-import {IconName} from '@fortawesome/fontawesome-svg-core';
+import { IconName } from '@fortawesome/fontawesome-svg-core';
 
 /** Components */
 import SocialCTA from './SocialCTA';
 
 /** Helpers */
-import {assetResolver} from '../../lib/assetResolver';
-import {colors, fonts} from '../../lib/styles';
+import { assetResolver } from '../../lib/assetResolver';
+import { colors, fonts } from '../../lib/styles';
 
 const styles = StyleSheet.create({
   gradient: {
@@ -40,7 +40,7 @@ const styles = StyleSheet.create({
 });
 
 export default function AccountComponent(props: any) {
-  const {navigation} = props;
+  const { navigation } = props;
   const handleNavigate = (screen: string) => {
     console.log(screen, props);
     navigation.navigate(screen);
@@ -50,8 +50,8 @@ export default function AccountComponent(props: any) {
     <LinearGradient
       style={styles.gradient}
       colors={[colors.main.white, colors.main.white, colors.main.primaryLight]}
-      start={{x: 0, y: 0}}
-      end={{x: 0, y: 1.25}}>
+      start={{ x: 0, y: 0 }}
+      end={{ x: 0, y: 1.25 }}>
       <View style={styles.loginGroupContainer}>
         <Image style={styles.logo} source={assetResolver.images.logo} />
         <SocialCTA brandIconName={'Apple' as IconName} />

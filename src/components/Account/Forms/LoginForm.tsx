@@ -12,7 +12,7 @@ import { useDispatch } from 'react-redux';
 /** Helpers */
 import { colors, fonts } from '../../../lib/styles';
 import { createUserWithEmailAndPassword } from '../../../redux/account/actions';
-import { SignupSchema } from '../../../lib/validationSchemas';
+import { LoginSchema } from '../../../lib/validationSchemas';
 import { navigate } from '../../../lib/helpers';
 
 const styles = StyleSheet.create({
@@ -57,15 +57,13 @@ const styles = StyleSheet.create({
 interface SignupFormValues {
   email: string;
   password: string;
-  username: string;
 }
 
 export default function SignupForm() {
   const dispatch = useDispatch();
   const initialValues = {
     email: '',
-    password: '',
-    username: '',
+    password: ''
   };
 
   const handleCreateAccount = useCallback(
@@ -87,21 +85,11 @@ export default function SignupForm() {
     <Formik
       initialValues={initialValues}
       onSubmit={handleCreateAccount}
-      validationSchema={SignupSchema}
+      validationSchema={LoginSchema}
       validateOnChange={false}
       validateOnBlur={false}>
       {({ handleChange, handleBlur, handleSubmit, values, errors }) => (
         <View style={styles.formContainer}>
-          <View style={styles.formInputView}>
-            <TextInput
-              style={styles.formInput}
-              placeholder="Username"
-              onChangeText={handleChange('username')}
-              onBlur={handleBlur('username')}
-              value={values.username}
-              textContentType={'username'}
-            />
-          </View>
           <View style={styles.formInputView}>
             <TextInput
               style={styles.formInput}
@@ -124,9 +112,9 @@ export default function SignupForm() {
             />
           </View>
           <View>
-            {(!!errors.username || !!errors.email || !!errors.password) && (
+            {(!!errors.email || !!errors.password) && (
               <Text style={styles.errorMsg}>
-                {errors.username || errors.email || errors.password}
+                {errors.email || errors.password}
               </Text>
             )}
           </View>

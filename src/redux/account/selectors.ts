@@ -1,4 +1,4 @@
-import {RootStateOrAny} from 'react-redux';
+import { RootStateOrAny } from 'react-redux';
 
 export const getAccount = (state: RootStateOrAny) => {
   return state?.account?.data?.user;

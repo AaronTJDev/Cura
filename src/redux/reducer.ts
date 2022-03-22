@@ -1,5 +1,5 @@
 import accountReducer from './account/reducers';
-import {ActionPayload} from './account/reducers';
+import { ActionPayload } from './account/reducers';
 
 interface RootReducer {
   account: any;

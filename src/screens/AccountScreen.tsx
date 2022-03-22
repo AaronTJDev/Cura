@@ -1,12 +1,20 @@
 import React from 'react';
-import {createNativeStackNavigator} from '@react-navigation/native-stack';
+import { StyleSheet } from 'react-native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
 /** Components */
 import AccountComponent from '../components/Account/AccountComponent';
 import SignupComponent from '../components/Account/SignupComponent';
+import LoginComponent from '../components/Account/LoginComponent';
 
 /** Helpers */
-import {fonts} from '../lib/styles';
+import { fonts } from '../lib/styles';
+
+const styles = StyleSheet.create({
+  headerTitle: {
+    fontFamily: fonts.NunitoSansSemiBold
+  }
+});
 
 const AccountStack = createNativeStackNavigator();
 
@@ -24,9 +32,15 @@ export default function AccountScreen() {
         component={SignupComponent}
         options={{
           headerShown: true,
-          headerTitleStyle: {
-            fontFamily: fonts.NunitoSansSemiBold,
-          },
+          headerTitleStyle: styles.headerTitle,
+        }}
+      />
+      <AccountStack.Screen
+        name="Login"
+        component={LoginComponent}
+        options={{
+          headerShown: true,
+          headerTitleStyle: styles.headerTitle,
         }}
       />
     </AccountStack.Navigator>
