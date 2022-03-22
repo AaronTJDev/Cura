@@ -100,6 +100,7 @@ export default function SignupForm() {
               onBlur={handleBlur('username')}
               value={values.username}
               textContentType={'username'}
+              autoCapitalize='none'
             />
           </View>
           <View style={styles.formInputView}>
@@ -110,6 +111,7 @@ export default function SignupForm() {
               onBlur={handleBlur('email')}
               value={values.email}
               textContentType="emailAddress"
+              autoCapitalize='none'
             />
           </View>
           <View style={styles.formInputView}>

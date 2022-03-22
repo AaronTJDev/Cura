@@ -18,7 +18,7 @@ const accountReducer = (state = initialState, action: ActionPayload) => {
         loading: true,
       };
     case accountActions.createAccount.success:
-      const user = {
+      const newUser = {
         email: action.payload?.user?.email,
         uid: action.payload?.user?.uid,
         isNewUser: action.payload?.additionalUserInfo?.isNewUser,
@@ -27,9 +27,31 @@ const accountReducer = (state = initialState, action: ActionPayload) => {
       return {
         ...state,
         loading: false,
-        data: user,
+        data: newUser,
       };
     case accountActions.createAccount.error:
+      return {
+        ...state,
+        loading: false,
+        error: action.payload,
+      };
+    case accountActions.login.start:
+      return {
+        ...state,
+        loading: true,
+      };
+    case accountActions.login.success:
+      const user = {
+        email: action.payload?.user?.email,
+        uid: action.payload?.user?.uid,
+        isNewUser: action.payload?.additionalUserInfo?.isNewUser,
+      };
+      return {
+        ...state,
+        loading: false,
+        data: user,
+      };
+    case accountActions.login.error:
       return {
         ...state,
         loading: false,

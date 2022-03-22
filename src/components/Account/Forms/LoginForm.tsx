@@ -11,7 +11,7 @@ import { useDispatch } from 'react-redux';
 
 /** Helpers */
 import { colors, fonts } from '../../../lib/styles';
-import { createUserWithEmailAndPassword } from '../../../redux/account/actions';
+import { login } from '../../../redux/account/actions';
 import { LoginSchema } from '../../../lib/validationSchemas';
 import { navigate } from '../../../lib/helpers';
 
@@ -54,7 +54,7 @@ const styles = StyleSheet.create({
   },
 });
 
-interface SignupFormValues {
+interface LoginFormValues {
   email: string;
   password: string;
 }
@@ -66,15 +66,16 @@ export default function SignupForm() {
     password: ''
   };
 
-  const handleCreateAccount = useCallback(
-    async (values: SignupFormValues, { setFieldError, resetForm }: any) => {
+  const handleLogin = useCallback(
+    async (values: LoginFormValues, { setFieldError, resetForm }: any) => {
       const { email, password } = values;
       try {
-        await createUserWithEmailAndPassword(dispatch, email, password);
+        await login(dispatch, email, password);
         resetForm();
         navigate('Home');
       } catch (err) {
-        setFieldError('email', 'Email already in use');
+        console.log('err', err);
+        setFieldError('email', 'Email or password is incorrect');
         throw err;
       }
     },
@@ -84,7 +85,7 @@ export default function SignupForm() {
   return (
     <Formik
       initialValues={initialValues}
-      onSubmit={handleCreateAccount}
+      onSubmit={handleLogin}
       validationSchema={LoginSchema}
       validateOnChange={false}
       validateOnBlur={false}>
@@ -98,6 +99,7 @@ export default function SignupForm() {
               onBlur={handleBlur('email')}
               value={values.email}
               textContentType="emailAddress"
+              autoCapitalize='none'
             />
           </View>
           <View style={styles.formInputView}>
@@ -108,6 +110,7 @@ export default function SignupForm() {
               onBlur={handleBlur('password')}
               value={values.password}
               textContentType={'password'}
+              autoCapitalize='none'
               secureTextEntry
             />
           </View>
@@ -121,7 +124,7 @@ export default function SignupForm() {
           <TouchableOpacity
             style={styles.registerButton}
             onPress={handleSubmit}>
-            <Text style={styles.buttonText}>REGISTER</Text>
+            <Text style={styles.buttonText}>LOGIN</Text>
           </TouchableOpacity>
         </View>
       )}
