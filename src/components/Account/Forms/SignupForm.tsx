@@ -68,11 +68,12 @@ export default function SignupForm() {
     username: ''
   }
 
-  const handleSubmit = useCallback(async (values: SignupFormValues, { setFieldError }: any) => {
+  const handleSubmit = useCallback(async (values: SignupFormValues, { setFieldError, resetForm }: any) => {
     const { email, password } = values;
     try {
       await createUserWithEmailAndPassword(dispatch, email, password);
-      navigate('Home')
+      resetForm();
+      navigate('Home');
     } catch (err) {
       setFieldError('email', 'Email already in use');
       throw err;

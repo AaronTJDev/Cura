@@ -5,11 +5,12 @@ module.exports = {
   plugins: ['@typescript-eslint'],
   overrides: [
     {
-      files: ['*.ts', '*.tsx'],
+      files: ['src/**/*.ts', 'src/**/*.tsx'],
       rules: {
         '@typescript-eslint/no-shadow': ['error'],
         'no-shadow': 'off',
         'no-undef': 'off',
+        'no-unused-vars': 'warn',
       },
     },
   ],
