@@ -1,6 +1,6 @@
-import { Action, Dispatch } from "redux";
+import {Action, Dispatch} from 'redux';
 
-type AsyncActionType = { 
+type AsyncActionType = {
   start: string;
   success: string;
   error: string;
@@ -15,23 +15,27 @@ export const actionTypeGenerator = (prefix: string) => {
         error: `${prefix}_${action}_ERROR`,
       };
     },
-    value: (action: string) => `${prefix}_${action}`
+    value: (action: string) => `${prefix}_${action}`,
   };
-}
+};
 
 export const asyncAction = (
   promise: Promise<any>,
   action: AsyncActionType,
-  dispatch: Dispatch<Action>
-  ) => {
-    dispatch({ type: action.start });
-    promise
-      .then((value: any) => dispatch({
+  dispatch: Dispatch<Action>,
+) => {
+  dispatch({type: action.start});
+  promise
+    .then((value: any) =>
+      dispatch({
         type: action.success,
-        payload: value
-      }))
-      .catch((error: any) => dispatch({
+        payload: value,
+      }),
+    )
+    .catch((error: any) =>
+      dispatch({
         type: action.error,
-        error
-      }));
-}
+        error,
+      }),
+    );
+};

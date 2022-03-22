@@ -1,5 +1,7 @@
-import shared from "./shared";
+import shared from './shared';
 
-export default prod = {
+const prod = {
   ...shared,
-}
+};
+
+export default prod;

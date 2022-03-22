@@ -1,12 +1,14 @@
-import { Action } from "redux";
-import { accountActions } from "./types";
+import {Action} from 'redux';
+import {accountActions} from './types';
 
 const initialState = {
   data: {},
-  loading: false
-}
+  loading: false,
+};
 
-export interface ActionPayload extends Action { payload: any }
+export interface ActionPayload extends Action {
+  payload: any;
+}
 
 const accountReducer = (state = initialState, action: ActionPayload) => {
   switch (action.type) {
@@ -19,8 +21,8 @@ const accountReducer = (state = initialState, action: ActionPayload) => {
       const user = {
         email: action.payload?.user?.email,
         uid: action.payload?.user?.uid,
-        isNewUser: action.payload?.additionalUserInfo?.isNewUser
-      }
+        isNewUser: action.payload?.additionalUserInfo?.isNewUser,
+      };
 
       return {
         ...state,
@@ -31,11 +33,11 @@ const accountReducer = (state = initialState, action: ActionPayload) => {
       return {
         ...state,
         loading: false,
-        error: action.payload
+        error: action.payload,
       };
     default:
       return state;
   }
-}
+};
 
 export default accountReducer;

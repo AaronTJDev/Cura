@@ -1,12 +1,15 @@
-import accountReducer from "./account/reducers";
-import { ActionPayload } from './account/reducers';
+import accountReducer from './account/reducers';
+import {ActionPayload} from './account/reducers';
 
 interface RootReducer {
   account: any;
 }
 
-export default function rootReducer(state = {} as RootReducer, action: ActionPayload) {
+export default function rootReducer(
+  state = {} as RootReducer,
+  action: ActionPayload,
+) {
   return {
-    account: accountReducer(state.account, action)
-  }
+    account: accountReducer(state.account, action),
+  };
 }

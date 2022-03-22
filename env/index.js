@@ -1,4 +1,4 @@
-import dev from "./dev";
-import prod from "./prod";
+import dev from './dev';
 
-export default env = dev
+const env = dev;
+export default env;
