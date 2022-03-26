@@ -39,3 +39,14 @@ export const asyncAction = (
       }),
     );
 };
+
+export const genericAction = (
+  action: string,
+  value: any,
+  dispatch: Dispatch<Action>,
+) => {
+  dispatch({
+    type: action,
+    payload: value,
+  });
+};

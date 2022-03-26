@@ -41,6 +41,7 @@ const accountReducer = (state = initialState, action: ActionPayload) => {
         loading: true,
       };
     case accountActions.login.success:
+      console.log(action.payload?.user);
       const user = {
         email: action.payload?.user?.email,
         uid: action.payload?.user?.uid,
