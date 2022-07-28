@@ -9,7 +9,7 @@ import { useAuth } from './lib/helpers/auth';
 
 /** Components */
 import MainNavigation from './components/MainNavigation';
-import Loader from './components/Loader';
+import Loader from './components/utility/Loader';
 
 const App = () => {
   const { isLoggedIn } = useAuth();
