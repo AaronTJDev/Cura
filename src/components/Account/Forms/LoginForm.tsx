@@ -13,7 +13,7 @@ import { useDispatch } from 'react-redux';
 import { colors, fonts } from '../../../lib/styles';
 import { login } from '../../../redux/account/actions';
 import { LoginSchema } from '../../../lib/validationSchemas';
-import { navigate } from '../../../lib/helpers';
+import { navigate } from '../../../lib/helpers/navigation';
 
 const styles = StyleSheet.create({
   formContainer: {
