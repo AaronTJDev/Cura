@@ -10,4 +10,7 @@ export const assetResolver = {
   images: {
     logo: require('../../assets/images/logo.png'),
   },
+  lottie: {
+    loader: require('../../assets/animations/loader.json')
+  }
 };

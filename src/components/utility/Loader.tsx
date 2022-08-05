@@ -5,6 +5,7 @@ import { useSelector } from 'react-redux';
 
 /** Helpers */
 import { getIsAccountLoading } from '../../redux/account/selectors';
+import { assetResolver } from '../../lib/assetResolver';
 
 const styles = StyleSheet.create({
   loader: {
@@ -24,7 +25,7 @@ export default function Loader() {
         <LottieView
           autoPlay
           loop
-          source={require('../../assets/animations/loader.json')}
+          source={assetResolver.lottie.loader}
           style={styles.loader}
         />
       )}
