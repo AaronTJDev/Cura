@@ -1,3 +1,5 @@
+import { HeaderOptions } from "@react-navigation/elements";
+
 export const colors = {
   main: {
     primaryLight: '#DAC6BE',
@@ -50,4 +52,14 @@ export const fonts = {
   NunitoSansRegular: 'NunitoSans-Regular',
   NunitoSansSemiBold: 'NunitoSans-SemiBold',
   NunitoSansSemiBoldItalic: 'NunitoSans-SemiBoldItalic',
+};
+
+export const navigationHeader: HeaderOptions = {
+  headerTransparent: true,
+  headerTitleAlign: 'center',
+  headerTitleStyle: {
+    fontFamily: fonts.NunitoSansLight,
+    fontSize: 18,
+    color: colors.main.black
+  }
 };

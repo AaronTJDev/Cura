@@ -6,11 +6,11 @@ import { FontAwesomeIcon as Icon } from '@fortawesome/react-native-fontawesome';
 
 /** Components */
 import AccountScreen from '../../screens/AccountScreen';
-import Home from '../Home';
+import SymptomSearch from '../SymptomSearch';
 import CookBook from '../CookBook';
 
 /** Helpers */
-import { fonts } from '../../lib/styles';
+import { fonts, navigationHeader } from '../../lib/styles';
 
 interface ITab {
   icon: IconProp;
@@ -30,7 +30,7 @@ export default function MainNavigation() {
     {
       icon: 'home',
       tabBarLabel: 'Home',
-      component: Home,
+      component: SymptomSearch,
     },
     {
       icon: 'book',
@@ -50,6 +50,7 @@ export default function MainNavigation() {
       screenOptions={{
         tabBarActiveTintColor: '#564439',
         tabBarInactiveTintColor: '#DAC6BE',
+        ...navigationHeader
       }}
     >
       {tabs.map((tab, index) => {
@@ -65,8 +66,7 @@ export default function MainNavigation() {
               tabBarIcon: ({ color }) => {
                 return <Icon icon={icon} color={color} size={18} />;
               },
-              headerShown:
-                tabBarLabel.toLowerCase() === 'account' ? false : true,
+              headerShown: tabBarLabel.toLowerCase() === 'account' ? false : true
             }}
           />
         );
