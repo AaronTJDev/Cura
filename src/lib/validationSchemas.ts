@@ -15,3 +15,9 @@ export const LoginSchema = Yup.object().shape({
   email: Yup.string().email('Invalid email provided').required(),
   password: Yup.string().required('No password provided'),
 });
+
+export const SearchSchema = Yup.object().shape({
+  query: Yup.string()
+    .required('A query must be provided to perform a search.')
+    .max(50)
+});

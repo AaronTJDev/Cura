@@ -5,7 +5,7 @@
   "scripts": {
     "start": "react-native start",
     "test": "jest",
-    "lint": "eslint . --ext .js,.jsx,.ts,.tsx",
+    "lint": "eslint . -c .eslintrc.js --ext .js,.jsx,.ts,.tsx",
     "compile-android": "react-native run-android --no-packager",
     "compile-ios": "react-native run-ios --no-packager --simulator=\"iPhone 13\"",
     "android": "run-p start compile-android",

@@ -58,8 +58,9 @@ export const navigationHeader: HeaderOptions = {
   headerTransparent: true,
   headerTitleAlign: 'center',
   headerTitleStyle: {
-    fontFamily: fonts.NunitoSansLight,
+    fontFamily: fonts.NunitoSansRegular,
     fontSize: 18,
+    letterSpacing: 1.33,
     color: colors.main.black
   }
 };

@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useMemo } from 'react';
+import React from 'react';
 import { StyleSheet } from 'react-native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { IconProp } from '@fortawesome/fontawesome-svg-core';
@@ -11,8 +11,6 @@ import CookBook from '../CookBook';
 
 /** Helpers */
 import { fonts, navigationHeader } from '../../lib/styles';
-import { useAuth } from '../../lib/helpers/auth';
-import { navigate } from '../../lib/helpers/navigation';
 
 interface ITab {
   icon: IconProp;
@@ -24,8 +22,8 @@ interface ITab {
 
 const styles = StyleSheet.create({
   tabBarLabel: {
-    fontFamily: fonts.CrimsonProBlack,
-  },
+    fontFamily: fonts.CrimsonProBlack
+  }
 });
 
 export default function MainNavigation() {
@@ -40,7 +38,7 @@ export default function MainNavigation() {
     {
       icon: 'book',
       tabBarLabel: 'Cook Book',
-      component: CookBook,
+      component: CookBook
     },
     {
       icon: 'user',

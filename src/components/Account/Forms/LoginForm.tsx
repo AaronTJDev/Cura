@@ -78,9 +78,7 @@ export default function SignupForm() {
         setFieldError('email', 'Email or password is incorrect');
         throw err;
       }
-    },
-    [dispatch],
-  );
+    }, [dispatch]);
 
   return (
     <Formik
