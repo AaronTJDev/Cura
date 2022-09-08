@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Image, StyleSheet, View, Text, TouchableOpacity } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 import { IconName } from '@fortawesome/fontawesome-svg-core';
@@ -9,6 +9,7 @@ import SocialCTA from './SocialCTA';
 /** Helpers */
 import { assetResolver } from '../../lib/assetResolver';
 import { colors, fonts } from '../../lib/styles';
+import { useAuth } from '../../lib/helpers/auth';
 
 const styles = StyleSheet.create({
   gradient: {
@@ -42,9 +43,16 @@ const styles = StyleSheet.create({
 export default function AccountComponent(props: any) {
   const { navigation } = props;
   const handleNavigate = (screen: string) => {
-    console.log(screen, props);
     navigation.navigate(screen);
   };
+
+  const { isLoggedIn } = useAuth();
+
+  useEffect(() => {
+    if (isLoggedIn) {
+      navigation.navigate('User Account');
+    }
+  }, [isLoggedIn]);
 
   return (
     <LinearGradient

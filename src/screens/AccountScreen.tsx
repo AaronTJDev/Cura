@@ -1,6 +1,6 @@
-import React from 'react';
-import { StyleSheet } from 'react-native';
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import React, { useCallback, useEffect } from 'react';
+import { Text } from 'react-native';
+import { createNativeStackNavigator, NativeStackNavigationOptions } from '@react-navigation/native-stack';
 
 /** Components */
 import AccountComponent from '../components/Account/AccountComponent';
@@ -8,41 +8,60 @@ import SignupComponent from '../components/Account/SignupComponent';
 import LoginComponent from '../components/Account/LoginComponent';
 
 /** Helpers */
-import { fonts } from '../lib/styles';
+import { useAuth } from '../lib/helpers/auth';
+import { BottomTabNavigationProp } from '@react-navigation/bottom-tabs';
 
-const styles = StyleSheet.create({
-  headerTitle: {
-    fontFamily: fonts.NunitoSansSemiBold,
-  },
-});
+
+const authNavigationHeader: NativeStackNavigationOptions = {
+  headerShown: true,
+  headerTransparent: true,
+  title: ''
+};
+
+const UserAccount = () => {
+  return (
+    <></>
+  )
+};
+
+interface AccountScreenProps {
+  navigation: BottomTabNavigationProp<any>;
+};
 
 const AccountStack = createNativeStackNavigator();
 
-export default function AccountScreen() {
+export default function AccountScreen({ navigation }: AccountScreenProps) {
+  const { isLoggedIn } = useAuth();
+
+  useEffect(() => {
+    if (isLoggedIn) {
+      navigation.navigate('Symptom Search');
+    }
+  }, [isLoggedIn]);
+
   return (
     <AccountStack.Navigator
-      initialRouteName="Auth"
+      initialRouteName={'Auth'}
       screenOptions={{
         headerShown: false,
-        headerBackTitleVisible: false,
+        headerBackTitleVisible: false
       }}
     >
       <AccountStack.Screen name="Auth" component={AccountComponent} />
       <AccountStack.Screen
         name="Signup"
         component={SignupComponent}
-        options={{
-          headerShown: true,
-          headerTitleStyle: styles.headerTitle,
-        }}
+        options={authNavigationHeader}
       />
       <AccountStack.Screen
         name="Login"
         component={LoginComponent}
-        options={{
-          headerShown: true,
-          headerTitleStyle: styles.headerTitle,
-        }}
+        options={authNavigationHeader}
+      />
+      <AccountStack.Screen
+        name="User Account"
+        component={UserAccount}
+        options={{...authNavigationHeader, title: 'Account'}}
       />
     </AccountStack.Navigator>
   );

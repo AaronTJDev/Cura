@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useCallback, useEffect, useMemo } from 'react';
 import { StyleSheet } from 'react-native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { IconProp } from '@fortawesome/fontawesome-svg-core';
@@ -11,6 +11,8 @@ import CookBook from '../CookBook';
 
 /** Helpers */
 import { fonts, navigationHeader } from '../../lib/styles';
+import { useAuth } from '../../lib/helpers/auth';
+import { navigate } from '../../lib/helpers/navigation';
 
 interface ITab {
   icon: IconProp;
@@ -33,7 +35,7 @@ export default function MainNavigation() {
       icon: 'home',
       tabBarLabel: 'Home',
       component: SymptomSearch,
-      screenTitle: 'Symtom Search'
+      screenTitle: 'Symptom Search'
     },
     {
       icon: 'book',
@@ -50,7 +52,7 @@ export default function MainNavigation() {
 
   return (
     <Tab.Navigator
-      initialRouteName="Account"
+      initialRouteName={'Account'}
       screenOptions={{
         tabBarActiveTintColor: '#564439',
         tabBarInactiveTintColor: '#DAC6BE',
@@ -71,7 +73,8 @@ export default function MainNavigation() {
               tabBarIcon: ({ color }) => {
                 return <Icon icon={icon} color={color} size={18} />;
               },
-              headerShown: !hideHeader
+              headerShown: !hideHeader,
+              headerTransparent: false
             }}
           />
         );

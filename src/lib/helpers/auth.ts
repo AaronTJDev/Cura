@@ -30,3 +30,16 @@ export const useAuth = () => {
     isLoggedIn
   };
 };
+
+export const getUserToken = async () => {
+  try {
+    const token = await EncryptedStorage.getItem('user_session');
+    if (!!token) {
+      return JSON.parse(token);
+    } else {
+      throw new Error('User token not found.');
+    }
+  } catch (err) {
+    console.log(err);
+  }
+}
