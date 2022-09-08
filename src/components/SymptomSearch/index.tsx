@@ -12,7 +12,11 @@ const styles = StyleSheet.create({
 });
 
 const SymptomSearch = () => {
-  return <View style={styles.container} />;
+  return (
+    <View style={styles.container}>
+      
+    </View>
+  );
 };
 
 export default SymptomSearch;

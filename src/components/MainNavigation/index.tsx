@@ -16,6 +16,8 @@ interface ITab {
   icon: IconProp;
   tabBarLabel: string;
   component: React.ComponentType<any>;
+  hideHeader?: boolean;
+  screenTitle?: string;
 }
 
 const styles = StyleSheet.create({
@@ -31,6 +33,7 @@ export default function MainNavigation() {
       icon: 'home',
       tabBarLabel: 'Home',
       component: SymptomSearch,
+      screenTitle: 'Symtom Search'
     },
     {
       icon: 'book',
@@ -41,6 +44,7 @@ export default function MainNavigation() {
       icon: 'user',
       tabBarLabel: 'Account',
       component: AccountScreen,
+      hideHeader: true
     },
   ];
 
@@ -50,23 +54,24 @@ export default function MainNavigation() {
       screenOptions={{
         tabBarActiveTintColor: '#564439',
         tabBarInactiveTintColor: '#DAC6BE',
+        tabBarHideOnKeyboard: true,
         ...navigationHeader
       }}
     >
       {tabs.map((tab, index) => {
-        const { component, icon, tabBarLabel } = tab as ITab;
+        const { component, icon, tabBarLabel, hideHeader, screenTitle } = tab as ITab;
         return (
           <Tab.Screen
             key={index}
-            name={tabBarLabel}
+            name={screenTitle ?? tabBarLabel}
             component={component}
             options={{
-              tabBarLabel,
+              tabBarLabel: tabBarLabel,
               tabBarLabelStyle: styles.tabBarLabel,
               tabBarIcon: ({ color }) => {
                 return <Icon icon={icon} color={color} size={18} />;
               },
-              headerShown: tabBarLabel.toLowerCase() === 'account' ? false : true
+              headerShown: !hideHeader
             }}
           />
         );
