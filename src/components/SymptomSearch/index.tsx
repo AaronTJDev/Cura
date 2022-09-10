@@ -6,7 +6,6 @@ import { Search } from './Search';
 
 //** Helpers **/
 import { colors } from '../../lib/styles';
-import LinearGradient from 'react-native-linear-gradient';
 
 const styles = StyleSheet.create({
   container: {
@@ -22,13 +21,7 @@ const styles = StyleSheet.create({
 const SymptomSearch = () => {
   return (
     <View style={styles.container}>
-      <Search/>
-      <LinearGradient
-        style={styles.gradient}
-        colors={[colors.main.white, colors.main.white, colors.main.primaryLight]}
-        start={{ x: 0, y: 0 }}
-        end={{ x: 0, y: 1.25 }}
-      ></LinearGradient>
+      <Search />
     </View>
   );
 };

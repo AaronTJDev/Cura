@@ -55,6 +55,10 @@ export const fonts = {
 };
 
 export const navigationHeader: HeaderOptions = {
+  headerShadowVisible: false,
+  headerStyle: {
+    backgroundColor: colors.main.white
+  },
   headerTransparent: true,
   headerTitleAlign: 'center',
   headerTitleStyle: {
