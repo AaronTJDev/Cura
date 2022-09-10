@@ -7,6 +7,7 @@ import { FontAwesomeIcon as Icon } from '@fortawesome/react-native-fontawesome';
 import { colors, fonts } from '../../lib/styles';
 import { SearchSchema } from '../../lib/validationSchemas';
 import { getUserToken } from '../../lib/helpers/auth';
+import { isIos } from '../../lib/helpers/platform';
 
 const styles = StyleSheet.create({
   searchQueryInputView: {
@@ -102,7 +103,7 @@ export const SearchBar: React.FC<SearhBarProps> = (props) => {
                   onFocus={handleAnimationOnFocus}
                   onChangeText={onChange}
                   underlineColorAndroid='transparent'
-                  keyboardType='visible-password'
+                  keyboardType={isIos ? 'visible-password' : 'default'}
                 />
                 <TouchableOpacity
                   style={styles.searchButtonContainer}

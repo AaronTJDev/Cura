@@ -16,11 +16,11 @@ const styles = StyleSheet.create({
     width: SCREEN_WIDTH,
     height: SCREEN_HEIGHT / 4,
     shadowOffset: {
-      width: 20,
-      height: 20
+      width: 1,
+      height: 1
     },
-    shadowOpacity: 1,
-    shadowRadius: 40,
+    shadowOpacity: 0.05,
+    shadowRadius: 8,
     zIndex: 10,
     elevation: 0
   },
@@ -84,7 +84,7 @@ export const Search = () => {
   const [textValue, setTextValue] = useState<string>('');
   const fadeHeaderText = useRef(new Animated.Value(1)).current;
   const translateYHeader = useRef(new Animated.Value(0)).current;
-  const dropShadowValue = isAndroid ? 2 : 4;
+  const dropShadowValue = isAndroid ? 2 : 0.05;
   const fadeInDropShadow = useRef(new Animated.Value(0)).current;
 
   useEffect(() => {
@@ -141,7 +141,8 @@ export const Search = () => {
         styles.outerContainer,
         {
           transform: [{translateY: translateYHeader}],
-          elevation: fadeInDropShadow
+          elevation: fadeInDropShadow,
+          shadowOpacity: fadeInDropShadow
         }
       ]}
     >
