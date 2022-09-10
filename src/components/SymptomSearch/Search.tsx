@@ -1,14 +1,11 @@
-import React, { RefObject, useEffect, useRef, useState } from 'react'
-import { Animated, Easing, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native'
-import { Formik } from 'formik';
-import { FontAwesomeIcon as Icon } from '@fortawesome/react-native-fontawesome';
+import React, { useEffect, useRef, useState } from 'react'
+import { Animated, Easing, StyleSheet } from 'react-native'
 
 //** Helpers **/
 import { colors, fonts } from '../../lib/styles';
-import { SearchSchema } from '../../lib/validationSchemas';
-import { getUserToken } from '../../lib/helpers/auth';
 import { SCREEN_HEIGHT, SCREEN_WIDTH } from '../../lib/constants';
 import { isAndroid } from '../../lib/helpers/platform';
+import { SearchBar } from './SearchBar';
 
 const INNER_CONTAINER_HEIGHT = 200;
 const ON_BLUR_OFFSET = 144;
@@ -81,83 +78,6 @@ const styles = StyleSheet.create({
   },
 });
 
-interface SearhBarProps {
-  setTextInputTouched: React.Dispatch<React.SetStateAction<boolean>>;
-  setTextInputBlurred: React.Dispatch<React.SetStateAction<boolean>>;
-  setTextValue: React.Dispatch<React.SetStateAction<string>>;
-  isBlurred: boolean;
-  isTouched: boolean;
-};
-
-const initialValues = {
-  query: ''
-};
-
-const SearchBar= (props: SearhBarProps) => {
-  const { setTextInputTouched, setTextInputBlurred, setTextValue } = props;
-  const handleSubmit = async () => {
-    const token = await getUserToken();
-  };
-
-  return (
-    <Formik
-      initialValues={initialValues}
-      validationSchema={SearchSchema}
-      validateOnBlur
-      validateOnChange
-      onSubmit={handleSubmit}
-    >
-      {
-        ({handleBlur, setFieldValue, values}) => {
-          const handleAnimationOnFocus = () => {
-            setTextInputTouched(true);
-            setTextInputBlurred(false);
-          };
-
-          const handleAnimationOnBlur = () => {
-            setTextInputTouched(false);
-            setTextInputBlurred(true);
-            handleBlur('query')
-          };
-
-          const onChange = (text: string) => {
-            setFieldValue('query', text);
-            setTextValue(text);
-          }
-
-          return (
-            <>
-              <Animated.View style={styles.searchQueryInputView}>
-                <TextInput
-                  style={styles.searchQueryInput}
-                  placeholder='Headache'
-                  value={values.query}
-                  onBlur={handleAnimationOnBlur}
-                  onFocus={handleAnimationOnFocus}
-                  onChangeText={onChange}
-                  underlineColorAndroid='transparent'
-                  keyboardType='visible-password'
-                />
-                <TouchableOpacity
-                  style={styles.searchButtonContainer}
-                  onPress={handleSubmit}
-                >
-                  <Icon
-                    style={styles.searchButton}
-                    icon={'search'}
-                    size={18}
-                    color={colors.main.black}
-                  />
-                </TouchableOpacity>
-              </Animated.View>
-            </>
-          )
-        }
-      }
-    </Formik>
-  )
-}
-
 export const Search = () => {
   const [textInputTouched, setTextInputTouched] = useState<boolean>(false);
   const [textInputBlurred, setTextInputBlurred] = useState<boolean>(false);
@@ -169,45 +89,49 @@ export const Search = () => {
 
   useEffect(() => {
     if (textInputTouched) {
-      Animated.timing(fadeHeaderText, {
-        toValue: 0,
-        duration:300,
-        useNativeDriver: true,
-        easing: Easing.ease
-      }).start();
-      Animated.timing(translateYHeader, {
-        toValue: -ON_BLUR_OFFSET,
-        duration: 400,
-        useNativeDriver: true,
-        easing: Easing.ease
-      }).start();
-      Animated.timing(fadeInDropShadow, {
-        toValue: dropShadowValue,
-        duration: 400,
-        useNativeDriver: true,
-        easing: Easing.ease
-      }).start();
+      Animated.parallel([
+        Animated.timing(fadeHeaderText, {
+          toValue: 0,
+          duration:300,
+          useNativeDriver: true,
+          easing: Easing.ease
+        }),
+        Animated.timing(translateYHeader, {
+          toValue: -ON_BLUR_OFFSET,
+          duration: 400,
+          useNativeDriver: true,
+          easing: Easing.ease
+        }),
+        Animated.timing(fadeInDropShadow, {
+          toValue: dropShadowValue,
+          duration: 400,
+          useNativeDriver: true,
+          easing: Easing.ease
+        })
+      ]).start(); 
     }
 
     if (textInputBlurred && !textValue?.length) {
-      Animated.timing(fadeHeaderText, {
-        toValue: 1,
-        duration: 400,
-        useNativeDriver: true,
-        easing: Easing.ease
-      }).start();
-      Animated.timing(translateYHeader, {
-        toValue: 0,
-        duration: 400,
-        useNativeDriver: true,
-        easing: Easing.ease
-      }).start();
-      Animated.timing(fadeInDropShadow, {
-        toValue: 0,
-        duration: 400,
-        useNativeDriver: true,
-        easing: Easing.ease
-      }).start();
+      Animated.parallel([
+        Animated.timing(fadeHeaderText, {
+          toValue: 1,
+          duration: 400,
+          useNativeDriver: true,
+          easing: Easing.ease
+        }),
+        Animated.timing(translateYHeader, {
+          toValue: 0,
+          duration: 400,
+          useNativeDriver: true,
+          easing: Easing.ease
+        }),
+        Animated.timing(fadeInDropShadow, {
+          toValue: 0,
+          duration: 400,
+          useNativeDriver: true,
+          easing: Easing.ease
+        })
+      ]).start();
     }
   }, [textInputTouched, textInputBlurred])
 
@@ -235,9 +159,9 @@ export const Search = () => {
         <SearchBar
           setTextInputTouched={setTextInputTouched}
           setTextInputBlurred={setTextInputBlurred}
+          setTextValue={setTextValue}
           isTouched={textInputTouched}
           isBlurred={textInputBlurred}
-          setTextValue={setTextValue}
         />
       </Animated.View>
     </Animated.View>
