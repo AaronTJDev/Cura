@@ -3,7 +3,7 @@ import { accountActions } from './types';
 
 const initialState = {
   data: {},
-  loading: false,
+  loading: false
 };
 
 export interface ActionPayload extends Action {
@@ -15,48 +15,48 @@ const accountReducer = (state = initialState, action: ActionPayload) => {
     case accountActions.createAccount.start:
       return {
         ...state,
-        loading: true,
+        loading: true
       };
     case accountActions.createAccount.success:
       const newUser = {
         email: action.payload?.user?.email,
         uid: action.payload?.user?.uid,
-        isNewUser: action.payload?.additionalUserInfo?.isNewUser,
+        isNewUser: action.payload?.additionalUserInfo?.isNewUser
       };
 
       return {
         ...state,
         loading: false,
-        data: newUser,
+        data: newUser
       };
     case accountActions.createAccount.error:
       return {
         ...state,
         loading: false,
-        error: action.payload,
+        error: action.payload
       };
     case accountActions.login.start:
       return {
         ...state,
-        loading: true,
+        loading: true
       };
     case accountActions.login.success:
       console.log(action.payload?.user);
       const user = {
         email: action.payload?.user?.email,
         uid: action.payload?.user?.uid,
-        isNewUser: action.payload?.additionalUserInfo?.isNewUser,
+        isNewUser: action.payload?.additionalUserInfo?.isNewUser
       };
       return {
         ...state,
         loading: false,
-        data: user,
+        data: user
       };
     case accountActions.login.error:
       return {
         ...state,
         loading: false,
-        error: action.payload,
+        error: action.payload
       };
     default:
       return state;

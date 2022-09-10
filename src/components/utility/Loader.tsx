@@ -12,8 +12,8 @@ const styles = StyleSheet.create({
     backgroundColor: 'rgba(251, 252, 255, 0.25)',
     width: '100%',
     height: '100%',
-    position: 'absolute',
-  },
+    position: 'absolute'
+  }
 });
 
 export default function Loader() {

@@ -14,11 +14,11 @@ export const login = (dispatch: Dispatch, email: string, password: string) => {
 export const createUserWithEmailAndPassword = (
   dispatch: Dispatch,
   email: string,
-  password: string,
+  password: string
 ) => {
   const accountCreatePromise = auth().createUserWithEmailAndPassword(
     email,
-    password,
+    password
   );
   asyncAction(accountCreatePromise, accountActions.createAccount, dispatch);
   return accountCreatePromise;

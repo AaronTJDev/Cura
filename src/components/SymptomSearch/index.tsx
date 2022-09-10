@@ -15,7 +15,7 @@ const styles = StyleSheet.create({
   },
   gradient: {
     flex: 1
-  },
+  }
 });
 
 const SymptomSearch = () => {

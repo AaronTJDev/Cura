@@ -1,5 +1,5 @@
-import React, { useEffect, useRef, useState } from 'react'
-import { Animated, Easing, StyleSheet } from 'react-native'
+import React, { useEffect, useRef, useState } from 'react';
+import { Animated, Easing, StyleSheet } from 'react-native';
 
 //** Helpers **/
 import { colors, fonts } from '../../lib/styles';
@@ -31,8 +31,7 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
     alignItems: 'center',
     top: 64,
-    zIndex: 2,
-    
+    zIndex: 2
   },
   searchHeaderText: {
     textAlign: 'center',
@@ -70,12 +69,12 @@ const styles = StyleSheet.create({
   },
   searchButton: {
     width: '100%',
-    height: '100%',
+    height: '100%'
   },
   errorMsg: {
     color: colors.indicators.error,
     top: 16
-  },
+  }
 });
 
 export const Search = () => {
@@ -92,7 +91,7 @@ export const Search = () => {
       Animated.parallel([
         Animated.timing(fadeHeaderText, {
           toValue: 0,
-          duration:300,
+          duration: 300,
           useNativeDriver: true,
           easing: Easing.ease
         }),
@@ -108,7 +107,7 @@ export const Search = () => {
           useNativeDriver: true,
           easing: Easing.ease
         })
-      ]).start(); 
+      ]).start();
     }
 
     if (textInputBlurred && !textValue?.length) {
@@ -133,21 +132,29 @@ export const Search = () => {
         })
       ]).start();
     }
-  }, [textInputTouched, textInputBlurred])
+  }, [
+    dropShadowValue,
+    textInputTouched,
+    textInputBlurred,
+    fadeHeaderText,
+    fadeInDropShadow,
+    translateYHeader,
+    textValue
+  ]);
 
   return (
     <Animated.View
       style={[
         styles.outerContainer,
         {
-          transform: [{translateY: translateYHeader}],
+          transform: [{ translateY: translateYHeader }],
           elevation: fadeInDropShadow,
           shadowOpacity: fadeInDropShadow
         }
       ]}
     >
       <Animated.View style={styles.innerContainer}>
-        <Animated.Text 
+        <Animated.Text
           style={[
             styles.searchHeaderText,
             {
@@ -166,5 +173,5 @@ export const Search = () => {
         />
       </Animated.View>
     </Animated.View>
-  )
+  );
 };

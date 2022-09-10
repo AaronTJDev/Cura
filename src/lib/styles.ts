@@ -1,4 +1,4 @@
-import { HeaderOptions } from "@react-navigation/elements";
+import { HeaderOptions } from '@react-navigation/elements';
 
 export const colors = {
   main: {
@@ -7,14 +7,14 @@ export const colors = {
     primaryDark: '#564439',
     black: '#070707',
     white: '#FBFCFF',
-    gray: 'F4F6F6',
+    gray: 'F4F6F6'
   },
   indicators: {
     success: '#C6CA53',
     error: '#EF2D56',
     warning: '#ED7D3A',
-    rating: '#F9CB40',
-  },
+    rating: '#F9CB40'
+  }
 };
 
 export const fonts = {
@@ -51,7 +51,7 @@ export const fonts = {
   NunitoSansLightItalic: 'NunitoSans-LightItalic',
   NunitoSansRegular: 'NunitoSans-Regular',
   NunitoSansSemiBold: 'NunitoSans-SemiBold',
-  NunitoSansSemiBoldItalic: 'NunitoSans-SemiBoldItalic',
+  NunitoSansSemiBoldItalic: 'NunitoSans-SemiBoldItalic'
 };
 
 export const navigationHeader: HeaderOptions = {

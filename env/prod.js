@@ -1,7 +1,7 @@
 import shared from './shared';
 
 const prod = {
-  ...shared,
+  ...shared
 };
 
 export default prod;

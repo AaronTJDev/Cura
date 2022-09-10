@@ -7,9 +7,9 @@ interface RootReducer {
 
 export default function rootReducer(
   state = {} as RootReducer,
-  action: ActionPayload,
+  action: ActionPayload
 ) {
   return {
-    account: accountReducer(state.account, action),
+    account: accountReducer(state.account, action)
   };
 }

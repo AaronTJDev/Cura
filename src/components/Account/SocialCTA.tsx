@@ -14,11 +14,11 @@ const styles = StyleSheet.create({
     height: 48,
     marginVertical: 15,
     flexDirection: 'row',
-    alignItems: 'center',
+    alignItems: 'center'
   },
   buttonIcon: {
     marginRight: 8,
-    marginLeft: 12,
+    marginLeft: 12
   },
   buttonText: {
     flex: 40,
@@ -26,8 +26,8 @@ const styles = StyleSheet.create({
     fontFamily: fonts.NunitoSansBold,
     fontSize: 16,
     marginTop: 2,
-    marginLeft: 12,
-  },
+    marginLeft: 12
+  }
 });
 
 interface SocialCTAProps {

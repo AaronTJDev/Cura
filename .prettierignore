@@ -1,0 +1,4 @@
+# Ignore artifcats
+ios
+android
+node_modules

@@ -1,12 +1,16 @@
-import React from 'react'
-import { Animated, StyleSheet, TextInput, TouchableOpacity} from 'react-native'
+import React from 'react';
+import {
+  Animated,
+  StyleSheet,
+  TextInput,
+  TouchableOpacity
+} from 'react-native';
 import { Formik } from 'formik';
 import { FontAwesomeIcon as Icon } from '@fortawesome/react-native-fontawesome';
 
 //** Helpers **/
 import { colors, fonts } from '../../lib/styles';
 import { SearchSchema } from '../../lib/validationSchemas';
-import { getUserToken } from '../../lib/helpers/auth';
 import { isIos } from '../../lib/helpers/platform';
 
 const styles = StyleSheet.create({
@@ -40,12 +44,12 @@ const styles = StyleSheet.create({
   },
   searchButton: {
     width: '100%',
-    height: '100%',
+    height: '100%'
   },
   errorMsg: {
     color: colors.indicators.error,
     top: 16
-  },
+  }
 });
 
 interface SearhBarProps {
@@ -54,7 +58,7 @@ interface SearhBarProps {
   setTextValue: React.Dispatch<React.SetStateAction<string>>;
   isBlurred: boolean;
   isTouched: boolean;
-};
+}
 
 const initialValues = {
   query: ''
@@ -62,9 +66,7 @@ const initialValues = {
 
 export const SearchBar: React.FC<SearhBarProps> = (props) => {
   const { setTextInputTouched, setTextInputBlurred, setTextValue } = props;
-  const handleSubmit = async () => {
-    const token = await getUserToken();
-  };
+  const handleSubmit = async () => {};
 
   return (
     <Formik
@@ -74,53 +76,51 @@ export const SearchBar: React.FC<SearhBarProps> = (props) => {
       validateOnChange
       onSubmit={handleSubmit}
     >
-      {
-        ({handleBlur, setFieldValue, values}) => {
-          const handleAnimationOnFocus = () => {
-            setTextInputTouched(true);
-            setTextInputBlurred(false);
-          };
+      {({ handleBlur, setFieldValue, values }) => {
+        const handleAnimationOnFocus = () => {
+          setTextInputTouched(true);
+          setTextInputBlurred(false);
+        };
 
-          const handleAnimationOnBlur = () => {
-            setTextInputTouched(false);
-            setTextInputBlurred(true);
-            handleBlur('query')
-          };
+        const handleAnimationOnBlur = () => {
+          setTextInputTouched(false);
+          setTextInputBlurred(true);
+          handleBlur('query');
+        };
 
-          const onChange = (text: string) => {
-            setFieldValue('query', text);
-            setTextValue(text);
-          }
+        const onChange = (text: string) => {
+          setFieldValue('query', text);
+          setTextValue(text);
+        };
 
-          return (
-            <>
-              <Animated.View style={styles.searchQueryInputView}>
-                <TextInput
-                  style={styles.searchQueryInput}
-                  placeholder='Headache'
-                  value={values.query}
-                  onBlur={handleAnimationOnBlur}
-                  onFocus={handleAnimationOnFocus}
-                  onChangeText={onChange}
-                  underlineColorAndroid='transparent'
-                  keyboardType={isIos ? 'visible-password' : 'default'}
+        return (
+          <>
+            <Animated.View style={styles.searchQueryInputView}>
+              <TextInput
+                style={styles.searchQueryInput}
+                placeholder="Headache"
+                value={values.query}
+                onBlur={handleAnimationOnBlur}
+                onFocus={handleAnimationOnFocus}
+                onChangeText={onChange}
+                underlineColorAndroid="transparent"
+                keyboardType={isIos ? 'default' : 'visible-password'}
+              />
+              <TouchableOpacity
+                style={styles.searchButtonContainer}
+                onPress={handleSubmit}
+              >
+                <Icon
+                  style={styles.searchButton}
+                  icon={'search'}
+                  size={18}
+                  color={colors.main.black}
                 />
-                <TouchableOpacity
-                  style={styles.searchButtonContainer}
-                  onPress={handleSubmit}
-                >
-                  <Icon
-                    style={styles.searchButton}
-                    icon={'search'}
-                    size={18}
-                    color={colors.main.black}
-                  />
-                </TouchableOpacity>
-              </Animated.View>
-            </>
-          )
-        }
-      }
+              </TouchableOpacity>
+            </Animated.View>
+          </>
+        );
+      }}
     </Formik>
-  )
-}
+  );
+};

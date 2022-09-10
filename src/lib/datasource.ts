@@ -5,17 +5,17 @@ import { AsyncStorageKeys, getItem } from './asyncStorage';
 const instance = axios.create({
   baseURL: env.backendConfig.url,
   headers: {
-    'Content-Type': 'application/json',
-  },
+    'Content-Type': 'application/json'
+  }
 });
 
 instance.interceptors.request.use(
   async function (config) {
-    return getItem(AsyncStorageKeys.TOKEN).then(token => {
-      if (!!token) {
+    return getItem(AsyncStorageKeys.TOKEN).then((token) => {
+      if (token) {
         config.headers = {
           ...config.headers,
-          Authorization: token,
+          Authorization: token
         };
       }
       return config;
@@ -23,7 +23,7 @@ instance.interceptors.request.use(
   },
   function (error) {
     return Promise.reject(error);
-  },
+  }
 );
 
 export const fetchRecipes = async () => {

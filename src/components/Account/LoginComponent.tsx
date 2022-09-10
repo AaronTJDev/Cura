@@ -12,45 +12,45 @@ import { colors, fonts } from '../../lib/styles';
 const styles = StyleSheet.create({
   gradient: {
     flex: 1,
-    alignItems: 'center',
+    alignItems: 'center'
   },
   loginGroupContainer: {
     flex: 1,
     width: '100%',
     alignItems: 'center',
     justifyContent: 'center',
-    marginBottom: 120,
+    marginBottom: 120
   },
   logo: {
     width: '66%',
-    resizeMode: 'contain',
+    resizeMode: 'contain'
   },
   emailAuthContainer: {
     flexDirection: 'row',
     width: '66%',
     marginTop: 32,
-    justifyContent: 'space-around',
+    justifyContent: 'space-around'
   },
   authText: {
     color: colors.main.primaryDark,
     fontFamily: fonts.CrimsonProBold,
     fontSize: 18,
-    textDecorationLine: 'underline',
+    textDecorationLine: 'underline'
   },
   formContainer: {
     width: '66%',
-    alignItems: 'center',
+    alignItems: 'center'
   },
   formInputView: {
     marginTop: 32,
     borderBottomColor: colors.main.primaryDark,
-    borderWidth: 1,
+    borderWidth: 1
   },
   formInput: {
     textAlign: 'left',
     alignSelf: 'flex-start',
-    fontFamily: fonts.CrimsonProRegular,
-  },
+    fontFamily: fonts.CrimsonProRegular
+  }
 });
 
 export default function LoginComponent() {

@@ -45,7 +45,7 @@ export default function MainNavigation() {
       tabBarLabel: 'Account',
       component: AccountScreen,
       hideHeader: true
-    },
+    }
   ];
 
   return (
@@ -59,7 +59,8 @@ export default function MainNavigation() {
       }}
     >
       {tabs.map((tab, index) => {
-        const { component, icon, tabBarLabel, hideHeader, screenTitle } = tab as ITab;
+        const { component, icon, tabBarLabel, hideHeader, screenTitle } =
+          tab as ITab;
         return (
           <Tab.Screen
             key={index}

@@ -4,7 +4,7 @@ import {
   Text,
   TextInput,
   TouchableOpacity,
-  View,
+  View
 } from 'react-native';
 import { Formik } from 'formik';
 import { useDispatch } from 'react-redux';
@@ -18,13 +18,13 @@ import { navigate } from '../../../lib/helpers/navigation';
 const styles = StyleSheet.create({
   formContainer: {
     width: '66%',
-    alignItems: 'center',
+    alignItems: 'center'
   },
   formInputView: {
     marginTop: 32,
     borderBottomColor: colors.main.primaryDark,
     borderBottomWidth: 1,
-    width: '100%',
+    width: '100%'
   },
   formInput: {
     textAlign: 'left',
@@ -33,7 +33,7 @@ const styles = StyleSheet.create({
     fontSize: 18,
     padding: 8,
     width: '100%',
-    height: 36,
+    height: 36
   },
   registerButton: {
     marginTop: 43,
@@ -41,17 +41,17 @@ const styles = StyleSheet.create({
     height: 48,
     backgroundColor: colors.main.primaryDark,
     justifyContent: 'center',
-    alignItems: 'center',
+    alignItems: 'center'
   },
   buttonText: {
     color: colors.main.white,
     fontFamily: fonts.NunitoSansBold,
-    fontSize: 16,
+    fontSize: 16
   },
   errorMsg: {
     color: colors.indicators.error,
-    top: 16,
-  },
+    top: 16
+  }
 });
 
 interface SignupFormValues {
@@ -65,7 +65,7 @@ export default function SignupForm() {
   const initialValues = {
     email: '',
     password: '',
-    username: '',
+    username: ''
   };
 
   const handleCreateAccount = useCallback(
@@ -79,7 +79,9 @@ export default function SignupForm() {
         setFieldError('email', 'Email already in use');
         throw err;
       }
-    },[dispatch]);
+    },
+    [dispatch]
+  );
 
   return (
     <Formik

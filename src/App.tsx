@@ -16,7 +16,7 @@ const App = () => {
 
   useEffect(() => {
     console.log('is logged in:', isLoggedIn);
-  }, [isLoggedIn])
+  }, [isLoggedIn]);
 
   return (
     <NavigationContainer ref={navigationRef}>

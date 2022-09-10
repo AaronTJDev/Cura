@@ -12,41 +12,41 @@ export const actionTypeGenerator = (prefix: string) => {
       return {
         start: `${prefix}_${action}_START`,
         success: `${prefix}_${action}_SUCCESS`,
-        error: `${prefix}_${action}_ERROR`,
+        error: `${prefix}_${action}_ERROR`
       };
     },
-    value: (action: string) => `${prefix}_${action}`,
+    value: (action: string) => `${prefix}_${action}`
   };
 };
 
 export const asyncAction = (
   promise: Promise<any>,
   action: AsyncActionType,
-  dispatch: Dispatch<Action>,
+  dispatch: Dispatch<Action>
 ) => {
   dispatch({ type: action.start });
   promise
     .then((value: any) =>
       dispatch({
         type: action.success,
-        payload: value,
-      }),
+        payload: value
+      })
     )
     .catch((error: any) =>
       dispatch({
         type: action.error,
-        error,
-      }),
+        error
+      })
     );
 };
 
 export const genericAction = (
   action: string,
   value: any,
-  dispatch: Dispatch<Action>,
+  dispatch: Dispatch<Action>
 ) => {
   dispatch({
     type: action,
-    payload: value,
+    payload: value
   });
 };

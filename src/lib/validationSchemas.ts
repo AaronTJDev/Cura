@@ -8,12 +8,12 @@ export const SignupSchema = Yup.object().shape({
   email: Yup.string().email('Invalid email provided').required(),
   password: Yup.string()
     .min(8, 'Password should be atleast 8 characters')
-    .required('No password provided'),
+    .required('No password provided')
 });
 
 export const LoginSchema = Yup.object().shape({
   email: Yup.string().email('Invalid email provided').required(),
-  password: Yup.string().required('No password provided'),
+  password: Yup.string().required('No password provided')
 });
 
 export const SearchSchema = Yup.object().shape({

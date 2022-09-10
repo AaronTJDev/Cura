@@ -1,6 +1,8 @@
-import React, { useCallback, useEffect } from 'react';
-import { Text } from 'react-native';
-import { createNativeStackNavigator, NativeStackNavigationOptions } from '@react-navigation/native-stack';
+import React, { useEffect } from 'react';
+import {
+  createNativeStackNavigator,
+  NativeStackNavigationOptions
+} from '@react-navigation/native-stack';
 
 /** Components */
 import AccountComponent from '../components/Account/AccountComponent';
@@ -11,7 +13,6 @@ import LoginComponent from '../components/Account/LoginComponent';
 import { useAuth } from '../lib/helpers/auth';
 import { BottomTabNavigationProp } from '@react-navigation/bottom-tabs';
 
-
 const authNavigationHeader: NativeStackNavigationOptions = {
   headerShown: true,
   headerTransparent: true,
@@ -19,14 +20,12 @@ const authNavigationHeader: NativeStackNavigationOptions = {
 };
 
 const UserAccount = () => {
-  return (
-    <></>
-  )
+  return <></>;
 };
 
 interface AccountScreenProps {
   navigation: BottomTabNavigationProp<any>;
-};
+}
 
 const AccountStack = createNativeStackNavigator();
 
@@ -37,7 +36,7 @@ export default function AccountScreen({ navigation }: AccountScreenProps) {
     if (isLoggedIn) {
       navigation.navigate('Symptom Search');
     }
-  }, [isLoggedIn]);
+  }, [isLoggedIn, navigation]);
 
   return (
     <AccountStack.Navigator
@@ -61,7 +60,7 @@ export default function AccountScreen({ navigation }: AccountScreenProps) {
       <AccountStack.Screen
         name="User Account"
         component={UserAccount}
-        options={{...authNavigationHeader, title: 'Account'}}
+        options={{ ...authNavigationHeader, title: 'Account' }}
       />
     </AccountStack.Navigator>
   );

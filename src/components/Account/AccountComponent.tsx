@@ -14,30 +14,30 @@ import { useAuth } from '../../lib/helpers/auth';
 const styles = StyleSheet.create({
   gradient: {
     flex: 1,
-    alignItems: 'center',
+    alignItems: 'center'
   },
   loginGroupContainer: {
     flex: 1,
     width: '100%',
     alignItems: 'center',
-    justifyContent: 'center',
+    justifyContent: 'center'
   },
   logo: {
     width: '66%',
-    resizeMode: 'contain',
+    resizeMode: 'contain'
   },
   emailAuthContainer: {
     flexDirection: 'row',
     width: '66%',
     marginTop: 32,
-    justifyContent: 'space-around',
+    justifyContent: 'space-around'
   },
   authText: {
     color: colors.main.primaryDark,
     fontFamily: fonts.CrimsonProBold,
     fontSize: 18,
-    textDecorationLine: 'underline',
-  },
+    textDecorationLine: 'underline'
+  }
 });
 
 export default function AccountComponent(props: any) {
@@ -52,7 +52,7 @@ export default function AccountComponent(props: any) {
     if (isLoggedIn) {
       navigation.navigate('User Account');
     }
-  }, [isLoggedIn]);
+  }, [isLoggedIn, navigation]);
 
   return (
     <LinearGradient

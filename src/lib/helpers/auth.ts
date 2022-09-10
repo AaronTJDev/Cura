@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import EncryptedStorage from 'react-native-encrypted-storage';
 import auth from '@react-native-firebase/auth';
 
@@ -6,7 +6,7 @@ export const useAuth = () => {
   const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
 
   useEffect(() => {
-    const unsubscribe = auth().onIdTokenChanged(async user => {
+    const unsubscribe = auth().onIdTokenChanged(async (user) => {
       if (user) {
         try {
           const token = await user?.getIdToken(true);
@@ -24,7 +24,7 @@ export const useAuth = () => {
     });
 
     return () => unsubscribe();
-  }, [])
+  }, []);
 
   return {
     isLoggedIn
@@ -34,7 +34,7 @@ export const useAuth = () => {
 export const getUserToken = async () => {
   try {
     const token = await EncryptedStorage.getItem('user_session');
-    if (!!token) {
+    if (token) {
       return JSON.parse(token);
     } else {
       throw new Error('User token not found.');
@@ -42,4 +42,4 @@ export const getUserToken = async () => {
   } catch (err) {
     console.log(err);
   }
-}
+};

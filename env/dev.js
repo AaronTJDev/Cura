@@ -1,7 +1,7 @@
 import shared from './shared';
 
 const dev = {
-  ...shared,
+  ...shared
 };
 
 export default dev;
