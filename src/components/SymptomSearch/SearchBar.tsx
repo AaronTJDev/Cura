@@ -1,7 +1,9 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect, useRef } from 'react';
 import {
   Animated,
+  Easing,
   StyleSheet,
+  Text,
   TextInput,
   TouchableOpacity
 } from 'react-native';
@@ -20,7 +22,8 @@ const styles = StyleSheet.create({
     borderBottomColor: colors.main.primaryDark,
     borderBottomWidth: 1,
     width: '80%',
-    flexDirection: 'row'
+    flexDirection: 'row',
+    backgroundColor: colors.main.white
   },
   searchQueryInput: {
     alignSelf: 'flex-start',
@@ -47,27 +50,70 @@ const styles = StyleSheet.create({
     width: '100%',
     height: '100%'
   },
-  errorMsg: {
-    color: colors.indicators.error,
-    top: 16
+  searchInfoTextView: {
+    width: '80%',
+    height: 36,
+    padding: 8
+  },
+  searchInfoText: {
+    fontFamily: fonts.CrimsonProExtraLight,
+    fontSize: 14,
+    color: colors.main.gray50,
+    textAlign: 'center'
   }
 });
-
-interface SearhBarProps {
-  setTextInputTouched: React.Dispatch<React.SetStateAction<boolean>>;
-  setTextInputBlurred: React.Dispatch<React.SetStateAction<boolean>>;
-  setTextValue: React.Dispatch<React.SetStateAction<string>>;
-  isBlurred: boolean;
-  isTouched: boolean;
-}
 
 const initialValues = {
   query: ''
 };
 
-export const SearchBar: React.FC<SearhBarProps> = (props) => {
-  const { setQuery } = useContext(SearchContext);
-  const { setTextInputTouched, setTextInputBlurred, setTextValue } = props;
+export const SearchBar = () => {
+  const {
+    setQuery,
+    setTextInputTouched,
+    setTextInputBlurred,
+    isTouched,
+    isBlurred
+  } = useContext(SearchContext);
+  const infoOpacity = useRef(new Animated.Value(0)).current;
+  const infoTranslateY = useRef(new Animated.Value(16)).current;
+
+  useEffect(() => {
+    if (isTouched) {
+      Animated.parallel([
+        Animated.timing(infoOpacity, {
+          toValue: 1,
+          duration: 400,
+          useNativeDriver: true,
+          easing: Easing.ease
+        }),
+        Animated.timing(infoTranslateY, {
+          toValue: 0,
+          duration: 400,
+          useNativeDriver: true,
+          easing: Easing.ease
+        })
+      ]).start();
+    }
+
+    if (isBlurred) {
+      Animated.parallel([
+        Animated.timing(infoOpacity, {
+          toValue: 0,
+          duration: 400,
+          useNativeDriver: true,
+          easing: Easing.ease
+        }),
+        Animated.timing(infoTranslateY, {
+          toValue: 16,
+          duration: 400,
+          useNativeDriver: true,
+          easing: Easing.ease
+        })
+      ]).start();
+    }
+  }, [isTouched, isBlurred, infoOpacity, infoTranslateY]);
+
   const handleSubmit = async () => {};
 
   return (
@@ -92,7 +138,6 @@ export const SearchBar: React.FC<SearhBarProps> = (props) => {
 
         const onChange = (text: string) => {
           setFieldValue('query', text);
-          setTextValue(text);
           setQuery(text);
         };
 
@@ -120,6 +165,19 @@ export const SearchBar: React.FC<SearhBarProps> = (props) => {
                   color={colors.main.black}
                 />
               </TouchableOpacity>
+            </Animated.View>
+            <Animated.View
+              style={[
+                styles.searchInfoTextView,
+                {
+                  opacity: infoOpacity,
+                  transform: [{ translateY: infoTranslateY }]
+                }
+              ]}
+            >
+              <Text style={styles.searchInfoText}>
+                please search for symptom(s) you’re experiencing
+              </Text>
             </Animated.View>
           </>
         );

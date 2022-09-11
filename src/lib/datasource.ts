@@ -1,6 +1,7 @@
 import axios from 'axios';
 import env from '../../env';
 import EncryptedStorage from 'react-native-encrypted-storage/';
+import { ISearchResult } from '../components/SymptomSearch/SearchResults';
 
 const instance = axios.create({
   baseURL: env.backendConfig.hostUrl,
@@ -33,7 +34,9 @@ instance.interceptors.request.use(
   }
 );
 
-export const fetchSuggestions = async (query: string) => {
+export const fetchSuggestions = async (
+  query: string
+): Promise<ISearchResult | []> => {
   console.log('instance', instance.defaults);
   try {
     const response = await instance.get(
@@ -43,6 +46,7 @@ export const fetchSuggestions = async (query: string) => {
       const suggestions = response.data;
       return suggestions;
     }
+    return [];
   } catch (err) {
     throw new Error(`Error fetching suggestions: ${err}`);
   }

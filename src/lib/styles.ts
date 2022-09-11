@@ -7,7 +7,12 @@ export const colors = {
     primaryDark: '#564439',
     black: '#070707',
     white: '#FBFCFF',
-    gray: 'F4F6F6'
+    gray: '#F4F6F6',
+    gray5: 'rgba(0,0,0,.5)',
+    gray10: 'rgba(0,0,0,.1)',
+    gray20: 'rgba(0,0,0,.2)',
+    gray25: 'rgba(0,0,0,.25)',
+    gray50: 'rgba(0,0,0,.5)'
   },
   indicators: {
     success: '#C6CA53',
