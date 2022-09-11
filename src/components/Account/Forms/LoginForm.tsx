@@ -72,7 +72,7 @@ export default function SignupForm() {
       try {
         await login(dispatch, email, password);
         resetForm();
-        navigate('Home');
+        navigate('Symptom Search');
       } catch (err) {
         console.log('err', err);
         setFieldError('email', 'Email or password is incorrect');

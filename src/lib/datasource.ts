@@ -1,9 +1,9 @@
 import axios from 'axios';
 import env from '../../env';
-import { AsyncStorageKeys, getItem } from './asyncStorage';
+import EncryptedStorage from 'react-native-encrypted-storage/';
 
 const instance = axios.create({
-  baseURL: env.backendConfig.url,
+  baseURL: env.backendConfig.hostUrl,
   headers: {
     'Content-Type': 'application/json'
   }
@@ -11,22 +11,39 @@ const instance = axios.create({
 
 instance.interceptors.request.use(
   async function (config) {
-    return getItem(AsyncStorageKeys.TOKEN).then((token) => {
-      if (token) {
-        config.headers = {
-          ...config.headers,
-          Authorization: token
-        };
+    try {
+      const session = await EncryptedStorage.getItem('user_session');
+
+      if (!session || !config) {
+        throw new Error('No user session found.');
+      }
+
+      const { token } = JSON.parse(session);
+
+      if (session && config && config.headers) {
+        config.headers['Authorization'] = token;
       }
       return config;
-    });
+    } catch (err) {
+      console.log(err);
+    }
   },
   function (error) {
     return Promise.reject(error);
   }
 );
 
-export const fetchRecipes = async () => {
-  const res = await instance.get('/recipe');
-  console.log('response', res);
+export const fetchSuggestions = async (query: string) => {
+  console.log('instance', instance.defaults);
+  try {
+    const response = await instance.get(
+      `/symptoms/search?query=${query.toLowerCase()}`
+    );
+    if (response?.data) {
+      const suggestions = response.data;
+      return suggestions;
+    }
+  } catch (err) {
+    throw new Error(`Error fetching suggestions: ${err}`);
+  }
 };

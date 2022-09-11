@@ -74,7 +74,7 @@ export default function SignupForm() {
       try {
         await createUserWithEmailAndPassword(dispatch, email, password);
         resetForm();
-        navigate('Home');
+        navigate('Symptom Search');
       } catch (err) {
         setFieldError('email', 'Email already in use');
         throw err;

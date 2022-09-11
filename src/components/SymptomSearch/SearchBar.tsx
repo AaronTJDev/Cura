@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import {
   Animated,
   StyleSheet,
@@ -12,6 +12,7 @@ import { FontAwesomeIcon as Icon } from '@fortawesome/react-native-fontawesome';
 import { colors, fonts } from '../../lib/styles';
 import { SearchSchema } from '../../lib/validationSchemas';
 import { isIos } from '../../lib/helpers/platform';
+import { SearchContext } from '.';
 
 const styles = StyleSheet.create({
   searchQueryInputView: {
@@ -65,6 +66,7 @@ const initialValues = {
 };
 
 export const SearchBar: React.FC<SearhBarProps> = (props) => {
+  const { setQuery } = useContext(SearchContext);
   const { setTextInputTouched, setTextInputBlurred, setTextValue } = props;
   const handleSubmit = async () => {};
 
@@ -91,6 +93,7 @@ export const SearchBar: React.FC<SearhBarProps> = (props) => {
         const onChange = (text: string) => {
           setFieldValue('query', text);
           setTextValue(text);
+          setQuery(text);
         };
 
         return (
