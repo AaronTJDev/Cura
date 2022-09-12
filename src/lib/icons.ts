@@ -4,9 +4,10 @@ import {
   faBook,
   faHouse,
   faSearch,
-  faUser
+  faUser,
+  faPlus
 } from '@fortawesome/free-solid-svg-icons';
 
 export const initiateIconLibrary = () => {
-  library.add(fab, faBook, faHouse, faUser, faSearch);
+  library.add(fab, faBook, faHouse, faUser, faSearch, faPlus);
 };

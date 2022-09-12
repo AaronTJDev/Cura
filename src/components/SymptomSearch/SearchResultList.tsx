@@ -6,7 +6,12 @@ import {
   StyleSheet,
   View
 } from 'react-native';
+
+//** Components **/
 import { SearchContext } from '.';
+import SearchResult from './SearchResult';
+
+//** Helpers **/
 import { colors } from '../../lib/styles';
 import { ON_BLUR_OFFSET } from './Search';
 
@@ -14,7 +19,7 @@ const styles = StyleSheet.create({
   container: {
     width: '100%',
     height: '100%',
-    top: 0,
+    paddingTop: ON_BLUR_OFFSET / 2,
     backgroundColor: colors.main.white
   },
   activityIndicatorView: {}
@@ -33,11 +38,11 @@ export interface ISearchResult {
   description: string;
 }
 
-interface SearchResultsProp {
-  suggestions: string[];
+interface SearchResultListProps {
+  suggestions: ISearchResult[];
 }
 
-const SearchResults: React.FC<SearchResultsProp> = () => {
+const SearchResultList: React.FC<SearchResultListProps> = ({ suggestions }) => {
   const { isLoading, isTouched, isBlurred } = useContext(SearchContext);
   const scrollViewTranslateY = useRef(new Animated.Value(0)).current;
 
@@ -45,7 +50,7 @@ const SearchResults: React.FC<SearchResultsProp> = () => {
     if (isTouched) {
       Animated.timing(scrollViewTranslateY, {
         toValue: -ON_BLUR_OFFSET,
-        duration: 400,
+        duration: 250,
         useNativeDriver: true,
         easing: Easing.ease
       }).start();
@@ -54,12 +59,16 @@ const SearchResults: React.FC<SearchResultsProp> = () => {
     if (isBlurred) {
       Animated.timing(scrollViewTranslateY, {
         toValue: 0,
-        duration: 400,
+        duration: 250,
         useNativeDriver: true,
         easing: Easing.ease
       }).start();
     }
   }, [isTouched, isBlurred, scrollViewTranslateY]);
+
+  useEffect(() => {
+    console.log('isLoading', isLoading);
+  }, [isLoading]);
 
   return (
     <Animated.ScrollView
@@ -70,9 +79,16 @@ const SearchResults: React.FC<SearchResultsProp> = () => {
         }
       ]}
     >
-      {isLoading ? <ActivityIndicatorView /> : <View />}
+      {isLoading ? (
+        <ActivityIndicatorView />
+      ) : (
+        suggestions?.length > 0 &&
+        suggestions.map((suggestion: ISearchResult) => {
+          return <SearchResult data={suggestion} />;
+        })
+      )}
     </Animated.ScrollView>
   );
 };
 
-export default SearchResults;
+export default SearchResultList;

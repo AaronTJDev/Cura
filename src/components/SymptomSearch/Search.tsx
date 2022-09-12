@@ -52,19 +52,19 @@ export const Search = () => {
       Animated.parallel([
         Animated.timing(fadeHeaderText, {
           toValue: 0,
-          duration: 300,
+          duration: 200,
           useNativeDriver: true,
           easing: Easing.ease
         }),
         Animated.timing(translateYHeader, {
           toValue: -ON_BLUR_OFFSET,
-          duration: 400,
+          duration: 250,
           useNativeDriver: true,
           easing: Easing.ease
         }),
         Animated.timing(fadeInDropShadow, {
           toValue: dropShadowValue,
-          duration: 400,
+          duration: 250,
           useNativeDriver: true,
           easing: Easing.ease
         })
@@ -75,19 +75,19 @@ export const Search = () => {
       Animated.parallel([
         Animated.timing(fadeHeaderText, {
           toValue: 1,
-          duration: 400,
+          duration: 250,
           useNativeDriver: true,
           easing: Easing.ease
         }),
         Animated.timing(translateYHeader, {
           toValue: 0,
-          duration: 400,
+          duration: 250,
           useNativeDriver: true,
           easing: Easing.ease
         }),
         Animated.timing(fadeInDropShadow, {
           toValue: 0,
-          duration: 400,
+          duration: 250,
           useNativeDriver: true,
           easing: Easing.ease
         })

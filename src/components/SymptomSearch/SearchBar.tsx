@@ -83,13 +83,13 @@ export const SearchBar = () => {
       Animated.parallel([
         Animated.timing(infoOpacity, {
           toValue: 1,
-          duration: 400,
+          duration: 250,
           useNativeDriver: true,
           easing: Easing.ease
         }),
         Animated.timing(infoTranslateY, {
           toValue: 0,
-          duration: 400,
+          duration: 250,
           useNativeDriver: true,
           easing: Easing.ease
         })
@@ -100,13 +100,13 @@ export const SearchBar = () => {
       Animated.parallel([
         Animated.timing(infoOpacity, {
           toValue: 0,
-          duration: 400,
+          duration: 250,
           useNativeDriver: true,
           easing: Easing.ease
         }),
         Animated.timing(infoTranslateY, {
           toValue: 16,
-          duration: 400,
+          duration: 250,
           useNativeDriver: true,
           easing: Easing.ease
         })

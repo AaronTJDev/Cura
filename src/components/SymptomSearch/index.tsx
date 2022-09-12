@@ -15,7 +15,7 @@ import { Search } from './Search';
 import { colors } from '../../lib/styles';
 import { fetchSuggestions } from '../../lib/datasource';
 import { SCREEN_HEIGHT, SEARCH_INPUT_DEBOUNCE_TIME } from '../../lib/constants';
-import SearchResults from './SearchResults';
+import SearchResultList, { ISearchResult } from './SearchResultList';
 
 const styles = StyleSheet.create({
   container: {
@@ -27,10 +27,10 @@ const styles = StyleSheet.create({
 
 interface ISearchContext {
   query: string;
-  suggestions: string[];
+  suggestions: ISearchResult[];
   isLoading: boolean;
   setQuery: Dispatch<SetStateAction<string>> | (() => {});
-  setSuggestions: Dispatch<SetStateAction<string[]>> | (() => {});
+  setSuggestions: Dispatch<SetStateAction<ISearchResult[]>> | (() => {});
   setTextInputTouched:
     | React.Dispatch<React.SetStateAction<boolean>>
     | (() => {});
@@ -55,7 +55,7 @@ export const SearchContext = React.createContext<ISearchContext>({
 
 const SymptomSearch = () => {
   const [query, setQuery] = useState<string>('');
-  const [suggestions, setSuggestions] = useState<string[]>([]);
+  const [suggestions, setSuggestions] = useState<ISearchResult[]>([]);
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [textInputTouched, setTextInputTouched] = useState<boolean>(false);
   const [textInputBlurred, setTextInputBlurred] = useState<boolean>(false);
@@ -66,8 +66,7 @@ const SymptomSearch = () => {
         setIsLoading(true);
         fetchSuggestions(query)
           .then((res) => {
-            console.log(res);
-            setSuggestions(suggestions);
+            setSuggestions(res);
           })
           .catch((err) => {
             console.log(err);
@@ -76,13 +75,14 @@ const SymptomSearch = () => {
             setIsLoading(false);
           });
       }
-    }, [query, suggestions]),
+    }, [query]),
     SEARCH_INPUT_DEBOUNCE_TIME
   );
 
   useEffect(() => {
     getSuggestions();
-  }, [query, getSuggestions]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [query]);
 
   return (
     <SearchContext.Provider
@@ -100,7 +100,7 @@ const SymptomSearch = () => {
     >
       <View style={styles.container}>
         <Search />
-        <SearchResults suggestions={suggestions} />
+        <SearchResultList suggestions={suggestions} />
       </View>
     </SearchContext.Provider>
   );
