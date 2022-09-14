@@ -18,11 +18,13 @@ import { ON_BLUR_OFFSET } from './Search';
 const styles = StyleSheet.create({
   container: {
     width: '100%',
-    height: '100%',
-    paddingTop: ON_BLUR_OFFSET / 2,
+    flex: 1,
+    paddingBottom: 24,
     backgroundColor: colors.main.white
   },
-  activityIndicatorView: {}
+  activityIndicatorView: {
+    marginHorizontal: 8
+  }
 });
 
 const ActivityIndicatorView = () => {
@@ -49,14 +51,14 @@ const SearchResultList: React.FC<SearchResultListProps> = ({ suggestions }) => {
   useEffect(() => {
     if (isTouched) {
       Animated.timing(scrollViewTranslateY, {
-        toValue: -ON_BLUR_OFFSET,
+        toValue: -ON_BLUR_OFFSET / 2,
         duration: 250,
         useNativeDriver: true,
         easing: Easing.ease
       }).start();
     }
 
-    if (isBlurred) {
+    if (isBlurred && !suggestions?.length) {
       Animated.timing(scrollViewTranslateY, {
         toValue: 0,
         duration: 250,
@@ -67,11 +69,11 @@ const SearchResultList: React.FC<SearchResultListProps> = ({ suggestions }) => {
   }, [isTouched, isBlurred, scrollViewTranslateY]);
 
   useEffect(() => {
-    console.log('isLoading', isLoading);
-  }, [isLoading]);
+    console.log('suggestions', suggestions);
+  }, [suggestions]);
 
   return (
-    <Animated.ScrollView
+    <Animated.View
       style={[
         styles.container,
         {
@@ -79,15 +81,14 @@ const SearchResultList: React.FC<SearchResultListProps> = ({ suggestions }) => {
         }
       ]}
     >
-      {isLoading ? (
-        <ActivityIndicatorView />
-      ) : (
-        suggestions?.length > 0 &&
-        suggestions.map((suggestion: ISearchResult) => {
-          return <SearchResult data={suggestion} />;
-        })
-      )}
-    </Animated.ScrollView>
+      <Animated.ScrollView>
+        {isLoading && <ActivityIndicatorView />}
+        {suggestions?.length >= 0 &&
+          suggestions.map((suggestion: ISearchResult) => {
+            return <SearchResult data={suggestion} />;
+          })}
+      </Animated.ScrollView>
+    </Animated.View>
   );
 };
 

@@ -39,7 +39,8 @@ const styles = StyleSheet.create({
 });
 
 export const Search = () => {
-  const { query, isTouched, isBlurred } = useContext(SearchContext);
+  const { query, isTouched, isBlurred, suggestions } =
+    useContext(SearchContext);
 
   // Animation Values
   const fadeHeaderText = useRef(new Animated.Value(1)).current;
@@ -71,7 +72,7 @@ export const Search = () => {
       ]).start();
     }
 
-    if (isBlurred && !query?.length) {
+    if (isBlurred && !query?.length && !suggestions.length) {
       Animated.parallel([
         Animated.timing(fadeHeaderText, {
           toValue: 1,
@@ -100,7 +101,8 @@ export const Search = () => {
     fadeHeaderText,
     fadeInDropShadow,
     translateYHeader,
-    query
+    query,
+    suggestions
   ]);
 
   return (

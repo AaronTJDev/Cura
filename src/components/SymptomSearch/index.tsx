@@ -9,7 +9,7 @@ import { StyleSheet, View } from 'react-native';
 import { debounce } from 'lodash-es';
 
 //** Components **/
-import { Search } from './Search';
+import { ON_BLUR_OFFSET, Search } from './Search';
 
 //** Helpers **/
 import { colors } from '../../lib/styles';
@@ -19,8 +19,9 @@ import SearchResultList, { ISearchResult } from './SearchResultList';
 
 const styles = StyleSheet.create({
   container: {
-    height: SCREEN_HEIGHT,
     width: '100%',
+    height: SCREEN_HEIGHT,
+    paddingBottom: ON_BLUR_OFFSET / 2,
     backgroundColor: colors.main.white
   }
 });
@@ -62,26 +63,24 @@ const SymptomSearch = () => {
 
   const getSuggestions = debounce(
     useCallback(async () => {
-      if (query.length > 1) {
-        setIsLoading(true);
-        fetchSuggestions(query)
-          .then((res) => {
-            setSuggestions(res);
-          })
-          .catch((err) => {
-            console.log(err);
-          })
-          .finally(() => {
-            setIsLoading(false);
-          });
-      }
+      setIsLoading(true);
+      fetchSuggestions(query)
+        .then((res) => {
+          setSuggestions(res);
+        })
+        .catch((err) => {
+          console.log(err);
+          setSuggestions([]);
+        })
+        .finally(() => {
+          setIsLoading(false);
+        });
     }, [query]),
     SEARCH_INPUT_DEBOUNCE_TIME
   );
 
   useEffect(() => {
     getSuggestions();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [query]);
 
   return (

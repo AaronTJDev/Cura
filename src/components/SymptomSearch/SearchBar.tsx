@@ -73,7 +73,9 @@ export const SearchBar = () => {
     setTextInputTouched,
     setTextInputBlurred,
     isTouched,
-    isBlurred
+    isBlurred,
+    suggestions,
+    query
   } = useContext(SearchContext);
   const infoOpacity = useRef(new Animated.Value(0)).current;
   const infoTranslateY = useRef(new Animated.Value(16)).current;
@@ -96,7 +98,7 @@ export const SearchBar = () => {
       ]).start();
     }
 
-    if (isBlurred) {
+    if (isBlurred && !suggestions?.length && !query?.length) {
       Animated.parallel([
         Animated.timing(infoOpacity, {
           toValue: 0,
@@ -112,7 +114,7 @@ export const SearchBar = () => {
         })
       ]).start();
     }
-  }, [isTouched, isBlurred, infoOpacity, infoTranslateY]);
+  }, [isTouched, isBlurred, infoOpacity, infoTranslateY, suggestions]);
 
   const handleSubmit = async () => {};
 
@@ -176,7 +178,7 @@ export const SearchBar = () => {
               ]}
             >
               <Text style={styles.searchInfoText}>
-                please search for symptom(s) you’re experiencing
+                Please search for symptom(s) you’re experiencing
               </Text>
             </Animated.View>
           </>
