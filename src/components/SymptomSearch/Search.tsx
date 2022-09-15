@@ -1,11 +1,13 @@
 import React, { useContext, useEffect, useRef } from 'react';
 import { Animated, Easing, StyleSheet } from 'react-native';
 
+//** Components **/
+import { SearchBar } from './SearchBar';
+
 //** Helpers **/
 import { colors, fonts } from '../../lib/styles';
 import { SCREEN_HEIGHT, SCREEN_WIDTH } from '../../lib/constants';
 import { isAndroid } from '../../lib/helpers/platform';
-import { SearchBar } from './SearchBar';
 import { SearchContext } from '.';
 
 export const ON_BLUR_OFFSET = 144;

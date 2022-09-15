@@ -10,12 +10,12 @@ import { debounce } from 'lodash-es';
 
 //** Components **/
 import { ON_BLUR_OFFSET, Search } from './Search';
+import SearchResultList, { ISearchResult } from './SearchResultList';
 
 //** Helpers **/
 import { colors } from '../../lib/styles';
 import { fetchSuggestions } from '../../lib/datasource';
 import { SCREEN_HEIGHT, SEARCH_INPUT_DEBOUNCE_TIME } from '../../lib/constants';
-import SearchResultList, { ISearchResult } from './SearchResultList';
 
 const styles = StyleSheet.create({
   container: {
