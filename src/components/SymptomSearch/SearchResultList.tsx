@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useRef } from 'react';
+import React, { useContext, useEffect, useRef, useState } from 'react';
 import {
   ActivityIndicator,
   Animated,
@@ -46,6 +46,7 @@ interface SearchResultListProps {
 
 const SearchResultList: React.FC<SearchResultListProps> = ({ suggestions }) => {
   const { isLoading, isTouched, isBlurred } = useContext(SearchContext);
+  const [activeIndex, setActiveIndex] = useState<number | undefined>();
   const scrollViewTranslateY = useRef(new Animated.Value(0)).current;
 
   useEffect(() => {
@@ -68,10 +69,6 @@ const SearchResultList: React.FC<SearchResultListProps> = ({ suggestions }) => {
     }
   }, [isTouched, isBlurred, scrollViewTranslateY]);
 
-  useEffect(() => {
-    console.log('suggestions', suggestions);
-  }, [suggestions]);
-
   return (
     <Animated.View
       style={[
@@ -84,8 +81,16 @@ const SearchResultList: React.FC<SearchResultListProps> = ({ suggestions }) => {
       <Animated.ScrollView>
         {isLoading && <ActivityIndicatorView />}
         {suggestions?.length >= 0 &&
-          suggestions.map((suggestion: ISearchResult) => {
-            return <SearchResult data={suggestion} />;
+          suggestions.map((suggestion: ISearchResult, index) => {
+            return (
+              <SearchResult
+                key={`sr-${index}`}
+                data={suggestion}
+                index={index}
+                setActiveIndex={setActiveIndex}
+                activeIndex={activeIndex}
+              />
+            );
           })}
       </Animated.ScrollView>
     </Animated.View>

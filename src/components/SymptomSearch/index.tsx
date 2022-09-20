@@ -40,6 +40,8 @@ interface ISearchContext {
     | (() => {});
   isBlurred: boolean;
   isTouched: boolean;
+  selectedSymptoms?: ISearchResult[];
+  setSelectedSymptoms?: Dispatch<SetStateAction<ISearchResult[]>> | (() => {});
 }
 
 export const SearchContext = React.createContext<ISearchContext>({
@@ -51,7 +53,9 @@ export const SearchContext = React.createContext<ISearchContext>({
   setTextInputTouched: () => {},
   setTextInputBlurred: () => {},
   isBlurred: false,
-  isTouched: false
+  isTouched: false,
+  selectedSymptoms: [],
+  setSelectedSymptoms: () => {}
 });
 
 const SymptomSearch = () => {
@@ -60,6 +64,7 @@ const SymptomSearch = () => {
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [textInputTouched, setTextInputTouched] = useState<boolean>(false);
   const [textInputBlurred, setTextInputBlurred] = useState<boolean>(false);
+  // const [selectedSymptoms, setSelectedSymptoms] = useState<ISearchResult[]>([]);
 
   const getSuggestions = debounce(
     useCallback(async () => {

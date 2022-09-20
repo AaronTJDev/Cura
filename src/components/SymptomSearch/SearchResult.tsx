@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { FontAwesomeIcon as Icon } from '@fortawesome/react-native-fontawesome';
 
@@ -18,36 +18,72 @@ const styles = StyleSheet.create({
     backgroundColor: colors.main.white,
     flexDirection: 'row',
     justifyContent: 'flex-start',
-    alignItems: 'center',
     alignSelf: 'center',
     borderRadius: 8,
     marginVertical: 10
   },
-  searchResultText: {
-    paddingLeft: 16,
-    fontFamily: fonts.ComfortaaLight,
-    alignSelf: 'center'
-  },
   searchResultButtonContainer: {
-    backgroundColor: colors.main.blue,
+    backgroundColor: colors.main.blue75,
     width: 24,
     height: 24,
-    borderRadius: 16,
-    position: 'absolute',
-    right: 16,
+    borderRadius: 4,
     justifyContent: 'center',
-    alignItems: 'center'
+    alignItems: 'center',
+    right: 16,
+    top: 12
+  },
+  textGroup: {
+    flex: 4,
+    flexDirection: 'column',
+    justifyContent: 'flex-start',
+    paddingLeft: 16,
+    marginTop: 16
+  },
+  description: {
+    flex: 2,
+    flexWrap: 'wrap'
+  },
+  searchTextButton: {
+    flex: 1
+  },
+  searchResultText: {
+    fontFamily: fonts.ComfortaaLight,
+    color: colors.main.blue
   }
 });
 
 interface SearchResultProp {
   data: ISearchResult;
+  index: number;
+  activeIndex?: number;
+  setActiveIndex: React.Dispatch<React.SetStateAction<number | undefined>>;
 }
 
-const SearchResult: React.FC<SearchResultProp> = ({ data }) => {
+const SearchResult: React.FC<SearchResultProp> = ({
+  data,
+  index,
+  activeIndex,
+  setActiveIndex
+}) => {
+  const isActive = useMemo(() => activeIndex === index, [activeIndex]);
+  const toggleShowDescription = () => {
+    setActiveIndex(index);
+    if (isActive) {
+      setActiveIndex(undefined);
+    }
+  };
+
   return (
-    <View style={styles.searchResult}>
-      <Text style={styles.searchResultText}>{data.name}</Text>
+    <View style={[styles.searchResult, isActive && { height: 128 }]}>
+      <View style={styles.textGroup}>
+        <TouchableOpacity
+          style={styles.searchTextButton}
+          onPress={toggleShowDescription}
+        >
+          <Text style={styles.searchResultText}>{data.name}</Text>
+        </TouchableOpacity>
+        {isActive && <Text style={styles.description}>{data.description}</Text>}
+      </View>
       <TouchableOpacity style={styles.searchResultButtonContainer}>
         <Icon icon="plus" color={colors.main.white} />
       </TouchableOpacity>
