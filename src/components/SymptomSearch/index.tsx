@@ -73,6 +73,7 @@ const SymptomSearch = () => {
       setIsLoading(true);
       fetchSuggestions(query)
         .then((res) => {
+          console.log('res here still', res);
           setSuggestions(res);
         })
         .catch((err) => {

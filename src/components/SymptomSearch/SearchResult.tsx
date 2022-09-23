@@ -15,7 +15,7 @@ const styles = StyleSheet.create({
     shadowColor: colors.main.gray25,
     shadowOpacity: 1,
     shadowRadius: 2,
-    elevation: 1,
+    elevation: 10,
     backgroundColor: colors.main.white,
     flexDirection: 'row',
     justifyContent: 'flex-start',
