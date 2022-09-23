@@ -14,6 +14,7 @@ import SearchResult from './SearchResult';
 //** Helpers **/
 import { colors } from '../../lib/styles';
 import { ON_BLUR_OFFSET } from './Search';
+import DiseasesModal from './DiseasesModal';
 
 const styles = StyleSheet.create({
   container: {
@@ -93,6 +94,7 @@ const SearchResultList: React.FC<SearchResultListProps> = ({ suggestions }) => {
             );
           })}
       </Animated.ScrollView>
+      <DiseasesModal />
     </Animated.View>
   );
 };

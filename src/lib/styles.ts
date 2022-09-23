@@ -14,7 +14,8 @@ export const colors = {
     gray25: 'rgba(0,0,0,.25)',
     gray50: 'rgba(0,0,0,.5)',
     blue: '#2176FF',
-    blue75: 'rgba(33,118,255,.75)'
+    blue75: 'rgba(33,118,255,.75)',
+    red: 'rgba(237,125,58,1)'
   },
   indicators: {
     success: '#C6CA53',

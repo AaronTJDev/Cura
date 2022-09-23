@@ -1,10 +1,11 @@
-import React, { useMemo } from 'react';
+import React, { useContext, useEffect, useMemo } from 'react';
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { FontAwesomeIcon as Icon } from '@fortawesome/react-native-fontawesome';
 
 //** Helpers **/
 import { colors, fonts } from '../../lib/styles';
 import { ISearchResult } from './SearchResultList';
+import { SearchContext } from '.';
 
 const styles = StyleSheet.create({
   searchResult: {
@@ -23,7 +24,6 @@ const styles = StyleSheet.create({
     marginVertical: 10
   },
   searchResultButtonContainer: {
-    backgroundColor: colors.main.blue75,
     width: 24,
     height: 24,
     borderRadius: 4,
@@ -41,7 +41,8 @@ const styles = StyleSheet.create({
   },
   description: {
     flex: 2,
-    flexWrap: 'wrap'
+    flexWrap: 'wrap',
+    justifyContent: 'flex-end'
   },
   searchTextButton: {
     flex: 1
@@ -52,20 +53,56 @@ const styles = StyleSheet.create({
   }
 });
 
-interface SearchResultProp {
+interface SearchResultProps {
   data: ISearchResult;
   index: number;
   activeIndex?: number;
   setActiveIndex: React.Dispatch<React.SetStateAction<number | undefined>>;
 }
 
-const SearchResult: React.FC<SearchResultProp> = ({
+interface SymptomCTAProps {
+  currentSymptom: string;
+  selectedSymptoms?: Set<string>;
+  handleToggleSymptom: () => void;
+}
+
+const SymptomCTA: React.FC<SymptomCTAProps> = ({
+  handleToggleSymptom,
+  selectedSymptoms,
+  currentSymptom
+}) => {
+  return !selectedSymptoms?.has(currentSymptom) ? (
+    <TouchableOpacity
+      style={[
+        styles.searchResultButtonContainer,
+        { backgroundColor: colors.main.blue75 }
+      ]}
+      onPress={handleToggleSymptom}
+    >
+      <Icon icon="plus" color={colors.main.white} />
+    </TouchableOpacity>
+  ) : (
+    <TouchableOpacity
+      style={[
+        styles.searchResultButtonContainer,
+        { backgroundColor: colors.main.red }
+      ]}
+      onPress={handleToggleSymptom}
+    >
+      <Icon icon="minus" color={colors.main.white} />
+    </TouchableOpacity>
+  );
+};
+
+const SearchResult: React.FC<SearchResultProps> = ({
   data,
   index,
   activeIndex,
   setActiveIndex
 }) => {
   const isActive = useMemo(() => activeIndex === index, [activeIndex]);
+  const { selectedSymptoms, setSelectedSymptoms } = useContext(SearchContext);
+
   const toggleShowDescription = () => {
     setActiveIndex(index);
     if (isActive) {
@@ -73,8 +110,25 @@ const SearchResult: React.FC<SearchResultProp> = ({
     }
   };
 
+  const handleToggleSymptom = (): void => {
+    if (!!selectedSymptoms && !!setSelectedSymptoms) {
+      if (selectedSymptoms.has(data.name)) {
+        setSelectedSymptoms(
+          (prev) =>
+            new Set([...prev].filter((symptom) => symptom !== data.name))
+        );
+      } else {
+        setSelectedSymptoms((prev) => new Set(prev.add(data.name)));
+      }
+    }
+  };
+
+  useEffect(() => {
+    console.log('selectedSymptoms', selectedSymptoms);
+  }, [selectedSymptoms]);
+
   return (
-    <View style={[styles.searchResult, isActive && { height: 128 }]}>
+    <View style={[styles.searchResult, isActive && { height: 108 }]}>
       <View style={styles.textGroup}>
         <TouchableOpacity
           style={styles.searchTextButton}
@@ -84,9 +138,11 @@ const SearchResult: React.FC<SearchResultProp> = ({
         </TouchableOpacity>
         {isActive && <Text style={styles.description}>{data.description}</Text>}
       </View>
-      <TouchableOpacity style={styles.searchResultButtonContainer}>
-        <Icon icon="plus" color={colors.main.white} />
-      </TouchableOpacity>
+      <SymptomCTA
+        handleToggleSymptom={handleToggleSymptom}
+        selectedSymptoms={selectedSymptoms}
+        currentSymptom={data.name}
+      />
     </View>
   );
 };
