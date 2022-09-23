@@ -46,7 +46,7 @@ const DiseasesModal = () => {
     <>
       {!!selectedSymptoms && [...selectedSymptoms].length > 0 && (
         <View style={styles.modalContainer}>
-          <View style={styles.innerContainer}/>
+          <View style={styles.innerContainer} />
           <BlurView
             style={styles.blur}
             blurAmount={1}
