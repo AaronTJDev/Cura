@@ -1,9 +1,10 @@
 import { BlurView } from '@react-native-community/blur';
-import React, { useContext } from 'react';
-import { StyleSheet, View } from 'react-native';
+import React, { useCallback, useContext, useEffect, useState } from 'react';
+import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { SearchContext } from '.';
 import { SCREEN_HEIGHT } from '../../lib/constants';
-import { colors } from '../../lib/styles';
+import { fetchRelatedDiseases } from '../../lib/datasource';
+import { colors, fonts } from '../../lib/styles';
 
 const styles = StyleSheet.create({
   modalContainer: {
@@ -29,24 +30,71 @@ const styles = StyleSheet.create({
     shadowColor: colors.main.black,
     borderRadius: 4,
     borderColor: colors.main.gray10,
-    borderWidth: 1
+    borderWidth: 1,
+    alignItems: 'center'
   },
   blur: {
     position: 'absolute',
     bottom: 0,
     width: '100%',
     height: '100%'
+  },
+  modalText: {
+    fontFamily: fonts.ComfortaaLight,
+    fontSize: 14,
+    marginVertical: 16
+  },
+  modalCta: {
+    backgroundColor: colors.main.blue,
+    width: '80%',
+    height: 36,
+    alignItems: 'center',
+    justifyContent: 'center'
+  },
+  ctaText: {
+    color: colors.main.white,
+    fontFamily: fonts.NunitoSansBold
   }
 });
 
+export interface IDisease {
+  name: string;
+  description: string;
+}
+
 const DiseasesModal = () => {
   const { selectedSymptoms } = useContext(SearchContext);
+  const [diseases, setDiseases] = useState<IDisease[]>();
+
+  const getRelatedDiseases = useCallback(() => {
+    if (selectedSymptoms?.size) {
+      fetchRelatedDiseases([...selectedSymptoms])
+        .then((diseaseData) => {
+          if (diseaseData) setDiseases(diseaseData);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
+  }, [selectedSymptoms]);
+
+  useEffect(() => {
+    getRelatedDiseases();
+  }, [selectedSymptoms]);
 
   return (
     <>
-      {!!selectedSymptoms && [...selectedSymptoms].length > 0 && (
+      {!!selectedSymptoms && selectedSymptoms.size > 0 && (
         <View style={styles.modalContainer}>
-          <View style={styles.innerContainer} />
+          <View style={styles.innerContainer}>
+            <Text style={styles.modalText}>
+              Found ({diseases?.length || 0}) illnesses related to your (
+              {selectedSymptoms.size}) symptoms
+            </Text>
+            <TouchableOpacity style={styles.modalCta}>
+              <Text style={styles.ctaText}>VIEW ILLNESSES</Text>
+            </TouchableOpacity>
+          </View>
           <BlurView
             style={styles.blur}
             blurAmount={1}

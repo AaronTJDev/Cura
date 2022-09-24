@@ -2,6 +2,7 @@ import axios from 'axios';
 import env from '../../env';
 import EncryptedStorage from 'react-native-encrypted-storage/';
 import { ISearchResult } from '../components/SymptomSearch/SearchResultList';
+import { IDisease } from '../components/SymptomSearch/DiseasesModal';
 
 const instance = axios.create({
   baseURL: env.backendConfig.hostUrl,
@@ -48,5 +49,24 @@ export const fetchSuggestions = async (
     return [];
   } catch (err) {
     throw new Error(`Error fetching suggestions: ${err}`);
+  }
+};
+
+export const fetchRelatedDiseases = async (
+  symptoms: string[]
+): Promise<IDisease[]> => {
+  try {
+    const url = '/disease';
+    const response = await instance.post(
+      url,
+      JSON.stringify({ symptoms: symptoms })
+    );
+    if (response?.data) {
+      const diseases = response.data;
+      return diseases;
+    }
+    return [];
+  } catch (err) {
+    throw new Error(`Error fetching related diseases: ${err}`);
   }
 };
