@@ -1,17 +1,32 @@
 import { BlurView } from '@react-native-community/blur';
-import React, { useCallback, useContext, useEffect, useState } from 'react';
-import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import React, {
+  useCallback,
+  useContext,
+  useEffect,
+  useRef,
+  useState
+} from 'react';
+import {
+  Animated,
+  Easing,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View
+} from 'react-native';
 import { SearchContext } from '.';
 import { SCREEN_HEIGHT } from '../../lib/constants';
 import { fetchRelatedDiseases } from '../../lib/datasource';
 import { colors, fonts } from '../../lib/styles';
+
+const MODAL_HEIGHT = SCREEN_HEIGHT / 6;
 
 const styles = StyleSheet.create({
   modalContainer: {
     position: 'absolute',
     bottom: 24,
     zIndex: 25,
-    height: SCREEN_HEIGHT / 6,
+    height: MODAL_HEIGHT,
     width: '100%',
     justifyContent: 'center'
   },
@@ -65,6 +80,8 @@ export interface IDisease {
 const DiseasesModal = () => {
   const { selectedSymptoms } = useContext(SearchContext);
   const [diseases, setDiseases] = useState<IDisease[]>();
+  const modalTranslateY = useRef(new Animated.Value(MODAL_HEIGHT)).current;
+  const modalOpacity = useRef(new Animated.Value(0)).current;
 
   const getRelatedDiseases = useCallback(() => {
     if (selectedSymptoms?.size) {
@@ -80,29 +97,67 @@ const DiseasesModal = () => {
 
   useEffect(() => {
     getRelatedDiseases();
+
+    if (selectedSymptoms?.size && selectedSymptoms.size > 0) {
+      Animated.parallel([
+        Animated.timing(modalTranslateY, {
+          toValue: 0,
+          duration: 300,
+          useNativeDriver: true,
+          easing: Easing.ease
+        }),
+        Animated.timing(modalOpacity, {
+          toValue: 1,
+          duration: 300,
+          useNativeDriver: true,
+          easing: Easing.ease
+        })
+      ]).start();
+    } else {
+      Animated.parallel([
+        Animated.timing(modalTranslateY, {
+          toValue: MODAL_HEIGHT,
+          duration: 300,
+          useNativeDriver: true,
+          easing: Easing.ease
+        }),
+        Animated.timing(modalOpacity, {
+          toValue: 0,
+          duration: 300,
+          useNativeDriver: true,
+          easing: Easing.ease
+        })
+      ]).start();
+    }
   }, [selectedSymptoms]);
 
   return (
     <>
-      {!!selectedSymptoms && selectedSymptoms.size > 0 && (
-        <View style={styles.modalContainer}>
-          <View style={styles.innerContainer}>
-            <Text style={styles.modalText}>
-              Found ({diseases?.length || 0}) illnesses related to your (
-              {selectedSymptoms.size}) symptoms
-            </Text>
-            <TouchableOpacity style={styles.modalCta}>
-              <Text style={styles.ctaText}>VIEW ILLNESSES</Text>
-            </TouchableOpacity>
-          </View>
-          <BlurView
-            style={styles.blur}
-            blurAmount={1}
-            blurRadius={10}
-            blurType={'light'}
-          />
+      <Animated.View
+        style={[
+          styles.modalContainer,
+          {
+            transform: [{ translateY: modalTranslateY }],
+            opacity: modalOpacity
+          }
+        ]}
+      >
+        <View style={styles.innerContainer}>
+          <Text style={styles.modalText}>
+            Found ({diseases?.length || 0}) illnesses related to your (
+            {selectedSymptoms?.size}) symptoms
+          </Text>
+          <TouchableOpacity style={styles.modalCta}>
+            <Text style={styles.ctaText}>VIEW ILLNESSES</Text>
+          </TouchableOpacity>
         </View>
-      )}
+        <BlurView
+          style={styles.blur}
+          blurAmount={1}
+          blurRadius={10}
+          blurType={'light'}
+        />
+      </Animated.View>
     </>
   );
 };

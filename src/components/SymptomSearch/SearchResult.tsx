@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useMemo } from 'react';
+import React, { useContext, useMemo } from 'react';
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { FontAwesomeIcon as Icon } from '@fortawesome/react-native-fontawesome';
 
@@ -122,10 +122,6 @@ const SearchResult: React.FC<SearchResultProps> = ({
       }
     }
   };
-
-  useEffect(() => {
-    console.log('selectedSymptoms', selectedSymptoms);
-  }, [selectedSymptoms]);
 
   return (
     <View style={[styles.searchResult, isActive && { height: 108 }]}>
