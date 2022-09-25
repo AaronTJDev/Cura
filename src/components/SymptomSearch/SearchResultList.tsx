@@ -8,7 +8,7 @@ import {
 } from 'react-native';
 
 //** Components **/
-import { SearchContext } from '.';
+import { SearchContext } from '../../screens/SymptomSearch';
 import SearchResult from './SearchResult';
 
 //** Helpers **/

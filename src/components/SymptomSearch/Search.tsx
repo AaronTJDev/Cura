@@ -8,7 +8,7 @@ import { SearchBar } from './SearchBar';
 import { colors, fonts } from '../../lib/styles';
 import { SCREEN_HEIGHT, SCREEN_WIDTH } from '../../lib/constants';
 import { isAndroid } from '../../lib/helpers/platform';
-import { SearchContext } from '.';
+import { SearchContext } from '../../screens/SymptomSearch';
 
 export const ON_BLUR_OFFSET = 144;
 const SEARCH_BAR_CONTAINER_HEIGHT = SCREEN_HEIGHT / 4;

@@ -14,7 +14,7 @@ import { FontAwesomeIcon as Icon } from '@fortawesome/react-native-fontawesome';
 import { colors, fonts } from '../../lib/styles';
 import { SearchSchema } from '../../lib/validationSchemas';
 import { isIos } from '../../lib/helpers/platform';
-import { SearchContext } from '.';
+import { SearchContext } from '../../screens/SymptomSearch';
 
 const styles = StyleSheet.create({
   searchQueryInputView: {

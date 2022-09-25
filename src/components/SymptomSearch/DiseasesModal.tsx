@@ -14,7 +14,7 @@ import {
   TouchableOpacity,
   View
 } from 'react-native';
-import { SearchContext } from '.';
+import { SearchContext } from '../../screens/SymptomSearch';
 import { SCREEN_HEIGHT } from '../../lib/constants';
 import { fetchRelatedDiseases } from '../../lib/datasource';
 import { colors, fonts } from '../../lib/styles';
@@ -69,6 +69,9 @@ const styles = StyleSheet.create({
   ctaText: {
     color: colors.main.white,
     fontFamily: fonts.NunitoSansBold
+  },
+  textBold: {
+    color: colors.main.gray50
   }
 });
 
@@ -79,7 +82,7 @@ export interface IDisease {
 
 const DiseasesModal = () => {
   const { selectedSymptoms } = useContext(SearchContext);
-  const [diseases, setDiseases] = useState<IDisease[]>();
+  const [diseases, setDiseases] = useState<IDisease[]>([]);
   const modalTranslateY = useRef(new Animated.Value(MODAL_HEIGHT)).current;
   const modalOpacity = useRef(new Animated.Value(0)).current;
 
@@ -131,6 +134,18 @@ const DiseasesModal = () => {
     }
   }, [selectedSymptoms]);
 
+  const pluralize = (
+    array: any[],
+    primaryWord: string,
+    pluralizedEnding: string
+  ) => {
+    if (array.length > 1) {
+      return primaryWord + pluralizedEnding;
+    } else {
+      return primaryWord;
+    }
+  };
+
   return (
     <>
       <Animated.View
@@ -144,8 +159,17 @@ const DiseasesModal = () => {
       >
         <View style={styles.innerContainer}>
           <Text style={styles.modalText}>
-            Found ({diseases?.length || 0}) illnesses related to your (
-            {selectedSymptoms?.size}) symptoms
+            Found
+            <Text style={styles.textBold}>
+              ({diseases?.length || 0}) {pluralize(diseases, 'illness', 'es')}
+            </Text>
+            <Text> related to your</Text>
+            {selectedSymptoms && selectedSymptoms?.size > 0 && (
+              <Text style={styles.textBold}>
+                ({selectedSymptoms?.size}){' '}
+                {pluralize([...selectedSymptoms], 'symptom', 's')}
+              </Text>
+            )}
           </Text>
           <TouchableOpacity style={styles.modalCta}>
             <Text style={styles.ctaText}>VIEW ILLNESSES</Text>

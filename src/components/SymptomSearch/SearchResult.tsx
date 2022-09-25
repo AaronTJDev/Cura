@@ -5,7 +5,7 @@ import { FontAwesomeIcon as Icon } from '@fortawesome/react-native-fontawesome';
 //** Helpers **/
 import { colors, fonts } from '../../lib/styles';
 import { ISearchResult } from './SearchResultList';
-import { SearchContext } from '.';
+import { SearchContext } from '../../screens/SymptomSearch';
 
 const styles = StyleSheet.create({
   searchResult: {

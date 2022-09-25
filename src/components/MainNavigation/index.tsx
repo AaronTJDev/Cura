@@ -6,7 +6,7 @@ import { FontAwesomeIcon as Icon } from '@fortawesome/react-native-fontawesome';
 
 /** Components */
 import AccountScreen from '../../screens/AccountScreen';
-import SymptomSearch from '../SymptomSearch';
+import SymptomSearch from '../../screens/SymptomSearch';
 import CookBook from '../CookBook';
 
 /** Helpers */
