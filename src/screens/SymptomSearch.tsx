@@ -5,28 +5,17 @@ import React, {
   useEffect,
   useState
 } from 'react';
-import { StyleSheet, View } from 'react-native';
 import { debounce } from 'lodash-es';
 
 //** Components **/
-import { ON_BLUR_OFFSET, Search } from '../components/SymptomSearch/Search';
-import SearchResultList, {
-  ISearchResult
-} from '../components/SymptomSearch/SearchResultList';
+import SymptomSearchComponent from '../components/SymptomSearchComponent';
+import { ISearchResult } from '../components/SymptomSearchComponent/SearchResultList';
 
 //** Helpers **/
-import { colors } from '../lib/styles';
 import { fetchSuggestions } from '../lib/datasource';
-import { SCREEN_HEIGHT, SEARCH_INPUT_DEBOUNCE_TIME } from '../lib/constants';
-
-const styles = StyleSheet.create({
-  container: {
-    width: '100%',
-    height: SCREEN_HEIGHT,
-    paddingBottom: ON_BLUR_OFFSET / 2,
-    backgroundColor: colors.main.white
-  }
-});
+import { SEARCH_INPUT_DEBOUNCE_TIME } from '../lib/constants';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import Diseases from './Diseases';
 
 interface ISearchContext {
   query: string;
@@ -59,6 +48,8 @@ export const SearchContext = React.createContext<ISearchContext>({
   selectedSymptoms: new Set(),
   setSelectedSymptoms: () => {}
 });
+
+const SearchStack = createNativeStackNavigator();
 
 const SymptomSearch = () => {
   const [query, setQuery] = useState<string>('');
@@ -108,10 +99,10 @@ const SymptomSearch = () => {
         isTouched: textInputTouched
       }}
     >
-      <View style={styles.container}>
-        <Search />
-        <SearchResultList suggestions={suggestions} />
-      </View>
+      <SearchStack.Navigator initialRouteName="Search">
+        <SearchStack.Screen name="Search" component={SymptomSearchComponent} />
+        <SearchStack.Screen name="Disease" component={Diseases} />
+      </SearchStack.Navigator>
     </SearchContext.Provider>
   );
 };

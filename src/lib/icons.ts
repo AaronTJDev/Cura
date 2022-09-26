@@ -6,10 +6,20 @@ import {
   faSearch,
   faUser,
   faPlus,
-  faMinus
+  faMinus,
+  faBarcode
 } from '@fortawesome/free-solid-svg-icons';
 
 export const initiateIconLibrary = () => {
   // @ts-ignore
-  library.add(fab, faBook, faHouse, faUser, faSearch, faPlus, faMinus);
+  library.add(
+    fab,
+    faBook,
+    faHouse,
+    faUser,
+    faSearch,
+    faPlus,
+    faMinus,
+    faBarcode
+  );
 };

@@ -1,8 +1,8 @@
 import axios from 'axios';
 import env from '../../env';
 import EncryptedStorage from 'react-native-encrypted-storage/';
-import { ISearchResult } from '../components/SymptomSearch/SearchResultList';
-import { IDisease } from '../components/SymptomSearch/DiseasesModal';
+import { ISearchResult } from '../components/SymptomSearchComponent/SearchResultList';
+import { IDisease } from '../components/SymptomSearchComponent/DiseasesModal';
 
 const instance = axios.create({
   baseURL: env.backendConfig.hostUrl,

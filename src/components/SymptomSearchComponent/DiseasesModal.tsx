@@ -19,7 +19,7 @@ import { SCREEN_HEIGHT } from '../../lib/constants';
 import { fetchRelatedDiseases } from '../../lib/datasource';
 import { colors, fonts } from '../../lib/styles';
 
-const MODAL_HEIGHT = SCREEN_HEIGHT / 6;
+const MODAL_HEIGHT = SCREEN_HEIGHT / 5;
 
 const styles = StyleSheet.create({
   modalContainer: {
@@ -32,7 +32,7 @@ const styles = StyleSheet.create({
   },
   innerContainer: {
     alignSelf: 'center',
-    width: '75%',
+    width: '80%',
     height: '80%',
     backgroundColor: colors.main.white,
     zIndex: 30,
@@ -57,7 +57,8 @@ const styles = StyleSheet.create({
   modalText: {
     fontFamily: fonts.ComfortaaLight,
     fontSize: 14,
-    marginVertical: 16
+    marginVertical: 16,
+    paddingHorizontal: 16
   },
   modalCta: {
     backgroundColor: colors.main.blue,

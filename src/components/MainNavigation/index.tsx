@@ -36,8 +36,8 @@ export default function MainNavigation() {
       screenTitle: 'Symptom Search'
     },
     {
-      icon: 'book',
-      tabBarLabel: 'Cook Book',
+      icon: 'barcode',
+      tabBarLabel: 'Scanner',
       component: CookBook
     },
     {
