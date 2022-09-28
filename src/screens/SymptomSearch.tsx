@@ -99,7 +99,12 @@ const SymptomSearch = () => {
         isTouched: textInputTouched
       }}
     >
-      <SearchStack.Navigator initialRouteName="Search">
+      <SearchStack.Navigator
+        initialRouteName="Search"
+        screenOptions={{
+          headerShown: false
+        }}
+      >
         <SearchStack.Screen name="Search" component={SymptomSearchComponent} />
         <SearchStack.Screen name="Disease" component={Diseases} />
       </SearchStack.Navigator>
