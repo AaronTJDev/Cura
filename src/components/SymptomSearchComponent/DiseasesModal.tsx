@@ -162,11 +162,13 @@ const DiseasesModal = () => {
           <Text style={styles.modalText}>
             Found
             <Text style={styles.textBold}>
-              ({diseases?.length || 0}) {pluralize(diseases, 'illness', 'es')}
+              {' '}
+              ({diseases?.length || 0}) {pluralize(diseases, 'disease', 's')}
             </Text>
             <Text> related to your</Text>
             {selectedSymptoms && selectedSymptoms?.size > 0 && (
               <Text style={styles.textBold}>
+                {' '}
                 ({selectedSymptoms?.size}){' '}
                 {pluralize([...selectedSymptoms], 'symptom', 's')}
               </Text>
