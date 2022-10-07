@@ -11,8 +11,8 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 
 export const initiateIconLibrary = () => {
-  // @ts-ignore
   library.add(
+    // @ts-ignore
     fab,
     faBook,
     faHouse,

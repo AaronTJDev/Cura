@@ -36,13 +36,14 @@ const ActivityIndicatorView = () => {
   );
 };
 
-export interface ISearchResult {
+export interface ISymptom {
+  id: string;
   name: string;
   description: string;
 }
 
 interface SearchResultListProps {
-  suggestions: ISearchResult[];
+  suggestions: ISymptom[];
 }
 
 const SearchResultList: React.FC<SearchResultListProps> = ({ suggestions }) => {
@@ -82,10 +83,10 @@ const SearchResultList: React.FC<SearchResultListProps> = ({ suggestions }) => {
       <Animated.ScrollView>
         {isLoading && <ActivityIndicatorView />}
         {suggestions?.length >= 0 &&
-          suggestions.map((suggestion: ISearchResult, index) => {
+          suggestions.map((suggestion: ISymptom, index) => {
             return (
               <SearchResult
-                key={`sr-${index}`}
+                key={suggestion.id}
                 data={suggestion}
                 index={index}
                 setActiveIndex={setActiveIndex}

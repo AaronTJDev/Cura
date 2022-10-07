@@ -33,7 +33,8 @@ export default function MainNavigation() {
       icon: 'home',
       tabBarLabel: 'Home',
       component: SymptomSearch,
-      screenTitle: 'Symptom Search'
+      screenTitle: 'Symptom Search',
+      hideHeader: true
     },
     {
       icon: 'barcode',

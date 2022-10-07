@@ -1,7 +1,7 @@
 import axios from 'axios';
 import env from '../../env';
 import EncryptedStorage from 'react-native-encrypted-storage/';
-import { ISearchResult } from '../components/SymptomSearchComponent/SearchResultList';
+import { ISymptom } from '../components/SymptomSearchComponent/SearchResultList';
 import { IDisease } from '../components/SymptomSearchComponent/DiseasesModal';
 
 const instance = axios.create({
@@ -37,7 +37,7 @@ instance.interceptors.request.use(
 
 export const fetchSuggestions = async (
   query: string
-): Promise<ISearchResult[] | []> => {
+): Promise<ISymptom[] | []> => {
   try {
     const response = await instance.get(
       `/symptoms/search?query=${query.toLowerCase()}`

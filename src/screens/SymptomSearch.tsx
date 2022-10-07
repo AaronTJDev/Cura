@@ -9,20 +9,21 @@ import { debounce } from 'lodash-es';
 
 //** Components **/
 import SymptomSearchComponent from '../components/SymptomSearchComponent';
-import { ISearchResult } from '../components/SymptomSearchComponent/SearchResultList';
+import { ISymptom } from '../components/SymptomSearchComponent/SearchResultList';
 
 //** Helpers **/
 import { fetchSuggestions } from '../lib/datasource';
 import { SEARCH_INPUT_DEBOUNCE_TIME } from '../lib/constants';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import Diseases from './Diseases';
+import SymptomInfo from './SymptomInfo';
 
 interface ISearchContext {
   query: string;
-  suggestions: ISearchResult[];
+  suggestions: ISymptom[];
   isLoading: boolean;
   setQuery: Dispatch<SetStateAction<string>> | (() => {});
-  setSuggestions: Dispatch<SetStateAction<ISearchResult[]>> | (() => {});
+  setSuggestions: Dispatch<SetStateAction<ISymptom[]>> | (() => {});
   setTextInputTouched:
     | React.Dispatch<React.SetStateAction<boolean>>
     | (() => {});
@@ -53,7 +54,7 @@ const SearchStack = createNativeStackNavigator();
 
 const SymptomSearch = () => {
   const [query, setQuery] = useState<string>('');
-  const [suggestions, setSuggestions] = useState<ISearchResult[]>([]);
+  const [suggestions, setSuggestions] = useState<ISymptom[]>([]);
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [textInputTouched, setTextInputTouched] = useState<boolean>(false);
   const [textInputBlurred, setTextInputBlurred] = useState<boolean>(false);
@@ -107,6 +108,11 @@ const SymptomSearch = () => {
       >
         <SearchStack.Screen name="Search" component={SymptomSearchComponent} />
         <SearchStack.Screen name="Disease" component={Diseases} />
+        <SearchStack.Screen
+          name="SymptomInfo"
+          component={SymptomInfo}
+          options={{ headerShown: false }}
+        />
       </SearchStack.Navigator>
     </SearchContext.Provider>
   );

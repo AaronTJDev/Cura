@@ -1,51 +1,38 @@
-import React, { useContext, useMemo } from 'react';
+import React, { useMemo } from 'react';
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
-import { FontAwesomeIcon as Icon } from '@fortawesome/react-native-fontawesome';
 
 //** Helpers **/
 import { colors, fonts } from '../../lib/styles';
-import { ISearchResult } from './SearchResultList';
-import { SearchContext } from '../../screens/SymptomSearch';
+import { ISymptom } from './SearchResultList';
+import { navigate } from '../../lib/helpers/navigation';
 
 const styles = StyleSheet.create({
   searchResult: {
-    width: '80%',
-    height: 48,
-    shadowOffset: { height: 0, width: 1 },
+    width: '100%',
+    height: 60,
+    shadowOffset: { height: 0, width: 0 },
     shadowColor: colors.main.gray25,
-    shadowOpacity: 1,
+    shadowOpacity: 0.5,
     shadowRadius: 2,
     elevation: 10,
     backgroundColor: colors.main.white,
     flexDirection: 'row',
-    justifyContent: 'flex-start',
-    alignSelf: 'center',
-    borderRadius: 8,
-    marginVertical: 10
-  },
-  searchResultButtonContainer: {
-    width: 24,
-    height: 24,
-    borderRadius: 4,
     justifyContent: 'center',
-    alignItems: 'center',
-    right: 16,
-    top: 12
+    alignSelf: 'center',
+    marginVertical: 4
   },
   textGroup: {
-    flex: 4,
-    flexDirection: 'column',
-    justifyContent: 'flex-start',
-    paddingLeft: 16,
-    marginTop: 16
+    flex: 1,
+    justifyContent: 'center',
+    paddingLeft: 32
   },
   description: {
     flex: 2,
-    flexWrap: 'wrap',
-    justifyContent: 'flex-end'
+    flexWrap: 'wrap'
   },
   searchTextButton: {
-    flex: 1
+    flex: 1,
+    justifyContent: 'center'
   },
   searchResultText: {
     fontFamily: fonts.ComfortaaLight,
@@ -54,73 +41,21 @@ const styles = StyleSheet.create({
 });
 
 interface SearchResultProps {
-  data: ISearchResult;
+  data: ISymptom;
   index: number;
   activeIndex?: number;
-  setActiveIndex: React.Dispatch<React.SetStateAction<number | undefined>>;
+  setActiveIndex?: React.Dispatch<React.SetStateAction<number | undefined>>;
 }
-
-interface SymptomCTAProps {
-  currentSymptom: string;
-  selectedSymptoms?: Set<string>;
-  handleToggleSymptom: () => void;
-}
-
-const SymptomCTA: React.FC<SymptomCTAProps> = ({
-  handleToggleSymptom,
-  selectedSymptoms,
-  currentSymptom
-}) => {
-  return !selectedSymptoms?.has(currentSymptom) ? (
-    <TouchableOpacity
-      style={[
-        styles.searchResultButtonContainer,
-        { backgroundColor: colors.main.blue75 }
-      ]}
-      onPress={handleToggleSymptom}
-    >
-      <Icon icon="plus" color={colors.main.white} />
-    </TouchableOpacity>
-  ) : (
-    <TouchableOpacity
-      style={[
-        styles.searchResultButtonContainer,
-        { backgroundColor: colors.main.red }
-      ]}
-      onPress={handleToggleSymptom}
-    >
-      <Icon icon="minus" color={colors.main.white} />
-    </TouchableOpacity>
-  );
-};
 
 const SearchResult: React.FC<SearchResultProps> = ({
   data,
   index,
-  activeIndex,
-  setActiveIndex
+  activeIndex
 }) => {
   const isActive = useMemo(() => activeIndex === index, [activeIndex]);
-  const { selectedSymptoms, setSelectedSymptoms } = useContext(SearchContext);
 
-  const toggleShowDescription = () => {
-    setActiveIndex(index);
-    if (isActive) {
-      setActiveIndex(undefined);
-    }
-  };
-
-  const handleToggleSymptom = (): void => {
-    if (!!selectedSymptoms && !!setSelectedSymptoms) {
-      if (selectedSymptoms.has(data.name)) {
-        setSelectedSymptoms(
-          (prev) =>
-            new Set([...prev].filter((symptom) => symptom !== data.name))
-        );
-      } else {
-        setSelectedSymptoms((prev) => new Set(prev.add(data.name)));
-      }
-    }
+  const handleGoToSymptomInfo = () => {
+    navigate('SymptomInfo', { symptom: data });
   };
 
   return (
@@ -128,17 +63,11 @@ const SearchResult: React.FC<SearchResultProps> = ({
       <View style={styles.textGroup}>
         <TouchableOpacity
           style={styles.searchTextButton}
-          onPress={toggleShowDescription}
+          onPress={handleGoToSymptomInfo}
         >
           <Text style={styles.searchResultText}>{data.name}</Text>
         </TouchableOpacity>
-        {isActive && <Text style={styles.description}>{data.description}</Text>}
       </View>
-      <SymptomCTA
-        handleToggleSymptom={handleToggleSymptom}
-        selectedSymptoms={selectedSymptoms}
-        currentSymptom={data.name}
-      />
     </View>
   );
 };
