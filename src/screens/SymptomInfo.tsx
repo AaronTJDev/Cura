@@ -1,5 +1,5 @@
-import React, { useEffect } from 'react';
-import { Image, StyleSheet, Text, View } from 'react-native';
+import React, { useEffect, useRef } from 'react';
+import { Animated, Easing, Image, StyleSheet, Text, View } from 'react-native';
 import { NavigationProp, RouteProp } from '@react-navigation/native';
 import { upperFirst } from 'lodash';
 
@@ -52,19 +52,37 @@ const styles = StyleSheet.create({
     textAlign: 'center'
   },
   carouselPreTextHighlight: {
-    color: colors.main.primary
+    color: colors.main.primary,
+    textDecorationLine: 'underline'
   },
   carouselGroup: {
     flex: 3
   }
 });
 
+const animatedOffsetY = -32;
+
 const SymptomInfo: React.FC<ISymptomInfoProps> = ({ route, navigation }) => {
   const { symptom } = route.params;
+  const opacity = useRef(new Animated.Value(0)).current;
+  const translateX = useRef(new Animated.Value(animatedOffsetY)).current;
 
   useEffect(() => {
     const unsubscribe = navigation.addListener('focus', () => {
-      // Animate here?
+      Animated.parallel([
+        Animated.timing(opacity, {
+          useNativeDriver: true,
+          duration: 500,
+          toValue: 1,
+          easing: Easing.inOut(Easing.ease)
+        }),
+        Animated.timing(translateX, {
+          useNativeDriver: true,
+          duration: 500,
+          toValue: 0,
+          easing: Easing.out(Easing.ease)
+        })
+      ]).start();
     });
 
     return () => {
@@ -74,26 +92,34 @@ const SymptomInfo: React.FC<ISymptomInfoProps> = ({ route, navigation }) => {
 
   return (
     <View style={styles.container}>
-      <View style={styles.header}>
+      <Animated.View style={styles.header}>
         <Image
           style={styles.headerImage}
           source={{ uri: 'https://picsum.photos/200' }}
         />
-      </View>
-      <View style={styles.content}>
+      </Animated.View>
+      <Animated.View
+        style={[
+          styles.content,
+          {
+            opacity,
+            transform: [{ translateX }]
+          }
+        ]}
+      >
         <View style={styles.contentInfoGroup}>
           <Text style={styles.contentHeader}>{upperFirst(symptom.name)}</Text>
           <Text style={styles.contentDescription}>{symptom.description}</Text>
         </View>
         <View style={styles.carouselGroup}>
           <Text style={styles.carouselPreText}>
-            Food that may relieve
+            Food that may relieve{' '}
             <Text style={styles.carouselPreTextHighlight}>
-              {' ' + upperFirst(symptom.name)}
+              {upperFirst(symptom.name)}
             </Text>
           </Text>
         </View>
-      </View>
+      </Animated.View>
     </View>
   );
 };
