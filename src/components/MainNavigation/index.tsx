@@ -10,7 +10,7 @@ import SymptomSearch from '../../screens/SymptomSearch';
 import CookBook from '../CookBook';
 
 /** Helpers */
-import { fonts, navigationHeader } from '../../lib/styles';
+import { colors, fonts, navigationHeader } from '../../lib/styles';
 
 interface ITab {
   icon: IconProp;
@@ -21,8 +21,12 @@ interface ITab {
 }
 
 const styles = StyleSheet.create({
+  tabBar: {
+    backgroundColor: colors.main.white
+  },
   tabBarLabel: {
-    fontFamily: fonts.CrimsonProBlack
+    fontFamily: fonts.CrimsonProExtraLight,
+    color: colors.main.primary
   }
 });
 
@@ -70,6 +74,9 @@ export default function MainNavigation() {
             options={{
               tabBarLabel: tabBarLabel,
               tabBarLabelStyle: styles.tabBarLabel,
+              tabBarStyle: styles.tabBar,
+              tabBarActiveTintColor: colors.main.primaryDark,
+              tabBarInactiveTintColor: colors.main.primaryLight,
               tabBarIcon: ({ color }) => {
                 return <Icon icon={icon} color={color} size={18} />;
               },

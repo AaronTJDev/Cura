@@ -14,13 +14,12 @@ import SearchResult from './SearchResult';
 //** Helpers **/
 import { colors } from '../../lib/styles';
 import { ON_BLUR_OFFSET } from './Search';
-import DiseasesModal from './DiseasesModal';
+import { SCREEN_HEIGHT } from '../../lib/constants';
+import { useBottomTabBarHeight } from '@react-navigation/bottom-tabs';
 
 const styles = StyleSheet.create({
   container: {
     width: '100%',
-    flex: 1,
-    paddingBottom: 24,
     backgroundColor: colors.main.white
   },
   activityIndicatorView: {
@@ -50,6 +49,9 @@ const SearchResultList: React.FC<SearchResultListProps> = ({ suggestions }) => {
   const { isLoading, isTouched, isBlurred } = useContext(SearchContext);
   const [activeIndex, setActiveIndex] = useState<number | undefined>();
   const scrollViewTranslateY = useRef(new Animated.Value(0)).current;
+  const bottomTabBarHeight = useBottomTabBarHeight();
+
+  console.log('bottomtabbar height', bottomTabBarHeight + ON_BLUR_OFFSET);
 
   useEffect(() => {
     if (isTouched) {
@@ -76,11 +78,12 @@ const SearchResultList: React.FC<SearchResultListProps> = ({ suggestions }) => {
       style={[
         styles.container,
         {
+          height: SCREEN_HEIGHT - (bottomTabBarHeight + ON_BLUR_OFFSET),
           transform: [{ translateY: scrollViewTranslateY }]
         }
       ]}
     >
-      <Animated.ScrollView>
+      <Animated.ScrollView showsVerticalScrollIndicator>
         {isLoading && <ActivityIndicatorView />}
         {suggestions?.length >= 0 &&
           suggestions.map((suggestion: ISymptom, index) => {
@@ -95,7 +98,6 @@ const SearchResultList: React.FC<SearchResultListProps> = ({ suggestions }) => {
             );
           })}
       </Animated.ScrollView>
-      <DiseasesModal />
     </Animated.View>
   );
 };
