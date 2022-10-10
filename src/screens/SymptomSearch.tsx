@@ -17,6 +17,8 @@ import { SEARCH_INPUT_DEBOUNCE_TIME } from '../lib/constants';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import Diseases from './Diseases';
 import SymptomInfo from './SymptomInfo';
+import CustomHeader from '../components/utility/CustomHeader';
+import { transparentHeaderOptions } from '../lib/helpers/navigation';
 
 interface ISearchContext {
   query: string;
@@ -36,6 +38,14 @@ interface ISearchContext {
   setSelectedSymptoms?: Dispatch<SetStateAction<Set<string>>> | (() => {});
 }
 
+export type SearchStackParamList = {
+  Search: undefined;
+  Disease: undefined;
+  SymptomInfo: {
+    symptom: ISymptom;
+  };
+};
+
 export const SearchContext = React.createContext<ISearchContext>({
   query: '',
   suggestions: [],
@@ -50,7 +60,7 @@ export const SearchContext = React.createContext<ISearchContext>({
   setSelectedSymptoms: () => {}
 });
 
-const SearchStack = createNativeStackNavigator();
+const SearchStack = createNativeStackNavigator<SearchStackParamList>();
 
 const SymptomSearch = () => {
   const [query, setQuery] = useState<string>('');
@@ -111,7 +121,12 @@ const SymptomSearch = () => {
         <SearchStack.Screen
           name="SymptomInfo"
           component={SymptomInfo}
-          options={{ headerShown: false }}
+          options={({ navigation, route }) => ({
+            ...transparentHeaderOptions,
+            headerLeft: () => (
+              <CustomHeader navigation={navigation} route={route} />
+            )
+          })}
         />
       </SearchStack.Navigator>
     </SearchContext.Provider>

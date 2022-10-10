@@ -1,16 +1,11 @@
 import React, { useEffect, useRef } from 'react';
 import { Animated, Easing, Image, StyleSheet, Text, View } from 'react-native';
-import { NavigationProp, RouteProp } from '@react-navigation/native';
 import { upperFirst } from 'lodash';
 
 // *** Helpers ***//
-import { ISymptom } from '../components/SymptomSearchComponent/SearchResultList';
 import { colors, fonts } from '../lib/styles';
-
-interface ISymptomInfoProps {
-  route: RouteProp<{ params: { symptom: ISymptom } }, 'params'>;
-  navigation: NavigationProp<any>;
-}
+import { NativeStackScreenProps } from '@react-navigation/native-stack';
+import { SearchStackParamList } from './SymptomSearch';
 
 const styles = StyleSheet.create({
   container: {
@@ -60,9 +55,15 @@ const styles = StyleSheet.create({
   }
 });
 
+export type SymptomInfoProps = NativeStackScreenProps<
+  SearchStackParamList,
+  'SymptomInfo',
+  'SearchStack'
+>;
+
 const animatedOffsetY = -32;
 
-const SymptomInfo: React.FC<ISymptomInfoProps> = ({ route, navigation }) => {
+const SymptomInfo = ({ route, navigation }: SymptomInfoProps) => {
   const { symptom } = route.params;
   const opacity = useRef(new Animated.Value(0)).current;
   const translateX = useRef(new Animated.Value(animatedOffsetY)).current;

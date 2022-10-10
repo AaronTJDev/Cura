@@ -12,3 +12,9 @@ export function navigate(name: string, options?: any) {
 navigationRef.current?.addListener('state', () => {
   useAuth();
 });
+
+export const transparentHeaderOptions = {
+  headerShown: true,
+  title: '',
+  headerTransparent: true
+};

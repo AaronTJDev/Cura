@@ -51,8 +51,6 @@ const SearchResultList: React.FC<SearchResultListProps> = ({ suggestions }) => {
   const scrollViewTranslateY = useRef(new Animated.Value(0)).current;
   const bottomTabBarHeight = useBottomTabBarHeight();
 
-  console.log('bottomtabbar height', bottomTabBarHeight + ON_BLUR_OFFSET);
-
   useEffect(() => {
     if (isTouched) {
       Animated.timing(scrollViewTranslateY, {
