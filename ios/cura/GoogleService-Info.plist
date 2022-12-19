@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>870341804980-d3n21aceaa7vgmlmugn40hae0g13q9hm.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.870341804980-d3n21aceaa7vgmlmugn40hae0g13q9hm</string>
+	<key>API_KEY</key>
+	<string>AIzaSyBBN0FH4REWxaMf4avzzmrWr0kMii3nMgo</string>
+	<key>GCM_SENDER_ID</key>
+	<string>870341804980</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.pantrywise</string>
+	<key>PROJECT_ID</key>
+	<string>pantrywise-98f83</string>
+	<key>STORAGE_BUCKET</key>
+	<string>pantrywise-98f83.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:870341804980:ios:393ea9a1c8fa0831ec28e1</string>
+</dict>
+</plist>

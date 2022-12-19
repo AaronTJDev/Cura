@@ -1,5 +1,5 @@
 {
-  "name": "pantrywise",
+  "name": "cura",
   "version": "0.0.1",
   "private": true,
   "scripts": {
@@ -7,7 +7,7 @@
     "test": "jest",
     "lint": "eslint . -c .eslintrc.js --ext .js,.jsx,.ts,.tsx",
     "compile-android": "react-native run-android --no-packager",
-    "compile-ios": "react-native run-ios --no-packager --simulator=\"iPhone 13\"",
+    "compile-ios": "react-native run-ios --no-packager --simulator=\"iPhone 14 Pro\"",
     "android": "run-p start compile-android",
     "ios": "run-p start compile-ios",
     "prepare": "husky install"
