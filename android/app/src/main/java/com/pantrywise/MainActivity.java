@@ -1,4 +1,4 @@
-package com.pantrywise;
+package com.curafoodasmedicine;
 
 import android.os.Bundle;
 import com.facebook.react.ReactActivity;

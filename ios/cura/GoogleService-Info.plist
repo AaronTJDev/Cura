@@ -3,21 +3,21 @@
 <plist version="1.0">
 <dict>
 	<key>CLIENT_ID</key>
-	<string>870341804980-d3n21aceaa7vgmlmugn40hae0g13q9hm.apps.googleusercontent.com</string>
+	<string>1034998842827-ns3vvods8sdpaluhmb43nvbdo7cpkmc9.apps.googleusercontent.com</string>
 	<key>REVERSED_CLIENT_ID</key>
-	<string>com.googleusercontent.apps.870341804980-d3n21aceaa7vgmlmugn40hae0g13q9hm</string>
+	<string>com.googleusercontent.apps.1034998842827-ns3vvods8sdpaluhmb43nvbdo7cpkmc9</string>
 	<key>API_KEY</key>
-	<string>AIzaSyBBN0FH4REWxaMf4avzzmrWr0kMii3nMgo</string>
+	<string>AIzaSyDU3tPwGnUvHTaizo2452Rs2SZqJFwL4Ak</string>
 	<key>GCM_SENDER_ID</key>
-	<string>870341804980</string>
+	<string>1034998842827</string>
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
-	<string>com.pantrywise</string>
+	<string>com.curafoodasmedicine.dev</string>
 	<key>PROJECT_ID</key>
-	<string>pantrywise-98f83</string>
+	<string>cura-dev-c0c38</string>
 	<key>STORAGE_BUCKET</key>
-	<string>pantrywise-98f83.appspot.com</string>
+	<string>cura-dev-c0c38.appspot.com</string>
 	<key>IS_ADS_ENABLED</key>
 	<false></false>
 	<key>IS_ANALYTICS_ENABLED</key>
@@ -29,6 +29,6 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:870341804980:ios:393ea9a1c8fa0831ec28e1</string>
+	<string>1:1034998842827:ios:9c6a801057258b89ce624e</string>
 </dict>
 </plist>

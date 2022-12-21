@@ -1,40 +1,40 @@
 {
   "project_info": {
-    "project_number": "870341804980",
-    "project_id": "pantrywise-98f83",
-    "storage_bucket": "pantrywise-98f83.appspot.com"
+    "project_number": "1034998842827",
+    "project_id": "cura-dev-c0c38",
+    "storage_bucket": "cura-dev-c0c38.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:870341804980:android:c76f1ce45cf4f73fec28e1",
+        "mobilesdk_app_id": "1:1034998842827:android:29f77ff30271708fce624e",
         "android_client_info": {
-          "package_name": "com.pantrywise"
+          "package_name": "com.curafoodasmedicine.dev"
         }
       },
       "oauth_client": [
         {
-          "client_id": "870341804980-o8dotkc0ckh1n9f9pnfu09m60b0leusc.apps.googleusercontent.com",
+          "client_id": "1034998842827-nhju7rml22kp5n34vbsm4hj1sppbdf8h.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyAKyjs5G73pZaNqmdcP3TK89Dqc6NkY1eU"
+          "current_key": "AIzaSyDi6p0Uu6AENb1AexYVNW5VkYeOkTfnLU8"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "870341804980-o8dotkc0ckh1n9f9pnfu09m60b0leusc.apps.googleusercontent.com",
+              "client_id": "1034998842827-nhju7rml22kp5n34vbsm4hj1sppbdf8h.apps.googleusercontent.com",
               "client_type": 3
             },
             {
-              "client_id": "870341804980-d3n21aceaa7vgmlmugn40hae0g13q9hm.apps.googleusercontent.com",
+              "client_id": "1034998842827-31gvokr9hj059b3f44cs51ui8ipaaqaj.apps.googleusercontent.com",
               "client_type": 2,
               "ios_info": {
-                "bundle_id": "com.pantrywise"
+                "bundle_id": "com.curafoodasmedicine-dev"
               }
             }
           ]
