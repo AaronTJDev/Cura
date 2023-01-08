@@ -1,40 +1,40 @@
 {
   "project_info": {
-    "project_number": "1034998842827",
-    "project_id": "cura-dev-c0c38",
-    "storage_bucket": "cura-dev-c0c38.appspot.com"
+    "project_number": "630740076359",
+    "project_id": "cura-a5ce4",
+    "storage_bucket": "cura-a5ce4.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:1034998842827:android:29f77ff30271708fce624e",
+        "mobilesdk_app_id": "1:630740076359:android:c1206e63e2d5732c2eae62",
         "android_client_info": {
-          "package_name": "com.curafoodasmedicine.dev"
+          "package_name": "com.curafoodasmedicine"
         }
       },
       "oauth_client": [
         {
-          "client_id": "1034998842827-nhju7rml22kp5n34vbsm4hj1sppbdf8h.apps.googleusercontent.com",
+          "client_id": "630740076359-r4h6r6f9kk1l8bi4nps0vejv92735v3u.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyDi6p0Uu6AENb1AexYVNW5VkYeOkTfnLU8"
+          "current_key": "AIzaSyBUklq0DWj534RFdfr4q6JbzzRgsWmQrgU"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "1034998842827-nhju7rml22kp5n34vbsm4hj1sppbdf8h.apps.googleusercontent.com",
+              "client_id": "630740076359-r4h6r6f9kk1l8bi4nps0vejv92735v3u.apps.googleusercontent.com",
               "client_type": 3
             },
             {
-              "client_id": "1034998842827-31gvokr9hj059b3f44cs51ui8ipaaqaj.apps.googleusercontent.com",
+              "client_id": "630740076359-ljjrvveeokek78no9r1os8e7aao8qks2.apps.googleusercontent.com",
               "client_type": 2,
               "ios_info": {
-                "bundle_id": "com.curafoodasmedicine-dev"
+                "bundle_id": "com.curafoodasmedicine"
               }
             }
           ]
