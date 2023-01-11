@@ -57,6 +57,27 @@ const accountReducer = (state = initialState, action: ActionPayload) => {
         loading: false,
         error: action.payload
       };
+    case accountActions.logout.start:
+      return {
+        ...state,
+        loading: true
+      };
+    case accountActions.logout.success:
+      return {
+        ...state,
+        loading: false,
+        data: {}
+      };
+    case accountActions.logout.error: {
+      return {
+        ...state,
+        loading: false,
+        data: {
+          ...state.data,
+          error: action.payload
+        }
+      };
+    }
     default:
       return state;
   }

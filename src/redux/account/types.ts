@@ -3,6 +3,7 @@ import { actionTypeGenerator } from '../helpers';
 const accountActionGenerator = actionTypeGenerator('ACCOUNT');
 export const accountActions = {
   login: accountActionGenerator.async('LOGIN'),
+  logout: accountActionGenerator.async('LOGOUT'),
   createAccount: accountActionGenerator.async('CREATE_ACCOUNT')
 };
 

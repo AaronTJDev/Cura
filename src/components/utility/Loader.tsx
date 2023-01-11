@@ -1,11 +1,9 @@
 import React from 'react';
-import { StyleSheet } from 'react-native';
-import LottieView from 'lottie-react-native';
+import { ActivityIndicator, StyleSheet } from 'react-native';
 import { useSelector } from 'react-redux';
 
 /** Helpers */
 import { getIsAccountLoading } from '../../redux/account/selectors';
-import { assetResolver } from '../../lib/assetResolver';
 
 const styles = StyleSheet.create({
   loader: {
@@ -19,16 +17,5 @@ const styles = StyleSheet.create({
 export default function Loader() {
   const isAccountLoading = useSelector(getIsAccountLoading);
 
-  return (
-    <>
-      {isAccountLoading && (
-        <LottieView
-          autoPlay
-          loop
-          source={assetResolver.lottie.loader}
-          style={styles.loader}
-        />
-      )}
-    </>
-  );
+  return <>{isAccountLoading && <ActivityIndicator style={styles.loader} />}</>;
 }

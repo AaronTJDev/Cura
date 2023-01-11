@@ -8,7 +8,8 @@ export const assetResolver = {
     cookbookActive: require('../../assets/icons/cookbook_inactive.png')
   },
   images: {
-    logo: require('../../assets/images/logo.png')
+    logo: require('../../assets/images/logo.png'),
+    authBg: require('../../assets/images/auth_bg.jpg')
   },
   lottie: {
     loader: require('../../assets/animations/loader.json')

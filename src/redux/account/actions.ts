@@ -23,3 +23,16 @@ export const createUserWithEmailAndPassword = (
   asyncAction(accountCreatePromise, accountActions.createAccount, dispatch);
   return accountCreatePromise;
 };
+
+export const logout = (dispatch: Dispatch) => {
+  const logoutPromise = auth()
+    .signOut()
+    .then((res) => {
+      console.log('result from logout', res);
+    })
+    .catch((err) => {
+      console.log('error from logout', err);
+    });
+  asyncAction(logoutPromise, accountActions.logout, dispatch);
+  return logoutPromise;
+};

@@ -8,7 +8,7 @@ import { colors, fonts } from '../../lib/styles';
 
 const styles = StyleSheet.create({
   buttonContainer: {
-    borderColor: colors.main.primaryDark,
+    borderColor: colors.main.white,
     borderWidth: 2,
     width: '66%',
     height: 48,
@@ -22,7 +22,7 @@ const styles = StyleSheet.create({
   },
   buttonText: {
     flex: 40,
-    color: colors.main.primaryDark,
+    color: colors.main.white,
     fontFamily: fonts.NunitoSansBold,
     fontSize: 16,
     marginTop: 2,
@@ -42,7 +42,7 @@ export default function SocialCTA(props: SocialCTAProps) {
       <Icon
         icon={['fab', brandIconName.toLowerCase() as IconName]}
         size={25}
-        color={colors.main.primaryDark}
+        color={colors.main.white}
         style={styles.buttonIcon}
       />
       <Text style={styles.buttonText}>Sign Up With {brandIconName}</Text>

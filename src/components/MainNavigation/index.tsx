@@ -57,8 +57,8 @@ export default function MainNavigation() {
     <Tab.Navigator
       initialRouteName={'Account'}
       screenOptions={{
-        tabBarActiveTintColor: '#564439',
-        tabBarInactiveTintColor: '#DAC6BE',
+        tabBarActiveTintColor: '#003D2F',
+        tabBarInactiveTintColor: '#000000',
         tabBarHideOnKeyboard: true,
         ...navigationHeader
       }}
