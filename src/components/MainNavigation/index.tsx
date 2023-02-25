@@ -7,7 +7,6 @@ import { FontAwesomeIcon as Icon } from '@fortawesome/react-native-fontawesome';
 /** Components */
 import AccountScreen from '../../screens/AccountScreen';
 import SymptomSearch from '../../screens/SymptomSearch';
-import CookBook from '../CookBook';
 
 /** Helpers */
 import { colors, fonts, navigationHeader } from '../../lib/styles';
@@ -39,11 +38,6 @@ export default function MainNavigation() {
       component: SymptomSearch,
       screenTitle: 'Symptom Search',
       hideHeader: true
-    },
-    {
-      icon: 'barcode',
-      tabBarLabel: 'Scanner',
-      component: CookBook
     },
     {
       icon: 'user',

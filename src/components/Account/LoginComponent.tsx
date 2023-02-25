@@ -9,62 +9,8 @@ import LoginForm from './Forms/LoginForm';
 import { assetResolver } from '../../lib/assetResolver';
 import { colors, fonts } from '../../lib/styles';
 
-const styles = StyleSheet.create({
-  gradient: {
-    flex: 1,
-    alignItems: 'center'
-  },
-  loginGroupContainer: {
-    flex: 1,
-    width: '100%',
-    alignItems: 'center',
-    justifyContent: 'center',
-    marginBottom: 120
-  },
-  logo: {
-    width: '66%',
-    resizeMode: 'contain'
-  },
-  emailAuthContainer: {
-    flexDirection: 'row',
-    width: '66%',
-    marginTop: 32,
-    justifyContent: 'space-around'
-  },
-  authText: {
-    color: colors.main.primaryDark,
-    fontFamily: fonts.CrimsonProBold,
-    fontSize: 18,
-    textDecorationLine: 'underline'
-  },
-  formContainer: {
-    width: '66%',
-    alignItems: 'center'
-  },
-  formInputView: {
-    marginTop: 32,
-    borderBottomColor: colors.main.primaryDark,
-    borderWidth: 1
-  },
-  formInput: {
-    textAlign: 'left',
-    alignSelf: 'flex-start',
-    fontFamily: fonts.CrimsonProRegular
-  }
-});
+const styles = StyleSheet.create({});
 
 export default function LoginComponent() {
-  return (
-    <LinearGradient
-      style={styles.gradient}
-      colors={[colors.main.white, colors.main.white, colors.main.primaryLight]}
-      start={{ x: 0, y: 0 }}
-      end={{ x: 0, y: 1.25 }}
-    >
-      <View style={styles.loginGroupContainer}>
-        <Image style={styles.logo} source={assetResolver.images.logo} />
-        <LoginForm />
-      </View>
-    </LinearGradient>
-  );
+  return <></>;
 }

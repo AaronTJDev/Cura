@@ -15,7 +15,6 @@ import { ISymptom } from '../components/SymptomSearchComponent/SearchResultList'
 import { fetchSuggestions } from '../lib/datasource';
 import { SEARCH_INPUT_DEBOUNCE_TIME } from '../lib/constants';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import Diseases from './Diseases';
 import SymptomInfo from './SymptomInfo';
 import CustomHeader from '../components/utility/CustomHeader';
 import { transparentHeaderOptions } from '../lib/helpers/navigation';
@@ -117,7 +116,6 @@ const SymptomSearch = () => {
         }}
       >
         <SearchStack.Screen name="Search" component={SymptomSearchComponent} />
-        <SearchStack.Screen name="Disease" component={Diseases} />
         <SearchStack.Screen
           name="SymptomInfo"
           component={SymptomInfo}

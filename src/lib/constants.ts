@@ -5,7 +5,7 @@ export const SCREEN_WIDTH = Dimensions.get('screen').width;
 
 export const SEARCH_INPUT_DEBOUNCE_TIME = 300;
 
-export enum FOOD_CATEGOREIS {
+export enum FOOD_CATEGORY_TITLES {
   CEREAL_AND_GRAIN = 'Cereal and grain products',
   SAUCES_AND_CONDIMENTS = 'Sauces and condiments',
   SNACKS_AND_TREATS = 'Snacks and treats',
@@ -16,6 +16,19 @@ export enum FOOD_CATEGOREIS {
   MEAT_POULTRY_AND_SEAFOOD = 'Meat, poultry, and seafood',
   FRUITS_AND_VEGETABLES = 'Fruits and vegetables',
   HEALTH_AND_NUTRITION_SUPPLEMENTS = 'Health and nutrition supplements'
+}
+
+export enum FOOD_CATEGORY_KEYS {
+  CEREAL_AND_GRAIN = 'cerealAndGrain',
+  SAUCES_AND_CONDIMENTS = 'saucesAndCondiments',
+  SNACKS_AND_TREATS = 'snacksAndTreats',
+  BAKED_GOODS_AND_SUPPLIES = 'bakedGoodsAndSupplies',
+  DAIRY_AND_NON_DAIRY = 'dairyAndNonDairy',
+  BEVERAGES = 'beverages',
+  FROZEN_FOODS = 'frozenFoods',
+  MEAT_POULTRY_AND_SEAFOOD = 'meatPoultryAndSeafood',
+  FRUITS_AND_VEGETABLES = 'fruitsAndVegetables',
+  HEALTH_AND_NUTRITION_SUPPLEMENTS = 'healthAndNutritionSupplements'
 }
 
 export const foodCategoryMap = {

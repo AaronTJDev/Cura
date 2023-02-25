@@ -31,12 +31,6 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'flex-end',
     top: 64
-  },
-  searchHeaderText: {
-    textAlign: 'center',
-    fontSize: 36,
-    fontFamily: fonts.NunitoSansLight,
-    color: colors.main.black
   }
 });
 
@@ -50,63 +44,6 @@ export const Search = () => {
   const dropShadowValue = isAndroid ? 2 : 0.05;
   const fadeInDropShadow = useRef(new Animated.Value(0)).current;
 
-  useEffect(() => {
-    if (isTouched) {
-      Animated.parallel([
-        Animated.timing(fadeHeaderText, {
-          toValue: 0,
-          duration: 200,
-          useNativeDriver: true,
-          easing: Easing.ease
-        }),
-        Animated.timing(translateYHeader, {
-          toValue: -ON_BLUR_OFFSET,
-          duration: 250,
-          useNativeDriver: true,
-          easing: Easing.ease
-        }),
-        Animated.timing(fadeInDropShadow, {
-          toValue: dropShadowValue,
-          duration: 250,
-          useNativeDriver: true,
-          easing: Easing.ease
-        })
-      ]).start();
-    }
-
-    if (isBlurred && !query?.length && !suggestions.length) {
-      Animated.parallel([
-        Animated.timing(fadeHeaderText, {
-          toValue: 1,
-          duration: 250,
-          useNativeDriver: true,
-          easing: Easing.ease
-        }),
-        Animated.timing(translateYHeader, {
-          toValue: 0,
-          duration: 250,
-          useNativeDriver: true,
-          easing: Easing.ease
-        }),
-        Animated.timing(fadeInDropShadow, {
-          toValue: 0,
-          duration: 250,
-          useNativeDriver: true,
-          easing: Easing.ease
-        })
-      ]).start();
-    }
-  }, [
-    dropShadowValue,
-    isTouched,
-    isBlurred,
-    fadeHeaderText,
-    fadeInDropShadow,
-    translateYHeader,
-    query,
-    suggestions
-  ]);
-
   return (
     <Animated.View
       style={[
@@ -118,16 +55,6 @@ export const Search = () => {
         }
       ]}
     >
-      <Animated.Text
-        style={[
-          styles.searchHeaderText,
-          {
-            opacity: fadeHeaderText
-          }
-        ]}
-      >
-        What's going on?
-      </Animated.Text>
       <SearchBar />
     </Animated.View>
   );

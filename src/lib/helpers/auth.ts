@@ -7,6 +7,7 @@ export const useAuth = () => {
 
   useEffect(() => {
     const unsubscribe = auth().onIdTokenChanged(async (user) => {
+      console.log('navigating', user);
       if (user) {
         try {
           const token = await user?.getIdToken(true);
