@@ -6,6 +6,7 @@ import { upperFirst } from 'lodash';
 import { colors, fonts } from '../lib/styles';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { SearchStackParamList } from './SymptomSearch';
+import { ScreenWrapper } from '../components/utility/ScreenWrapper';
 
 const styles = StyleSheet.create({
   container: {
@@ -92,36 +93,38 @@ const SymptomInfo = ({ route, navigation }: SymptomInfoProps) => {
   }, [navigation]);
 
   return (
-    <View style={styles.container}>
-      <Animated.View style={styles.header}>
-        <Image
-          style={styles.headerImage}
-          source={{ uri: 'https://picsum.photos/200' }}
-        />
-      </Animated.View>
-      <Animated.View
-        style={[
-          styles.content,
-          {
-            opacity,
-            transform: [{ translateX }]
-          }
-        ]}
-      >
-        <View style={styles.contentInfoGroup}>
-          <Text style={styles.contentHeader}>{upperFirst(symptom.name)}</Text>
-          <Text style={styles.contentDescription}>{symptom.description}</Text>
-        </View>
-        <View style={styles.carouselGroup}>
-          <Text style={styles.carouselPreText}>
-            Food that may relieve{' '}
-            <Text style={styles.carouselPreTextHighlight}>
-              {upperFirst(symptom.name)}
+    <ScreenWrapper title={'hello'}>
+      <View style={styles.container}>
+        <Animated.View style={styles.header}>
+          <Image
+            style={styles.headerImage}
+            source={{ uri: 'https://picsum.photos/200' }}
+          />
+        </Animated.View>
+        <Animated.View
+          style={[
+            styles.content,
+            {
+              opacity,
+              transform: [{ translateX }]
+            }
+          ]}
+        >
+          <View style={styles.contentInfoGroup}>
+            <Text style={styles.contentHeader}>{upperFirst(symptom.name)}</Text>
+            <Text style={styles.contentDescription}>{symptom.description}</Text>
+          </View>
+          <View style={styles.carouselGroup}>
+            <Text style={styles.carouselPreText}>
+              Food that may relieve{' '}
+              <Text style={styles.carouselPreTextHighlight}>
+                {upperFirst(symptom.name)}
+              </Text>
             </Text>
-          </Text>
-        </View>
-      </Animated.View>
-    </View>
+          </View>
+        </Animated.View>
+      </View>
+    </ScreenWrapper>
   );
 };
 

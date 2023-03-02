@@ -1,12 +1,9 @@
 import React, { useMemo } from 'react';
-import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 
 //** Helpers **/
-import { colors, fonts } from '../../lib/styles';
+
 import { ISymptom } from './SearchResultList';
 import { navigate } from '../../lib/helpers/navigation';
-
-const styles = StyleSheet.create({});
 
 interface SearchResultProps {
   data: ISymptom;
@@ -25,6 +22,8 @@ const SearchResult: React.FC<SearchResultProps> = ({
   const handleGoToSymptomInfo = () => {
     navigate('SymptomInfo', { symptom: data });
   };
+
+  console.log(isActive, handleGoToSymptomInfo);
 
   return <></>;
 };

@@ -15,9 +15,7 @@ import { ISymptom } from '../components/SymptomSearchComponent/SearchResultList'
 import { fetchSuggestions } from '../lib/datasource';
 import { SEARCH_INPUT_DEBOUNCE_TIME } from '../lib/constants';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import SymptomInfo from './SymptomInfo';
-import CustomHeader from '../components/utility/CustomHeader';
-import { transparentHeaderOptions } from '../lib/helpers/navigation';
+import { ScreenWrapper } from '../components/utility/ScreenWrapper';
 
 interface ISearchContext {
   query: string;
@@ -94,40 +92,35 @@ const SymptomSearch = () => {
   }, [query]);
 
   return (
-    <SearchContext.Provider
-      value={{
-        query,
-        suggestions,
-        selectedSymptoms,
-        setQuery,
-        setSuggestions,
-        setTextInputBlurred,
-        setTextInputTouched,
-        setSelectedSymptoms,
-        isLoading,
-        isBlurred: textInputBlurred,
-        isTouched: textInputTouched
-      }}
-    >
-      <SearchStack.Navigator
-        initialRouteName="Search"
-        screenOptions={{
-          headerShown: false
+    <ScreenWrapper title={'Symptom Search'}>
+      <SearchContext.Provider
+        value={{
+          query,
+          suggestions,
+          selectedSymptoms,
+          setQuery,
+          setSuggestions,
+          setTextInputBlurred,
+          setTextInputTouched,
+          setSelectedSymptoms,
+          isLoading,
+          isBlurred: textInputBlurred,
+          isTouched: textInputTouched
         }}
       >
-        <SearchStack.Screen name="Search" component={SymptomSearchComponent} />
-        <SearchStack.Screen
-          name="SymptomInfo"
-          component={SymptomInfo}
-          options={({ navigation, route }) => ({
-            ...transparentHeaderOptions,
-            headerLeft: () => (
-              <CustomHeader navigation={navigation} route={route} />
-            )
-          })}
-        />
-      </SearchStack.Navigator>
-    </SearchContext.Provider>
+        <SearchStack.Navigator
+          initialRouteName="Search"
+          screenOptions={{
+            headerShown: false
+          }}
+        >
+          <SearchStack.Screen
+            name="Search"
+            component={SymptomSearchComponent}
+          />
+        </SearchStack.Navigator>
+      </SearchContext.Provider>
+    </ScreenWrapper>
   );
 };
 

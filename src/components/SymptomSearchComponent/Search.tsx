@@ -1,11 +1,11 @@
-import React, { useContext, useEffect, useRef } from 'react';
-import { Animated, Easing, StyleSheet } from 'react-native';
+import React, { useContext, useRef } from 'react';
+import { Animated, StyleSheet } from 'react-native';
 
 //** Components **/
 import { SearchBar } from './SearchBar';
 
 //** Helpers **/
-import { colors, fonts } from '../../lib/styles';
+import { colors } from '../../lib/styles';
 import { SCREEN_HEIGHT, SCREEN_WIDTH } from '../../lib/constants';
 import { isAndroid } from '../../lib/helpers/platform';
 import { SearchContext } from '../../screens/SymptomSearch';
@@ -44,6 +44,14 @@ export const Search = () => {
   const dropShadowValue = isAndroid ? 2 : 0.05;
   const fadeInDropShadow = useRef(new Animated.Value(0)).current;
 
+  console.log(
+    query,
+    isTouched,
+    isBlurred,
+    suggestions,
+    fadeHeaderText,
+    dropShadowValue
+  );
   return (
     <Animated.View
       style={[

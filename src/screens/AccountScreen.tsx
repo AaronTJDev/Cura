@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import { ActivityIndicator, Text, TouchableOpacity, View } from 'react-native';
 import {
   createNativeStackNavigator,
   NativeStackNavigationOptions
@@ -13,46 +12,42 @@ import LoginComponent from '../components/Account/LoginComponent';
 
 /** Helpers */
 import { useAuth } from '../lib/helpers/auth';
-import { useDispatch, useSelector } from 'react-redux';
-import { logout } from '../redux/account/actions';
-import { getIsAccountLoading } from '../redux/account/selectors';
 import { routeNames } from '../lib/helpers/navigation';
 
 const authNavigationHeader: NativeStackNavigationOptions = {
   headerShown: true,
-  headerTransparent: true,
-  title: ''
+  headerTransparent: true
 };
 
-const UserAccount = () => {
-  const dispatch = useDispatch();
-  const isLoading = useSelector(getIsAccountLoading);
-
-  const handleLogout = () => {
-    logout(dispatch);
-  };
-
-  const LogoutButton = () => (
-    <TouchableOpacity onPress={handleLogout}>
-      <Text>Logout</Text>
-    </TouchableOpacity>
-  );
-
-  return (
-    <>
-      <View
-        style={{
-          width: '100%',
-          height: '100%',
-          justifyContent: 'center',
-          alignItems: 'center'
-        }}
-      >
-        {isLoading ? <ActivityIndicator /> : <LogoutButton />}
-      </View>
-    </>
-  );
-};
+// const UserAccount = () => {
+//   const dispatch = useDispatch();
+//   const isLoading = useSelector(getIsAccountLoading);
+//
+//   const handleLogout = () => {
+//     logout(dispatch);
+//   };
+//
+//   const LogoutButton = () => (
+//     <TouchableOpacity onPress={handleLogout}>
+//       <Text>Logout</Text>
+//     </TouchableOpacity>
+//   );
+//
+//   return (
+//     <ScreenWrapper title={'My title'}>
+//       <View
+//         style={{
+//           width: '100%',
+//           height: '100%',
+//           justifyContent: 'center',
+//           alignItems: 'center'
+//         }}
+//       >
+//         {isLoading ? <ActivityIndicator /> : <LogoutButton />}
+//       </View>
+//     </ScreenWrapper>
+//   );
+// };
 
 interface AccountScreenProps {
   navigation: BottomTabNavigationProp<any>;
@@ -78,22 +73,17 @@ export default function AccountScreen({ navigation }: AccountScreenProps) {
     <AccountStack.Navigator
       initialRouteName={initialRoute}
       screenOptions={{
-        headerShown: false,
-        headerBackTitleVisible: false
+        headerTransparent: true,
+        headerBackground: () => null
       }}
     >
       <AccountStack.Group>
-        <AccountStack.Screen
-          name={routeNames.account.MANAGE_ACCOUNT}
-          component={UserAccount}
-          options={{ ...authNavigationHeader, title: 'Account' }}
-        />
         <AccountStack.Screen
           name={routeNames.account.AUTH}
           component={AccountComponent}
         />
       </AccountStack.Group>
-      <AccountStack.Group screenOptions={{ presentation: 'modal' }}>
+      <AccountStack.Group>
         <AccountStack.Screen
           name={routeNames.account.SIGNUP}
           component={SignupComponent}

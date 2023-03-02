@@ -1,16 +1,29 @@
 import React from 'react';
-import { TouchableOpacity } from 'react-native';
+import { StyleSheet, TouchableOpacity, View } from 'react-native';
 import { FontAwesomeIcon as Icon } from '@fortawesome/react-native-fontawesome';
 
 // *** Helpers *** //
 import { colors } from '../../lib/styles';
-import { SymptomInfoProps } from '../../screens/SymptomInfo';
+import { NativeStackHeaderProps } from '@react-navigation/native-stack';
 
-const CustomHeader = ({ navigation }: SymptomInfoProps) => {
+const styles = StyleSheet.create({
+  container: {
+    backgroundColor: 'green',
+    height: 200,
+    width: '100%',
+    top: 250
+  }
+});
+
+const CustomHeader = (props: NativeStackHeaderProps) => {
+  const { navigation } = props;
+
   return (
-    <TouchableOpacity onPress={() => navigation.goBack()}>
-      <Icon icon="arrow-left" color={colors.main.black} />
-    </TouchableOpacity>
+    <View style={styles.container}>
+      <TouchableOpacity onPress={() => navigation.goBack()}>
+        <Icon icon="arrow-left" color={colors.main.black} />
+      </TouchableOpacity>
+    </View>
   );
 };
 

@@ -1,21 +1,11 @@
 import React, { useCallback } from 'react';
-import {
-  StyleSheet,
-  Text,
-  TextInput,
-  TouchableOpacity,
-  View
-} from 'react-native';
 import { Formik } from 'formik';
 import { useDispatch } from 'react-redux';
 
 /** Helpers */
-import { colors, fonts } from '../../../lib/styles';
 import { login } from '../../../redux/account/actions';
 import { LoginSchema } from '../../../lib/validationSchemas';
 import { navigate } from '../../../lib/helpers/navigation';
-
-const styles = StyleSheet.create({});
 
 interface LoginFormValues {
   email: string;
@@ -53,7 +43,10 @@ export default function SignupForm() {
       validateOnChange={false}
       validateOnBlur={false}
     >
-      {({ handleChange, handleBlur, handleSubmit, values, errors }) => <></>}
+      {({ handleChange, handleBlur, handleSubmit, values, errors }) => {
+        console.log(handleChange, handleBlur, handleSubmit, values, errors);
+        return <></>;
+      }}
     </Formik>
   );
 }
