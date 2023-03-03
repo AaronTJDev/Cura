@@ -4,6 +4,7 @@ import { StyleSheet, View, Text } from 'react-native';
 /** Helpers */
 import { ScreenWrapper } from '../utility/ScreenWrapper';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 const styles = StyleSheet.create({
   authContainer: {
@@ -12,9 +13,10 @@ const styles = StyleSheet.create({
 });
 
 export default function AccountComponent(props: NativeStackScreenProps<any>) {
-  console.log(props);
+  const insets = useSafeAreaInsets();
+  console.log('props', props, insets);
   return (
-    <ScreenWrapper title={'Sign Up'}>
+    <ScreenWrapper title={'Account'}>
       <View style={styles.authContainer}>
         <Text>hello</Text>
       </View>

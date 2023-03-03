@@ -15,7 +15,7 @@ const App = () => {
   return (
     <NavigationContainer ref={navigationRef}>
       <Provider store={store}>
-        <SafeAreaView style={{ flex: 1, backgroundColor: 'blue' }}>
+        <SafeAreaView style={{ flex: 1 }}>
           <MainNavigation />
           <Loader />
         </SafeAreaView>

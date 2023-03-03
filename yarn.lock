@@ -6876,24 +6876,24 @@ react-devtools-core@4.19.1:
     shell-quote "^1.6.1"
     ws "^7"
 
-react-devtools-core@4.27.2, react-devtools-core@^4.25.0:
-  version "4.27.2"
-  resolved "https://registry.yarnpkg.com/react-devtools-core/-/react-devtools-core-4.27.2.tgz#d20fc57e258c656eedabafc2c851d38b33583148"
-  integrity sha512-8SzmIkpO87alD7Xr6gWIEa1jHkMjawOZ+6egjazlnjB4UUcbnzGDf/vBJ4BzGuWWEM+pzrxuzsPpcMqlQkYK2g==
+react-devtools-core@4.25.0:
+  version "4.25.0"
+  resolved "https://registry.yarnpkg.com/react-devtools-core/-/react-devtools-core-4.25.0.tgz#78b11a2c9f81dd9ebff3745ab4ee2147cc96c12a"
+  integrity sha512-iewRrnu0ZnmfL+jJayKphXj04CFh6i3ezVnpCtcnZbTPSQgN09XqHAzXbKbqNDl7aTg9QLNkQRP6M3DvdrinWA==
   dependencies:
     shell-quote "^1.6.1"
     ws "^7"
 
-react-devtools@^4.25.0:
-  version "4.27.2"
-  resolved "https://registry.yarnpkg.com/react-devtools/-/react-devtools-4.27.2.tgz#e68a4c6d75a3148c1ee6be2ea999db2ba5a339cd"
-  integrity sha512-qfXhvTJhYEZm/RJzTE3uyKRDRk6Tx5ijBuU4f0STHaRol/LcCFDj293w3IWGkOUGv4OvLAPpT5mAH5p7XuueUQ==
+react-devtools@4.25.0:
+  version "4.25.0"
+  resolved "https://registry.yarnpkg.com/react-devtools/-/react-devtools-4.25.0.tgz#09ccd58d0a730aca8fdbb233e7995db5f207e343"
+  integrity sha512-b6BEjWP0BOF1umqKDAVeSi4sm+crIQJ9WlwPTAxT4T73mKYMqFOr4nf5JwnQK0Vt2U/+kKlLSQqrTKPa2feq+Q==
   dependencies:
     cross-spawn "^5.0.1"
     electron "^11.1.0"
     ip "^1.1.4"
     minimist "^1.2.3"
-    react-devtools-core "4.27.2"
+    react-devtools-core "4.25.0"
     update-notifier "^2.1.0"
 
 react-fast-compare@^2.0.1:

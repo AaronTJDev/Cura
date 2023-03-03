@@ -11,10 +11,9 @@ export function navigate(name: string, options?: any) {
 
 export const routeNames = {
   account: {
-    AUTH: 'auth',
+    ACCOUNT: 'account',
     SIGNUP: 'signup',
-    LOGIN: 'login',
-    MANAGE_ACCOUNT: 'manage'
+    LOGIN: 'login'
   },
   search: {}
 };

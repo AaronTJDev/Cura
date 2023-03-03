@@ -12,6 +12,7 @@ import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { FontAwesomeIcon as Icon } from '@fortawesome/react-native-fontawesome';
 import { assetResolver } from '../../lib/assetResolver';
 import { colors, fonts } from '../../lib/styles';
+import { SCREEN_HEIGHT } from '../../lib/constants';
 
 type ScreenWrapperProps = {
   children: React.ReactNode;
@@ -25,7 +26,8 @@ const styles = StyleSheet.create({
     alignItems: 'flex-start',
     justifyContent: 'center',
     backgroundColor: 'transparent',
-    padding: 40,
+    paddingHorizontal: 24,
+    paddingVertical: 32,
     marginTop: 40,
     bottom: 0
   },
@@ -59,7 +61,9 @@ const styles = StyleSheet.create({
     shadowRadius: 12,
     shadowColor: '#000',
     shadowOpacity: 1,
-    zIndex: 1
+    zIndex: 1,
+    paddingHorizontal: 24,
+    paddingVertical: SCREEN_HEIGHT / 20
   },
   imageBg: {
     flex: 1,

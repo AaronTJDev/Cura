@@ -2,11 +2,11 @@ import { HeaderOptions } from '@react-navigation/elements';
 
 export const colors = {
   main: {
-    primaryLight: '#589184',
-    primary: '#00684F',
-    primaryDark: '#003D2F',
+    primaryLight: '#564439',
+    primary: '#564439',
+    primaryDark: '#564439',
     black: '#070707',
-    white: '#FBFCFF',
+    white: '#FFFFFF',
     gray: '#F4F6F6',
     gray5: 'rgba(0,0,0,.5)',
     gray10: 'rgba(0,0,0,.1)',

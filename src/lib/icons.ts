@@ -8,7 +8,8 @@ import {
   faPlus,
   faMinus,
   faBarcode,
-  faArrowLeft
+  faArrowLeft,
+  faNewspaper
 } from '@fortawesome/free-solid-svg-icons';
 
 export const initiateIconLibrary = () => {
@@ -22,6 +23,7 @@ export const initiateIconLibrary = () => {
     faPlus,
     faMinus,
     faBarcode,
-    faArrowLeft
+    faArrowLeft,
+    faNewspaper
   );
 };

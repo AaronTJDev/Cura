@@ -1,8 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import {
-  createNativeStackNavigator,
-  NativeStackNavigationOptions
-} from '@react-navigation/native-stack';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { BottomTabNavigationProp } from '@react-navigation/bottom-tabs';
 
 /** Components */
@@ -13,11 +10,6 @@ import LoginComponent from '../components/Account/LoginComponent';
 /** Helpers */
 import { useAuth } from '../lib/helpers/auth';
 import { routeNames } from '../lib/helpers/navigation';
-
-const authNavigationHeader: NativeStackNavigationOptions = {
-  headerShown: true,
-  headerTransparent: true
-};
 
 // const UserAccount = () => {
 //   const dispatch = useDispatch();
@@ -58,14 +50,15 @@ const AccountStack = createNativeStackNavigator();
 export default function AccountScreen({ navigation }: AccountScreenProps) {
   const { isLoggedIn } = useAuth();
   const [initialRoute, setIntialRoute] = useState<string>(
-    routeNames.account.AUTH
+    routeNames.account.ACCOUNT
   );
 
   useEffect(() => {
+    console.log('isLoggedIn:', isLoggedIn);
     if (isLoggedIn) {
-      setIntialRoute(routeNames.account.MANAGE_ACCOUNT);
+      setIntialRoute(routeNames.account.ACCOUNT);
     } else {
-      setIntialRoute(routeNames.account.AUTH);
+      setIntialRoute(routeNames.account.SIGNUP);
     }
   }, [isLoggedIn, navigation]);
 
@@ -79,7 +72,7 @@ export default function AccountScreen({ navigation }: AccountScreenProps) {
     >
       <AccountStack.Group>
         <AccountStack.Screen
-          name={routeNames.account.AUTH}
+          name={routeNames.account.ACCOUNT}
           component={AccountComponent}
         />
       </AccountStack.Group>
@@ -87,12 +80,10 @@ export default function AccountScreen({ navigation }: AccountScreenProps) {
         <AccountStack.Screen
           name={routeNames.account.SIGNUP}
           component={SignupComponent}
-          options={authNavigationHeader}
         />
         <AccountStack.Screen
           name={routeNames.account.LOGIN}
           component={LoginComponent}
-          options={authNavigationHeader}
         />
       </AccountStack.Group>
     </AccountStack.Navigator>

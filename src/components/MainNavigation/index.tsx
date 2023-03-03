@@ -9,7 +9,7 @@ import AccountScreen from '../../screens/AccountScreen';
 import SymptomSearch from '../../screens/SymptomSearch';
 
 /** Helpers */
-import { colors, fonts, navigationHeader } from '../../lib/styles';
+import { colors, fonts } from '../../lib/styles';
 
 interface ITab {
   icon: IconProp;
@@ -35,15 +35,22 @@ export default function MainNavigation() {
     {
       icon: 'home',
       tabBarLabel: 'Home',
-      component: SymptomSearch,
-      screenTitle: 'Symptom Search',
-      hideHeader: true
+      component: SymptomSearch
+    },
+    {
+      icon: 'search',
+      tabBarLabel: 'Scan',
+      component: () => {}
+    },
+    {
+      icon: 'newspaper',
+      tabBarLabel: 'Explore',
+      component: () => {}
     },
     {
       icon: 'user',
       tabBarLabel: 'Account',
-      component: AccountScreen,
-      hideHeader: true
+      component: AccountScreen
     }
   ];
 
@@ -54,12 +61,11 @@ export default function MainNavigation() {
         tabBarActiveTintColor: '#003D2F',
         tabBarInactiveTintColor: '#000000',
         tabBarHideOnKeyboard: true,
-        ...navigationHeader
+        headerShown: false
       }}
     >
       {tabs.map((tab, index) => {
-        const { component, icon, tabBarLabel, hideHeader, screenTitle } =
-          tab as ITab;
+        const { component, icon, tabBarLabel, screenTitle } = tab as ITab;
         return (
           <Tab.Screen
             key={index}
@@ -70,12 +76,10 @@ export default function MainNavigation() {
               tabBarLabelStyle: styles.tabBarLabel,
               tabBarStyle: styles.tabBar,
               tabBarActiveTintColor: colors.main.primaryDark,
-              tabBarInactiveTintColor: colors.main.primaryLight,
+              tabBarInactiveTintColor: colors.main.gray10,
               tabBarIcon: ({ color }) => {
                 return <Icon icon={icon} color={color} size={18} />;
-              },
-              headerShown: !hideHeader,
-              headerTransparent: false
+              }
             }}
           />
         );
