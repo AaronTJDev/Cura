@@ -10,6 +10,7 @@ import SymptomSearch from '../../screens/SymptomSearch';
 
 /** Helpers */
 import { colors, fonts } from '../../lib/styles';
+import { isAndroid } from '../../lib/helpers/platform';
 
 interface ITab {
   icon: IconProp;
@@ -24,13 +25,14 @@ const styles = StyleSheet.create({
     backgroundColor: colors.main.white
   },
   tabBarLabel: {
-    fontFamily: fonts.CrimsonProExtraLight,
-    color: colors.main.primary
+    fontFamily: fonts.ComfortaaRegular,
+    paddingBottom: isAndroid ? 4 : 0
   }
 });
 
 export default function MainNavigation() {
   const Tab = createBottomTabNavigator();
+  const EmptyRender = () => <></>;
   const tabs = [
     {
       icon: 'home',
@@ -40,12 +42,12 @@ export default function MainNavigation() {
     {
       icon: 'search',
       tabBarLabel: 'Scan',
-      component: () => {}
+      component: EmptyRender
     },
     {
       icon: 'newspaper',
       tabBarLabel: 'Explore',
-      component: () => {}
+      component: EmptyRender
     },
     {
       icon: 'user',
@@ -59,7 +61,7 @@ export default function MainNavigation() {
       initialRouteName={'Account'}
       screenOptions={{
         tabBarActiveTintColor: '#003D2F',
-        tabBarInactiveTintColor: '#000000',
+        tabBarInactiveTintColor: colors.main.gray,
         tabBarHideOnKeyboard: true,
         headerShown: false
       }}
@@ -77,8 +79,14 @@ export default function MainNavigation() {
               tabBarStyle: styles.tabBar,
               tabBarActiveTintColor: colors.main.primaryDark,
               tabBarInactiveTintColor: colors.main.gray10,
-              tabBarIcon: ({ color }) => {
-                return <Icon icon={icon} color={color} size={18} />;
+              tabBarIcon: ({ focused }) => {
+                return (
+                  <Icon
+                    icon={icon}
+                    color={focused ? colors.main.primary : colors.main.gray10}
+                    size={18}
+                  />
+                );
               }
             }}
           />

@@ -8,8 +8,10 @@ import {
   ScrollView
 } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
-import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { FontAwesomeIcon as Icon } from '@fortawesome/react-native-fontawesome';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
+import { toSafeInteger } from 'lodash-es';
+
 import { assetResolver } from '../../lib/assetResolver';
 import { colors, fonts } from '../../lib/styles';
 import { SCREEN_HEIGHT } from '../../lib/constants';
@@ -23,12 +25,11 @@ const styles = StyleSheet.create({
   header: {
     flex: 1,
     flexDirection: 'column',
-    alignItems: 'flex-start',
     justifyContent: 'center',
     backgroundColor: 'transparent',
     paddingHorizontal: 24,
     paddingVertical: 32,
-    marginTop: 40,
+    marginTop: toSafeInteger(SCREEN_HEIGHT * 0.025),
     bottom: 0
   },
   backButton: {
@@ -41,7 +42,6 @@ const styles = StyleSheet.create({
   title: {
     flex: 1,
     fontSize: 36,
-    fontWeight: 'bold',
     color: colors.main.white,
     fontFamily: fonts.CrimsonProBold,
     marginTop: 16
@@ -63,7 +63,8 @@ const styles = StyleSheet.create({
     shadowOpacity: 1,
     zIndex: 1,
     paddingHorizontal: 24,
-    paddingVertical: SCREEN_HEIGHT / 20
+    paddingVertical: SCREEN_HEIGHT / 20,
+    marginTop: SCREEN_HEIGHT / 5
   },
   imageBg: {
     flex: 1,
@@ -101,8 +102,8 @@ export const ScreenWrapper: React.FC<ScreenWrapperProps> = ({
         styles.container,
         {
           paddingTop: 0,
-          paddingLeft: insets.left,
-          paddingRight: insets.right
+          paddingLeft: toSafeInteger(insets.left),
+          paddingRight: toSafeInteger(insets.right)
         }
       ]}
     >
@@ -111,11 +112,7 @@ export const ScreenWrapper: React.FC<ScreenWrapperProps> = ({
         imageStyle={{ alignSelf: 'center' }}
         source={assetResolver.images.mainBg}
       >
-        <ScrollView
-          style={[styles.scrollViewContainer, { marginTop: insets.top * 3.2 }]}
-        >
-          {children}
-        </ScrollView>
+        <ScrollView style={styles.scrollViewContainer}>{children}</ScrollView>
       </ImageBackground>
     </View>
   );
