@@ -13,7 +13,8 @@ export const routeNames = {
   account: {
     ACCOUNT: 'account',
     SIGNUP: 'signup',
-    LOGIN: 'login'
+    LOGIN: 'login',
+    ONBOARDING_MODAL: 'onboarding'
   },
   search: {}
 };

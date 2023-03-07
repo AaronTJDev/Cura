@@ -30,9 +30,11 @@ const styles = StyleSheet.create({
   }
 });
 
+const EmptyRender = () => <></>;
+
 export default function MainNavigation() {
   const Tab = createBottomTabNavigator();
-  const EmptyRender = () => <></>;
+
   const tabs = [
     {
       icon: 'home',
@@ -58,7 +60,7 @@ export default function MainNavigation() {
 
   return (
     <Tab.Navigator
-      initialRouteName={'Account'}
+      initialRouteName={'Home'}
       screenOptions={{
         tabBarActiveTintColor: '#003D2F',
         tabBarInactiveTintColor: colors.main.gray,

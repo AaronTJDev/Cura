@@ -19,6 +19,8 @@ import { SCREEN_HEIGHT } from '../../lib/constants';
 type ScreenWrapperProps = {
   children: React.ReactNode;
   title: string;
+  hideHeader?: boolean;
+  hideBackButton?: boolean;
 };
 
 const styles = StyleSheet.create({
@@ -74,7 +76,9 @@ const styles = StyleSheet.create({
 
 export const ScreenWrapper: React.FC<ScreenWrapperProps> = ({
   children,
-  title
+  title,
+  hideHeader,
+  hideBackButton
 }) => {
   const navigation = useNavigation();
   const insets = useSafeAreaInsets();
@@ -83,16 +87,19 @@ export const ScreenWrapper: React.FC<ScreenWrapperProps> = ({
     navigation.setOptions({
       headerTransparent: true,
       headerBackground: null,
-      header: () => (
-        <View style={styles.header}>
-          <View style={styles.backButton}>
-            <TouchableOpacity onPress={navigation.goBack}>
-              <Icon icon="arrow-left" color={colors.main.white} size={20} />
-            </TouchableOpacity>
+      header: () =>
+        !hideHeader ? (
+          <View style={styles.header}>
+            <View style={styles.backButton}>
+              {!hideBackButton ? (
+                <TouchableOpacity onPress={navigation.goBack}>
+                  <Icon icon="arrow-left" color={colors.main.white} size={20} />
+                </TouchableOpacity>
+              ) : null}
+            </View>
+            <Text style={styles.title}>{title}</Text>
           </View>
-          <Text style={styles.title}>{title}</Text>
-        </View>
-      )
+        ) : null
     });
   }, [navigation, title]);
 

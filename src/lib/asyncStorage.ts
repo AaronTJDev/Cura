@@ -1,7 +1,8 @@
 import AsyncStorage from '@react-native-community/async-storage';
 
 export const AsyncStorageKeys = {
-  TOKEN: 'token'
+  TOKEN: 'token',
+  COMPLETED_FTUE: 'completedFTUE'
 };
 
 export const getItem = async (key: string) => {

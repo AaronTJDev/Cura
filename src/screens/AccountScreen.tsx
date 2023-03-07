@@ -1,6 +1,5 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import { BottomTabNavigationProp } from '@react-navigation/bottom-tabs';
 
 /** Components */
 import AccountComponent from '../components/Account/AccountComponent';
@@ -9,62 +8,37 @@ import LoginComponent from '../components/Account/LoginComponent';
 
 /** Helpers */
 import { useAuth } from '../lib/helpers/auth';
-import { routeNames } from '../lib/helpers/navigation';
-
-// const UserAccount = () => {
-//   const dispatch = useDispatch();
-//   const isLoading = useSelector(getIsAccountLoading);
-//
-//   const handleLogout = () => {
-//     logout(dispatch);
-//   };
-//
-//   const LogoutButton = () => (
-//     <TouchableOpacity onPress={handleLogout}>
-//       <Text>Logout</Text>
-//     </TouchableOpacity>
-//   );
-//
-//   return (
-//     <ScreenWrapper title={'My title'}>
-//       <View
-//         style={{
-//           width: '100%',
-//           height: '100%',
-//           justifyContent: 'center',
-//           alignItems: 'center'
-//         }}
-//       >
-//         {isLoading ? <ActivityIndicator /> : <LogoutButton />}
-//       </View>
-//     </ScreenWrapper>
-//   );
-// };
-
-interface AccountScreenProps {
-  navigation: BottomTabNavigationProp<any>;
-}
+import { navigate, routeNames } from '../lib/helpers/navigation';
+import { OnboardingModal } from '../components/Account/Onboarding/OnboardingModal';
+import AsyncStorage from '@react-native-community/async-storage';
+import { AsyncStorageKeys } from '../lib/asyncStorage';
+import { logError } from '../lib/helpers/platform';
 
 const AccountStack = createNativeStackNavigator();
 
-export default function AccountScreen({ navigation }: AccountScreenProps) {
+export default function AccountScreen() {
   const { isLoggedIn } = useAuth();
-  const [initialRoute, setIntialRoute] = useState<string>(
-    routeNames.account.ACCOUNT
-  );
+
+  const handleAccountScreenRoutingOnLaunch = async () => {
+    const completedFTUE = await AsyncStorage.getItem(
+      AsyncStorageKeys.COMPLETED_FTUE
+    );
+
+    if (!completedFTUE) {
+      navigate(routeNames.account.ONBOARDING_MODAL);
+    } else if (!!completedFTUE && !isLoggedIn) {
+      navigate(routeNames.account.LOGIN);
+    } else {
+      navigate(routeNames.account.LOGIN);
+    }
+  };
 
   useEffect(() => {
-    console.log('isLoggedIn:', isLoggedIn);
-    if (isLoggedIn) {
-      setIntialRoute(routeNames.account.ACCOUNT);
-    } else {
-      setIntialRoute(routeNames.account.SIGNUP);
-    }
-  }, [isLoggedIn, navigation]);
+    handleAccountScreenRoutingOnLaunch().catch(logError);
+  }, [isLoggedIn]);
 
   return (
     <AccountStack.Navigator
-      initialRouteName={initialRoute}
       screenOptions={{
         headerTransparent: true,
         headerBackground: () => null
@@ -84,6 +58,17 @@ export default function AccountScreen({ navigation }: AccountScreenProps) {
         <AccountStack.Screen
           name={routeNames.account.LOGIN}
           component={LoginComponent}
+        />
+      </AccountStack.Group>
+      <AccountStack.Group
+        screenOptions={{
+          presentation: 'modal',
+          headerShown: false
+        }}
+      >
+        <AccountStack.Screen
+          name={routeNames.account.ONBOARDING_MODAL}
+          component={OnboardingModal}
         />
       </AccountStack.Group>
     </AccountStack.Navigator>
