@@ -56,16 +56,8 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
     borderTopLeftRadius: 28,
     borderTopRightRadius: 28,
-    shadowOffset: {
-      width: 10,
-      height: 10
-    },
-    shadowRadius: 12,
-    shadowColor: '#000',
-    shadowOpacity: 1,
-    zIndex: 1,
     paddingHorizontal: 24,
-    paddingVertical: SCREEN_HEIGHT / 20,
+    paddingVertical: SCREEN_HEIGHT / 24,
     marginTop: SCREEN_HEIGHT / 5
   },
   imageBg: {
@@ -116,10 +108,14 @@ export const ScreenWrapper: React.FC<ScreenWrapperProps> = ({
     >
       <ImageBackground
         style={styles.imageBg}
-        imageStyle={{ alignSelf: 'center' }}
         source={assetResolver.images.mainBg}
       >
-        <ScrollView style={styles.scrollViewContainer}>{children}</ScrollView>
+        <ScrollView
+          style={styles.scrollViewContainer}
+          contentContainerStyle={styles.container}
+        >
+          {children}
+        </ScrollView>
       </ImageBackground>
     </View>
   );

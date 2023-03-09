@@ -13,7 +13,10 @@ export const assetResolver = {
     onboardingBG: require('../../assets/images/onboarding_oblong_bg.png'),
     onboardingA: require('../../assets/images/undraw_breakfast_psiw.png'),
     onboardingB: require('../../assets/images/undraw_diet_ghvw.png'),
-    onboardingC: require('../../assets/images/undraw_medical_care_movn.png')
+    onboardingC: require('../../assets/images/undraw_medical_care_movn.png'),
+    facebook: require('../../assets/images/facebook.png'),
+    google: require('../../assets/images/google.png'),
+    apple: require('../../assets/images/apple.png')
   },
   lottie: {
     loader: require('../../assets/animations/loader.json')

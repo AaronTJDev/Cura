@@ -40,7 +40,7 @@ const PaginationStep: React.FC<PaginationStepProps> = ({
 
     Animated.timing(scaleXIndicator, {
       useNativeDriver: true,
-      duration: isSelected ? 350 : 350,
+      duration: 250,
       toValue: isSelected ? 1 : 0,
       easing: Easing.exp
     }).start();
@@ -52,6 +52,7 @@ const PaginationStep: React.FC<PaginationStepProps> = ({
         style={[
           styles.animatedIndicator,
           {
+            opacity: scaleXIndicator,
             transform: [{ scaleX: scaleXIndicator }]
           }
         ]}

@@ -1,3 +1,4 @@
+import { useNavigation } from '@react-navigation/native';
 import React, { useEffect, useRef, useState } from 'react';
 import {
   Animated,
@@ -12,6 +13,7 @@ import {
 } from 'react-native';
 import { assetResolver } from '../../../lib/assetResolver';
 import { SCREEN_WIDTH } from '../../../lib/constants';
+import { navigate, routeNames } from '../../../lib/helpers/navigation';
 import { colors, fonts } from '../../../lib/styles';
 import { OnboardingLogo } from './OnboardingLogo';
 import { Pagination } from './Pagination';
@@ -118,12 +120,12 @@ const OnboardingPage: React.FC<OnboardingPageProps> = ({
     Animated.timing(translateX, {
       useNativeDriver: true,
       toValue: currentPage * -SCREEN_WIDTH,
-      duration: 700
+      duration: 500
     }).start();
     Animated.timing(opacity, {
       useNativeDriver: true,
       toValue: isSelectedPage ? 1 : 0,
-      duration: 700,
+      duration: 500,
       easing: Easing.exp
     }).start();
   }, [currentPage]);
@@ -150,21 +152,31 @@ const OnboardingPage: React.FC<OnboardingPageProps> = ({
 
 export const OnboardingModal: React.FC = () => {
   const [currentPage, setCurrentPage] = useState<number>(0);
+  const navigation = useNavigation();
+
+  const handleNext = () => {
+    if (currentPage !== 2) {
+      setCurrentPage((curr) => curr + 1);
+    } else {
+      navigation.goBack();
+      navigate(routeNames.account.SIGNUP);
+    }
+  };
 
   return (
     <View style={styles.container}>
       <OnboardingLogo />
-      <ScrollView contentContainerStyle={styles.carouselContainer}>
+      <ScrollView
+        style={{ flex: 1 }}
+        contentContainerStyle={styles.carouselContainer}
+      >
         {onboardingPages.map((page, id) => (
           <OnboardingPage key={id} currentPage={currentPage} {...page} />
         ))}
       </ScrollView>
       <Pagination currentIndex={currentPage} />
       <View style={styles.carouselButtonContainer}>
-        <TouchableOpacity
-          onPress={() => setCurrentPage((val) => (val !== 2 ? val + 1 : 0))}
-          style={styles.carouselButton}
-        >
+        <TouchableOpacity onPress={handleNext} style={styles.carouselButton}>
           <Text style={styles.carouselButtonText}>
             {onboardingPages[currentPage].buttonText}
           </Text>

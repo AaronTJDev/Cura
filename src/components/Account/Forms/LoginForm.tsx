@@ -12,7 +12,7 @@ interface LoginFormValues {
   password: string;
 }
 
-export default function SignupForm() {
+export const LoginForm = () => {
   const dispatch = useDispatch();
   const initialValues = {
     email: '',
@@ -49,4 +49,4 @@ export default function SignupForm() {
       }}
     </Formik>
   );
-}
+};

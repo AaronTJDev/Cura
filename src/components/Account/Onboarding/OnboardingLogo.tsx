@@ -23,7 +23,7 @@ export const OnboardingLogo = () => {
   useEffect(() => {
     Animated.timing(opacity, {
       useNativeDriver: true,
-      duration: 1200,
+      duration: 500,
       toValue: 1
     }).start();
   }, []);

@@ -9,7 +9,11 @@ import {
   faMinus,
   faBarcode,
   faArrowLeft,
-  faNewspaper
+  faNewspaper,
+  faEnvelope,
+  faLock,
+  faEye,
+  faEyeSlash
 } from '@fortawesome/free-solid-svg-icons';
 
 export const initiateIconLibrary = () => {
@@ -24,6 +28,10 @@ export const initiateIconLibrary = () => {
     faMinus,
     faBarcode,
     faArrowLeft,
-    faNewspaper
+    faNewspaper,
+    faEnvelope,
+    faLock,
+    faEye,
+    faEyeSlash
   );
 };

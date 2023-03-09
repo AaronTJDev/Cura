@@ -13,21 +13,25 @@ import { OnboardingModal } from '../components/Account/Onboarding/OnboardingModa
 import AsyncStorage from '@react-native-community/async-storage';
 import { AsyncStorageKeys } from '../lib/asyncStorage';
 import { logError } from '../lib/helpers/platform';
+import { useNavigation } from '@react-navigation/native';
 
 const AccountStack = createNativeStackNavigator();
 
 export default function AccountScreen() {
   const { isLoggedIn } = useAuth();
+  const navigation = useNavigation();
 
   const handleAccountScreenRoutingOnLaunch = async () => {
     const completedFTUE = await AsyncStorage.getItem(
       AsyncStorageKeys.COMPLETED_FTUE
     );
 
+    await AsyncStorage.clear();
+
     if (!completedFTUE) {
       navigate(routeNames.account.ONBOARDING_MODAL);
     } else if (!!completedFTUE && !isLoggedIn) {
-      navigate(routeNames.account.LOGIN);
+      navigate(routeNames.account.SIGNUP);
     } else {
       navigate(routeNames.account.LOGIN);
     }
@@ -35,7 +39,7 @@ export default function AccountScreen() {
 
   useEffect(() => {
     handleAccountScreenRoutingOnLaunch().catch(logError);
-  }, [isLoggedIn]);
+  }, [isLoggedIn, navigation]);
 
   return (
     <AccountStack.Navigator
