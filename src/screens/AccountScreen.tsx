@@ -1,45 +1,48 @@
-import React, { useEffect } from 'react';
+import React, { useCallback, useEffect } from 'react';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
 /** Components */
 import AccountComponent from '../components/Account/AccountComponent';
 import SignupComponent from '../components/Account/SignupComponent';
-import LoginComponent from '../components/Account/LoginComponent';
+import SigninComponent from '../components/Account/SigninComponent';
 
 /** Helpers */
-import { useAuth } from '../lib/helpers/auth';
 import { navigate, routeNames } from '../lib/helpers/navigation';
 import { OnboardingModal } from '../components/Account/Onboarding/OnboardingModal';
 import AsyncStorage from '@react-native-community/async-storage';
 import { AsyncStorageKeys } from '../lib/asyncStorage';
 import { logError } from '../lib/helpers/platform';
 import { useNavigation } from '@react-navigation/native';
+import { useSelector } from 'react-redux';
+import { getIsLoggedIn } from '../redux/account/selectors';
 
 const AccountStack = createNativeStackNavigator();
 
 export default function AccountScreen() {
-  const { isLoggedIn } = useAuth();
+  const isLoggedIn = useSelector(getIsLoggedIn);
   const navigation = useNavigation();
 
-  const handleAccountScreenRoutingOnLaunch = async () => {
+  const handleAccountScreenRoutingOnLaunch = useCallback(async () => {
     const completedFTUE = await AsyncStorage.getItem(
       AsyncStorageKeys.COMPLETED_FTUE
     );
-
-    await AsyncStorage.clear();
+    console.log('completed ftue', completedFTUE);
+    console.log('isLoggedIn', isLoggedIn);
 
     if (!completedFTUE) {
       navigate(routeNames.account.ONBOARDING_MODAL);
-    } else if (!!completedFTUE && !isLoggedIn) {
+    } else if (!completedFTUE && !isLoggedIn) {
       navigate(routeNames.account.SIGNUP);
+    } else if (!!completedFTUE && !isLoggedIn) {
+      navigate(routeNames.account.SIGNIN);
     } else {
-      navigate(routeNames.account.LOGIN);
+      navigate(routeNames.account.ACCOUNT);
     }
-  };
+  }, [isLoggedIn]);
 
   useEffect(() => {
     handleAccountScreenRoutingOnLaunch().catch(logError);
-  }, [isLoggedIn, navigation]);
+  }, [isLoggedIn, navigation, handleAccountScreenRoutingOnLaunch]);
 
   return (
     <AccountStack.Navigator
@@ -60,8 +63,8 @@ export default function AccountScreen() {
           component={SignupComponent}
         />
         <AccountStack.Screen
-          name={routeNames.account.LOGIN}
-          component={LoginComponent}
+          name={routeNames.account.SIGNIN}
+          component={SigninComponent}
         />
       </AccountStack.Group>
       <AccountStack.Group

@@ -11,7 +11,7 @@ export const SignupSchema = Yup.object().shape({
     .required('No password provided')
 });
 
-export const LoginSchema = Yup.object().shape({
+export const SigninSchema = Yup.object().shape({
   email: Yup.string().email('Invalid email provided').required(),
   password: Yup.string().required('No password provided')
 });

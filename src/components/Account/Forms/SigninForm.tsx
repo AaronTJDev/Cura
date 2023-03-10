@@ -9,16 +9,13 @@ import { SocialCta } from './SocialCta';
 
 /** Helpers */
 import { createUserWithEmailAndPassword } from '../../../redux/account/actions';
-import { SignupSchema } from '../../../lib/validationSchemas';
+import { SigninSchema } from '../../../lib/validationSchemas';
 import { TextFormField } from './TextFormField';
 import { IndexableObject } from '../../../lib/types/forms';
 import { colors, fonts } from '../../../lib/styles';
 import { assetResolver } from '../../../lib/assetResolver';
-import { logError } from '../../../lib/helpers/platform';
-import AsyncStorage from '@react-native-community/async-storage';
-import { AsyncStorageKeys } from '../../../lib/asyncStorage';
 
-interface SignupFormValues extends IndexableObject {
+interface SigninFormValues extends IndexableObject {
   email: string;
   password: string;
   username: string;
@@ -67,26 +64,25 @@ const socialCtaImages = [
   assetResolver.images.apple
 ];
 
-export const SignupForm = () => {
+export const SigninForm = () => {
   const dispatch = useDispatch();
   const navigation = useNavigation();
-  const initialValues: SignupFormValues = {
+  const initialValues: SigninFormValues = {
     email: '',
     password: '',
     username: ''
   };
 
   const handleCreateAccount = useCallback(
-    async (values: SignupFormValues, { setFieldError, resetForm }: any) => {
+    async (values: SigninFormValues, { setFieldError, resetForm }: any) => {
       const { email, password } = values;
       try {
         await createUserWithEmailAndPassword(dispatch, email, password);
-        await AsyncStorage.setItem(AsyncStorageKeys.COMPLETED_FTUE, 'true');
         resetForm();
         navigation.goBack();
       } catch (err) {
         setFieldError('email', 'Email already in use');
-        logError(err);
+        throw err;
       }
     },
     [dispatch]
@@ -96,7 +92,7 @@ export const SignupForm = () => {
     <Formik
       initialValues={initialValues}
       onSubmit={handleCreateAccount}
-      validationSchema={SignupSchema}
+      validationSchema={SigninSchema}
       validateOnChange={true}
       validateOnBlur={true}
     >

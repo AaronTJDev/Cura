@@ -2,9 +2,10 @@ import { actionTypeGenerator } from '../helpers';
 
 const accountActionGenerator = actionTypeGenerator('ACCOUNT');
 export const accountActions = {
-  login: accountActionGenerator.async('LOGIN'),
+  signin: accountActionGenerator.async('SIGNIN'),
   logout: accountActionGenerator.async('LOGOUT'),
-  createAccount: accountActionGenerator.async('CREATE_ACCOUNT')
+  createAccount: accountActionGenerator.async('CREATE_ACCOUNT'),
+  setUser: accountActionGenerator.value('SET_USER')
 };
 
 type AccountData = {

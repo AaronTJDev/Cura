@@ -11,6 +11,7 @@ import SymptomSearch from '../../screens/SymptomSearch';
 /** Helpers */
 import { colors, fonts } from '../../lib/styles';
 import { isAndroid } from '../../lib/helpers/platform';
+import { useAuth } from '../../lib/helpers/auth';
 
 interface ITab {
   icon: IconProp;
@@ -34,6 +35,7 @@ const EmptyRender = () => <></>;
 
 export default function MainNavigation() {
   const Tab = createBottomTabNavigator();
+  useAuth();
 
   const tabs = [
     {

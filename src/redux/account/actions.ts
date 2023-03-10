@@ -3,12 +3,13 @@ import auth from '@react-native-firebase/auth';
 
 /** Helpers */
 import { accountActions } from './types';
-import { asyncAction } from '../helpers';
+import { asyncAction, genericAction } from '../helpers';
+import { NormalizedUser } from '../../lib/helpers/auth';
 
-export const login = (dispatch: Dispatch, email: string, password: string) => {
-  const loginPromise = auth().signInWithEmailAndPassword(email, password);
-  asyncAction(loginPromise, accountActions.login, dispatch);
-  return loginPromise;
+export const signin = (dispatch: Dispatch, email: string, password: string) => {
+  const signinPromise = auth().signInWithEmailAndPassword(email, password);
+  asyncAction(signinPromise, accountActions.signin, dispatch);
+  return signinPromise;
 };
 
 export const createUserWithEmailAndPassword = (
@@ -35,4 +36,8 @@ export const logout = (dispatch: Dispatch) => {
     });
   asyncAction(logoutPromise, accountActions.logout, dispatch);
   return logoutPromise;
+};
+
+export const setUser = (dispatch: Dispatch, user: NormalizedUser) => {
+  genericAction(accountActions.setUser, user, dispatch);
 };

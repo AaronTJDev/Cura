@@ -1,5 +1,4 @@
 import { createNavigationContainerRef } from '@react-navigation/native';
-import { useAuth } from './auth';
 
 export const navigationRef = createNavigationContainerRef();
 
@@ -13,15 +12,11 @@ export const routeNames = {
   account: {
     ACCOUNT: 'account',
     SIGNUP: 'signup',
-    LOGIN: 'login',
+    SIGNIN: 'signin',
     ONBOARDING_MODAL: 'onboarding'
   },
   search: {}
 };
-
-navigationRef.current?.addListener('state', () => {
-  useAuth();
-});
 
 export const transparentHeaderOptions = {
   headerShown: true,

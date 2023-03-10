@@ -1,7 +1,12 @@
 import { RootStateOrAny } from 'react-redux';
 
 export const getAccount = (state: RootStateOrAny) => {
-  return state?.account?.data?.user;
+  return state?.account?.data;
+};
+
+export const getIsLoggedIn = (state: RootStateOrAny) => {
+  console.log('state', state.account.data);
+  return !!state?.account?.data;
 };
 
 export const getIsNewUser = (state: RootStateOrAny) => {

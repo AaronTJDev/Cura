@@ -7,7 +7,7 @@ import {
   TouchableOpacity,
   View
 } from 'react-native';
-import { FormikErrors } from 'formik';
+import { FieldInputProps, FormikErrors } from 'formik';
 import { FontAwesomeIcon as Icon } from '@fortawesome/react-native-fontawesome';
 
 import { colors, fonts } from '../../../lib/styles';
@@ -16,8 +16,8 @@ import { IconProp } from '@fortawesome/fontawesome-svg-core';
 import { signupFormFieldKeys } from './SignupForm';
 
 interface FormFieldProps {
-  handleChange: any;
-  handleBlur: any;
+  handleChange: FieldInputProps<any>['onChange'];
+  handleBlur: FieldInputProps<any>['onBlur'];
   value: string;
   error:
     | string
@@ -49,7 +49,7 @@ const styles = StyleSheet.create({
   label: {
     flex: 5,
     marginLeft: 8,
-    fontFamily: fonts.ComfortaaMedium,
+    fontFamily: fonts.ComfortaaBold,
     fontSize: 12,
     lineHeight: 18,
     color: colors.main.black
