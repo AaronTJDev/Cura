@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import {
+  Animated,
   StyleSheet,
   Text,
   TextInput,
@@ -16,7 +17,7 @@ import { signupFormFieldKeys } from './SignupForm';
 
 interface FormFieldProps {
   handleChange: any;
-  handleBlur: (e: FocusEvent) => void;
+  handleBlur: any;
   value: string;
   error:
     | string
@@ -56,6 +57,10 @@ const styles = StyleSheet.create({
   labelIcon: {
     flex: 1
   },
+  labelError: {
+    color: colors.indicators.error,
+    fontSize: 10
+  },
   placeholder: {},
   visible: {
     position: 'absolute',
@@ -69,32 +74,82 @@ const styles = StyleSheet.create({
 });
 
 export const TextFormField: React.FC<FormFieldProps> = ({
+  handleBlur,
+  handleChange,
   fieldName,
   placeholder,
   icon,
-  secure
+  secure,
+  error
 }) => {
   const [shouldShowSecureEntry, setShouldShowSecureEntry] =
-    useState<boolean>(false);
+    useState<boolean>(true);
+  const shakeAnimation = useRef(new Animated.Value(0)).current;
+
+  const shake = () => {
+    Animated.sequence([
+      Animated.timing(shakeAnimation, {
+        toValue: 10,
+        duration: 75,
+        useNativeDriver: true
+      }),
+      Animated.timing(shakeAnimation, {
+        toValue: -10,
+        duration: 75,
+        useNativeDriver: true
+      }),
+      Animated.timing(shakeAnimation, {
+        toValue: 10,
+        duration: 75,
+        useNativeDriver: true
+      }),
+      Animated.timing(shakeAnimation, {
+        toValue: 0,
+        duration: 75,
+        useNativeDriver: true
+      })
+    ]).start();
+  };
 
   const toggleSecureVisibility = () => {
     setShouldShowSecureEntry(!shouldShowSecureEntry);
   };
 
+  useEffect(() => {
+    if (error) {
+      shake();
+    }
+  }, [error]);
+
   return (
     <View style={styles.container}>
-      <View style={styles.labelGroup}>
+      <Animated.View
+        style={[
+          styles.labelGroup,
+          { transform: [{ translateX: shakeAnimation }] }
+        ]}
+      >
         <Icon
           style={styles.labelIcon}
           icon={icon}
-          color={colors.main.secondary}
+          color={!error ? colors.main.secondary : colors.indicators.error}
           size={14}
           secondaryColor={colors.main.black}
           secondaryOpacity={1}
         />
-        <Text style={styles.label}>{upperFirst(fieldName)}</Text>
-      </View>
+        <Text
+          style={[
+            styles.label,
+            error ? { color: colors.indicators.error } : {}
+          ]}
+        >
+          {upperFirst(fieldName)}
+        </Text>
+        {!!error && <Text style={styles.labelError}>{error}</Text>}
+      </Animated.View>
       <TextInput
+        onChangeText={handleChange(fieldName)}
+        onBlur={handleBlur(fieldName)}
         placeholder={placeholder}
         secureTextEntry={secure && shouldShowSecureEntry}
       />

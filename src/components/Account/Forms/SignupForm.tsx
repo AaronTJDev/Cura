@@ -1,18 +1,19 @@
 import React, { useCallback } from 'react';
+import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { Formik } from 'formik';
 import { useDispatch } from 'react-redux';
+import { useNavigation } from '@react-navigation/native';
+
+/** Components */
+import { SocialCta } from './SocialCta';
 
 /** Helpers */
 import { createUserWithEmailAndPassword } from '../../../redux/account/actions';
 import { SignupSchema } from '../../../lib/validationSchemas';
-import { navigate } from '../../../lib/helpers/navigation';
-import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { TextFormField } from './TextFormField';
 import { IndexableObject } from '../../../lib/types/forms';
 import { colors, fonts } from '../../../lib/styles';
-
 import { assetResolver } from '../../../lib/assetResolver';
-import { SocialCta } from './SocialCta';
 
 interface SignupFormValues extends IndexableObject {
   email: string;
@@ -65,6 +66,7 @@ const socialCtaImages = [
 
 export const SignupForm = () => {
   const dispatch = useDispatch();
+  const navigation = useNavigation();
   const initialValues: SignupFormValues = {
     email: '',
     password: '',
@@ -77,7 +79,7 @@ export const SignupForm = () => {
       try {
         await createUserWithEmailAndPassword(dispatch, email, password);
         resetForm();
-        navigate('Symptom Search');
+        navigation.goBack();
       } catch (err) {
         setFieldError('email', 'Email already in use');
         throw err;
@@ -91,11 +93,25 @@ export const SignupForm = () => {
       initialValues={initialValues}
       onSubmit={handleCreateAccount}
       validationSchema={SignupSchema}
-      validateOnChange={false}
-      validateOnBlur={false}
+      validateOnChange={true}
+      validateOnBlur={true}
     >
-      {({ handleChange, handleBlur, values, errors }) => {
-        console.log('values', values);
+      {({
+        handleChange,
+        handleBlur,
+        handleSubmit,
+        values,
+        errors,
+        touched
+      }) => {
+        console.log('errors', errors, touched);
+        const handleError = (formFieldName: string) => {
+          const isTouched = touched[formFieldName];
+          const hasError = errors[formFieldName];
+          if (isTouched && hasError) {
+            return errors[formFieldName];
+          }
+        };
 
         return (
           <View style={styles.container}>
@@ -104,7 +120,7 @@ export const SignupForm = () => {
               handleBlur={handleBlur}
               fieldName={signupFormFieldKeys.username}
               value={values[signupFormFieldKeys.username]}
-              error={errors[signupFormFieldKeys.username]}
+              error={handleError(signupFormFieldKeys.username)}
               placeholder="Enter your username"
               icon={'user'}
             />
@@ -113,7 +129,7 @@ export const SignupForm = () => {
               handleBlur={handleBlur}
               fieldName={signupFormFieldKeys.email}
               value={values[signupFormFieldKeys.email]}
-              error={errors[signupFormFieldKeys.email]}
+              error={handleError(signupFormFieldKeys.email)}
               placeholder="Enter your email"
               icon={'envelope'}
             />
@@ -122,14 +138,14 @@ export const SignupForm = () => {
               handleBlur={handleBlur}
               fieldName={signupFormFieldKeys.password}
               value={values[signupFormFieldKeys.password]}
-              error={errors[signupFormFieldKeys.password]}
+              error={handleError(signupFormFieldKeys.password)}
               placeholder="Enter your password"
               icon={'lock'}
               secure
             />
             <TouchableOpacity
               style={styles.submitContainer}
-              onPress={handleCreateAccount}
+              onPress={() => handleSubmit()}
             >
               <Text style={styles.submitText}>Continue</Text>
             </TouchableOpacity>
