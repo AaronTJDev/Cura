@@ -38,6 +38,9 @@ export default function SignupComponent() {
           <SignupForm />
         </View>
       </Animated.View>
+      <Animated.View style={[, {backgroundColor: 'blue'}]}>
+
+      </Animated.View>
     </ScreenWrapper>
   );
 }

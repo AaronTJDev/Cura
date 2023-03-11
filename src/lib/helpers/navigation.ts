@@ -18,6 +18,15 @@ export const routeNames = {
   search: {}
 };
 
+export const pageTitle = {
+  account: {
+    SIGNIN: 'Sign In',
+    SIGNUP: 'Sign Up',
+    SYMPTOM_SEARCH: 'Symptom Search',
+    ACCOUNT: 'Account'
+  }
+}
+
 export const transparentHeaderOptions = {
   headerShown: true,
   title: '',

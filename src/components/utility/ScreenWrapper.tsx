@@ -5,7 +5,9 @@ import {
   StyleSheet,
   TouchableOpacity,
   ImageBackground,
-  ScrollView
+  ScrollView,
+  StyleProp,
+  ViewStyle
 } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { FontAwesomeIcon as Icon } from '@fortawesome/react-native-fontawesome';
@@ -16,11 +18,24 @@ import { assetResolver } from '../../lib/assetResolver';
 import { colors, fonts } from '../../lib/styles';
 import { SCREEN_HEIGHT } from '../../lib/constants';
 
+type MaybeAnimated<T> = T | Animated.Value;
+type AnimatedScalar = string | number;
+
+type AnimatedStyle<T> = {
+  [Key in keyof T]: T[Key] extends AnimatedScalar
+    ? MaybeAnimated<T[Key]>
+    : T[Key] extends Array<infer U>
+    ? Array<AnimatedStyle<U>>
+    : AnimatedStyle<T[Key]>;
+};
+
 type ScreenWrapperProps = {
   children: React.ReactNode;
   title: string;
   hideHeader?: boolean;
   hideBackButton?: boolean;
+  expandedContentArea?: boolean;
+  style?: AnimatedStyle<ViewStyle>;
 };
 
 const styles = StyleSheet.create({
@@ -70,7 +85,8 @@ export const ScreenWrapper: React.FC<ScreenWrapperProps> = ({
   children,
   title,
   hideHeader,
-  hideBackButton
+  hideBackButton,
+  expandedContentArea
 }) => {
   const navigation = useNavigation();
   const insets = useSafeAreaInsets();
@@ -111,7 +127,10 @@ export const ScreenWrapper: React.FC<ScreenWrapperProps> = ({
         source={assetResolver.images.mainBg}
       >
         <ScrollView
-          style={styles.scrollViewContainer}
+          style={[
+            styles.scrollViewContainer,
+            (expandedContentArea ? { marginTop: SCREEN_HEIGHT / 6 } : {})
+          ]}
           contentContainerStyle={styles.container}
         >
           {children}
