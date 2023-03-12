@@ -1,12 +1,12 @@
 import React, { useLayoutEffect } from 'react';
 import {
+  Animated,
   View,
   Text,
   StyleSheet,
   TouchableOpacity,
   ImageBackground,
   ScrollView,
-  StyleProp,
   ViewStyle
 } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
@@ -129,7 +129,7 @@ export const ScreenWrapper: React.FC<ScreenWrapperProps> = ({
         <ScrollView
           style={[
             styles.scrollViewContainer,
-            (expandedContentArea ? { marginTop: SCREEN_HEIGHT / 6 } : {})
+            expandedContentArea ? { marginTop: SCREEN_HEIGHT / 6 } : {}
           ]}
           contentContainerStyle={styles.container}
         >

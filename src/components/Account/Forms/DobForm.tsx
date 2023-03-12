@@ -1,9 +1,12 @@
 import React from 'react';
 import { Animated, StyleSheet, Text, View } from 'react-native';
-import { screenTitles } from '../../lib/helpers/navigation';
-import { colors, fonts } from '../../lib/styles';
-import { ScreenWrapper } from '../utility/ScreenWrapper';
-import { SignupForm } from './Forms/SignupForm';
+
+/** Components */
+import { ScreenWrapper } from '../../utility/ScreenWrapper';
+
+/** Helpers */
+import { screenTitles } from '../../../lib/helpers/navigation';
+import { colors, fonts } from '../../../lib/styles';
 
 const stlyes = StyleSheet.create({
   container: {
@@ -25,19 +28,21 @@ const stlyes = StyleSheet.create({
   }
 });
 
-export default function SignupComponent() {
+export default function DobForm() {
   return (
-    <ScreenWrapper title={screenTitles.account.SIGNUP} hideBackButton>
+    <ScreenWrapper
+      title={screenTitles.account.SIGNUP}
+      hideBackButton
+      expandedContentArea
+    >
       <Animated.View style={stlyes.container}>
         <View style={stlyes.textContainer}>
-          <Text style={stlyes.title}>Let's Get Started</Text>
+          <Text style={stlyes.title}>Date of Birth</Text>
           <Text style={stlyes.subtitle}>
-            It will only take a minute! We Promise.
+            Please select your month and year of birth.
           </Text>
         </View>
-        <View style={{ flex: 5 }}>
-          <SignupForm />
-        </View>
+        <View style={{ flex: 5 }} />
       </Animated.View>
     </ScreenWrapper>
   );

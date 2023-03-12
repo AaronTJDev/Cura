@@ -15,6 +15,7 @@ import { logError } from '../lib/helpers/platform';
 import { useNavigation } from '@react-navigation/native';
 import { useSelector } from 'react-redux';
 import { getIsLoggedIn } from '../redux/account/selectors';
+import DobForm from '../components/Account/Forms/DobForm';
 
 const AccountStack = createNativeStackNavigator();
 
@@ -23,11 +24,9 @@ export default function AccountScreen() {
   const navigation = useNavigation();
 
   const handleAccountScreenRoutingOnLaunch = useCallback(async () => {
-    const completedFTUE = await AsyncStorage.getItem(
+    let completedFTUE = await AsyncStorage.getItem(
       AsyncStorageKeys.COMPLETED_FTUE
     );
-    console.log('completed ftue', completedFTUE);
-    console.log('isLoggedIn', isLoggedIn);
 
     if (!completedFTUE) {
       navigate(routeNames.account.ONBOARDING_MODAL);
@@ -65,6 +64,10 @@ export default function AccountScreen() {
         <AccountStack.Screen
           name={routeNames.account.SIGNIN}
           component={SigninComponent}
+        />
+        <AccountStack.Screen
+          name={routeNames.account.DOB}
+          component={DobForm}
         />
       </AccountStack.Group>
       <AccountStack.Group

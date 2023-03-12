@@ -5,7 +5,6 @@ export const getAccount = (state: RootStateOrAny) => {
 };
 
 export const getIsLoggedIn = (state: RootStateOrAny) => {
-  console.log('state', state.account.data);
   return !!state?.account?.data;
 };
 

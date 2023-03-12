@@ -8,7 +8,6 @@ import { useDispatch } from 'react-redux';
 export type NormalizedUser = {
   uid: string;
   email: string | null;
-  displayName: string | null;
   metaData: {
     lastSignInTime?: string;
     creationTime?: string;
@@ -16,14 +15,20 @@ export type NormalizedUser = {
   verified: boolean;
 };
 
-const normalizeUser = (user: FirebaseAuthTypes.User): NormalizedUser => {
+export const normalizeUser = (user: FirebaseAuthTypes.User): NormalizedUser => {
   return {
     uid: user.uid,
     email: user.email,
-    displayName: user.displayName,
     metaData: user.metadata,
     verified: user.emailVerified
   };
+};
+
+export const authErrorsFromServer = {
+  emailInUse: 'auth/email-already-in-use',
+  invalidEmail: 'auth/invalid-email',
+  weakPassword: 'auth/weak-password',
+  usernameInUse: 'User with username:'
 };
 
 export const useAuth = () => {

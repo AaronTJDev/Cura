@@ -3,6 +3,7 @@ import { StyleSheet } from 'react-native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { IconProp } from '@fortawesome/fontawesome-svg-core';
 import { FontAwesomeIcon as Icon } from '@fortawesome/react-native-fontawesome';
+import { upperFirst } from 'lodash-es';
 
 /** Components */
 import AccountScreen from '../../screens/AccountScreen';
@@ -12,6 +13,7 @@ import SymptomSearch from '../../screens/SymptomSearch';
 import { colors, fonts } from '../../lib/styles';
 import { isAndroid } from '../../lib/helpers/platform';
 import { useAuth } from '../../lib/helpers/auth';
+import { routeNames } from '../../lib/helpers/navigation';
 
 interface ITab {
   icon: IconProp;
@@ -62,7 +64,7 @@ export default function MainNavigation() {
 
   return (
     <Tab.Navigator
-      initialRouteName={'Home'}
+      initialRouteName={upperFirst(routeNames.account.ACCOUNT)}
       screenOptions={{
         tabBarActiveTintColor: '#003D2F',
         tabBarInactiveTintColor: colors.main.gray,

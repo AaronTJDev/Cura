@@ -16,7 +16,7 @@ import { fetchSuggestions } from '../lib/datasource';
 import { SEARCH_INPUT_DEBOUNCE_TIME } from '../lib/constants';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { ScreenWrapper } from '../components/utility/ScreenWrapper';
-import { pageTitle } from '../lib/helpers/navigation';
+import { screenTitles } from '../lib/helpers/navigation';
 
 interface ISearchContext {
   query: string;
@@ -93,7 +93,7 @@ const SymptomSearch = () => {
   }, [query]);
 
   return (
-    <ScreenWrapper title={pageTitle.account.SYMPTOM_SEARCH}>
+    <ScreenWrapper title={screenTitles.account.SYMPTOM_SEARCH}>
       <SearchContext.Provider
         value={{
           query,

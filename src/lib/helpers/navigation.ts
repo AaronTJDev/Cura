@@ -13,19 +13,23 @@ export const routeNames = {
     ACCOUNT: 'account',
     SIGNUP: 'signup',
     SIGNIN: 'signin',
-    ONBOARDING_MODAL: 'onboarding'
+    ONBOARDING_MODAL: 'onboarding',
+    DOB: 'dob'
   },
-  search: {}
+  search: {},
+  home: {
+    HOME: 'HOME'
+  }
 };
 
-export const pageTitle = {
+export const screenTitles = {
   account: {
     SIGNIN: 'Sign In',
     SIGNUP: 'Sign Up',
     SYMPTOM_SEARCH: 'Symptom Search',
     ACCOUNT: 'Account'
   }
-}
+};
 
 export const transparentHeaderOptions = {
   headerShown: true,

@@ -1,10 +1,11 @@
 import { Dispatch } from 'redux';
 import auth from '@react-native-firebase/auth';
+import firestore from '@react-native-firebase/firestore';
 
 /** Helpers */
 import { accountActions } from './types';
 import { asyncAction, genericAction } from '../helpers';
-import { NormalizedUser } from '../../lib/helpers/auth';
+import { NormalizedUser, normalizeUser } from '../../lib/helpers/auth';
 
 export const signin = (dispatch: Dispatch, email: string, password: string) => {
   const signinPromise = auth().signInWithEmailAndPassword(email, password);
@@ -12,15 +13,39 @@ export const signin = (dispatch: Dispatch, email: string, password: string) => {
   return signinPromise;
 };
 
-export const createUserWithEmailAndPassword = (
+export const createUserWithEmailAndPassword = async (
   dispatch: Dispatch,
   email: string,
-  password: string
-) => {
-  const accountCreatePromise = auth().createUserWithEmailAndPassword(
-    email,
-    password
-  );
+  password: string,
+  username: string
+): Promise<any> => {
+  username = username.toLowerCase();
+  email = email.toLowerCase();
+
+  const accountCreatePromise = firestore()
+    .collection('Users')
+    .where('username', '==', username)
+    .get()
+    .then((snapshot) => {
+      if (!snapshot.empty) {
+        throw new Error(`User with username: ${username} already exists`);
+      }
+      return snapshot;
+    })
+    .then(() => {
+      return auth().createUserWithEmailAndPassword(email, password);
+    })
+    .then((userData) => {
+      if (userData.user) {
+        firestore()
+          .collection('Users')
+          .add({
+            ...normalizeUser(userData.user),
+            username
+          });
+      }
+    });
+
   asyncAction(accountCreatePromise, accountActions.createAccount, dispatch);
   return accountCreatePromise;
 };

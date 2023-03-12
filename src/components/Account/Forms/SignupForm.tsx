@@ -2,7 +2,6 @@ import React, { useCallback } from 'react';
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { Formik } from 'formik';
 import { useDispatch } from 'react-redux';
-import { useNavigation } from '@react-navigation/native';
 
 /** Components */
 import { SocialCta } from './SocialCta';
@@ -17,6 +16,8 @@ import { assetResolver } from '../../../lib/assetResolver';
 import { logError } from '../../../lib/helpers/platform';
 import AsyncStorage from '@react-native-community/async-storage';
 import { AsyncStorageKeys } from '../../../lib/asyncStorage';
+import { navigate, routeNames } from '../../../lib/helpers/navigation';
+import { authErrorsFromServer } from '../../../lib/helpers/auth';
 
 interface SignupFormValues extends IndexableObject {
   email: string;
@@ -69,7 +70,6 @@ const socialCtaImages = [
 
 export const SignupForm = () => {
   const dispatch = useDispatch();
-  const navigation = useNavigation();
   const initialValues: SignupFormValues = {
     email: '',
     password: '',
@@ -78,14 +78,28 @@ export const SignupForm = () => {
 
   const handleCreateAccount = useCallback(
     async (values: SignupFormValues, { setFieldError, resetForm }: any) => {
-      const { email, password } = values;
+      const { email, password, username } = values;
       try {
-        await createUserWithEmailAndPassword(dispatch, email, password);
+        await createUserWithEmailAndPassword(
+          dispatch,
+          email,
+          password,
+          username
+        );
         await AsyncStorage.setItem(AsyncStorageKeys.COMPLETED_FTUE, 'true');
         resetForm();
-        navigation.goBack();
-      } catch (err) {
-        setFieldError('email', 'Email already in use');
+        navigate(routeNames.account.DOB);
+      } catch (err: any) {
+        if (err?.includes?.(authErrorsFromServer.emailInUse)) {
+          setFieldError('email', 'Email already in use');
+        } else if (err?.includes?.(authErrorsFromServer.invalidEmail)) {
+          setFieldError('email', `Invalid email provided: ${email}`);
+        } else if (err?.includes?.(authErrorsFromServer.weakPassword)) {
+          setFieldError('email', 'Provided password was too weak.');
+        } else if (err?.includes?.(authErrorsFromServer.usernameInUse)) {
+          setFieldError('username', 'Username already in use');
+        }
+
         logError(err);
       }
     },

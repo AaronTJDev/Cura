@@ -1,6 +1,6 @@
 import React from 'react';
 import { Animated, StyleSheet, Text, View } from 'react-native';
-import { pageTitle } from '../../lib/helpers/navigation';
+import { screenTitles } from '../../lib/helpers/navigation';
 import { colors, fonts } from '../../lib/styles';
 import { ScreenWrapper } from '../utility/ScreenWrapper';
 import { SigninForm } from './Forms/SigninForm';
@@ -27,7 +27,7 @@ const stlyes = StyleSheet.create({
 
 export default function SigninComponent() {
   return (
-    <ScreenWrapper title={pageTitle.account.SIGNIN}>
+    <ScreenWrapper title={screenTitles.account.SIGNIN}>
       <Animated.View style={stlyes.container}>
         <View style={stlyes.textContainer}>
           <Text style={stlyes.title}>Welcome Back</Text>
