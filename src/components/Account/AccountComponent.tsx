@@ -17,13 +17,13 @@ export default function AccountComponent() {
   useEffect(() => {
     AsyncStorage.getAllKeys()
       .then((keys) => {
-        console.log('keys found', keys);
         if (keys.length) {
           AsyncStorage.clear();
         }
       })
       .catch(logError);
   }, []);
+
   return (
     <ScreenWrapper title={screenTitles.account.ACCOUNT} hideBackButton={true}>
       <View style={styles.authContainer}>

@@ -17,6 +17,7 @@ import { SEARCH_INPUT_DEBOUNCE_TIME } from '../lib/constants';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { ScreenWrapper } from '../components/utility/ScreenWrapper';
 import { screenTitles } from '../lib/helpers/navigation';
+import { logError } from '../lib/helpers/platform';
 
 interface ISearchContext {
   query: string;
@@ -78,7 +79,7 @@ const SymptomSearch = () => {
           setSuggestions(res);
         })
         .catch((err) => {
-          console.log(err);
+          logError(err);
           setSuggestions([]);
         })
         .finally(() => {

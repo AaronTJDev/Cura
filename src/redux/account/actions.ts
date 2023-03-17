@@ -1,11 +1,13 @@
 import { Dispatch } from 'redux';
 import auth from '@react-native-firebase/auth';
-import firestore from '@react-native-firebase/firestore';
+import firestore, {
+  FirebaseFirestoreTypes
+} from '@react-native-firebase/firestore';
 
 /** Helpers */
 import { accountActions } from './types';
 import { asyncAction, genericAction } from '../helpers';
-import { NormalizedUser, normalizeUser } from '../../lib/helpers/auth';
+import { NormalizedAuthUser, normalizeAuthUser } from '../../lib/helpers/auth';
 
 export const signin = (dispatch: Dispatch, email: string, password: string) => {
   const signinPromise = auth().signInWithEmailAndPassword(email, password);
@@ -40,7 +42,7 @@ export const createUserWithEmailAndPassword = async (
         firestore()
           .collection('Users')
           .add({
-            ...normalizeUser(userData.user),
+            ...normalizeAuthUser(userData.user),
             username
           });
       }
@@ -50,7 +52,7 @@ export const createUserWithEmailAndPassword = async (
   return accountCreatePromise;
 };
 
-export const logout = (dispatch: Dispatch) => {
+export const logout = async (dispatch: Dispatch) => {
   const logoutPromise = auth()
     .signOut()
     .then((res) => {
@@ -63,6 +65,33 @@ export const logout = (dispatch: Dispatch) => {
   return logoutPromise;
 };
 
-export const setUser = (dispatch: Dispatch, user: NormalizedUser) => {
+export const setUser = (dispatch: Dispatch, user: NormalizedAuthUser) => {
   genericAction(accountActions.setUser, user, dispatch);
+};
+
+export const updateUserInfo = async (
+  dispatch: Dispatch,
+  uid: string,
+  userData: Partial<NormalizedAuthUser>
+): Promise<FirebaseFirestoreTypes.DocumentData> => {
+  // Reference to the Firestore collection
+  const collectionRef = firestore().collection('Users');
+  // Query to find document by uid
+  const query = collectionRef.where('uid', '==', uid);
+
+  // Update the document
+  await query.get({ source: 'server' }).then((snapshot) => {
+    const userDoc = snapshot?.docs?.[0];
+    collectionRef.doc(userDoc.id).update({
+      ...userData
+    });
+  });
+
+  // Fetch the updated user
+  const updateUserPromise = query.get({ source: 'server' }).then((snapshot) => {
+    return snapshot?.docs?.[0]?.data();
+  });
+
+  asyncAction(updateUserPromise, accountActions.updateUser, dispatch);
+  return updateUserPromise;
 };

@@ -14,10 +14,9 @@ import { IndexableObject } from '../../../lib/types/forms';
 import { colors, fonts } from '../../../lib/styles';
 import { assetResolver } from '../../../lib/assetResolver';
 import { logError } from '../../../lib/helpers/platform';
-import AsyncStorage from '@react-native-community/async-storage';
-import { AsyncStorageKeys } from '../../../lib/asyncStorage';
 import { navigate, routeNames } from '../../../lib/helpers/navigation';
 import { authErrorsFromServer } from '../../../lib/helpers/auth';
+import { toString } from 'lodash-es';
 
 interface SignupFormValues extends IndexableObject {
   email: string;
@@ -48,11 +47,13 @@ const styles = StyleSheet.create({
     fontFamily: fonts.CrimsonProLight
   },
   socialCtaGroup: {
-    flex: 1,
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    marginTop: 24
+    marginTop: 24,
+    backgroundColor: colors.main.white,
+    height: 32,
+    padding: 4
   }
 });
 
@@ -77,7 +78,7 @@ export const SignupForm = () => {
   };
 
   const handleCreateAccount = useCallback(
-    async (values: SignupFormValues, { setFieldError, resetForm }: any) => {
+    async (values: SignupFormValues, { setFieldError }: any) => {
       const { email, password, username } = values;
       try {
         await createUserWithEmailAndPassword(
@@ -86,17 +87,16 @@ export const SignupForm = () => {
           password,
           username
         );
-        await AsyncStorage.setItem(AsyncStorageKeys.COMPLETED_FTUE, 'true');
-        resetForm();
         navigate(routeNames.account.DOB);
       } catch (err: any) {
-        if (err?.includes?.(authErrorsFromServer.emailInUse)) {
+        const errMsg = toString(err);
+        if (errMsg?.includes?.(authErrorsFromServer.emailInUse)) {
           setFieldError('email', 'Email already in use');
-        } else if (err?.includes?.(authErrorsFromServer.invalidEmail)) {
+        } else if (errMsg?.includes?.(authErrorsFromServer.invalidEmail)) {
           setFieldError('email', `Invalid email provided: ${email}`);
-        } else if (err?.includes?.(authErrorsFromServer.weakPassword)) {
+        } else if (errMsg?.includes?.(authErrorsFromServer.weakPassword)) {
           setFieldError('email', 'Provided password was too weak.');
-        } else if (err?.includes?.(authErrorsFromServer.usernameInUse)) {
+        } else if (errMsg?.includes?.(authErrorsFromServer.usernameInUse)) {
           setFieldError('username', 'Username already in use');
         }
 
@@ -125,6 +125,7 @@ export const SignupForm = () => {
         const handleError = (formFieldName: string) => {
           const isTouched = touched[formFieldName];
           const hasError = errors[formFieldName];
+
           if (isTouched && hasError) {
             return errors[formFieldName];
           }

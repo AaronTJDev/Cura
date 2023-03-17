@@ -41,7 +41,7 @@ const accountReducer = (state = initialState, action: ActionPayload) => {
         loading: true
       };
     case accountActions.signin.success:
-      const user = {
+      let user = {
         email: action.payload?.user?.email,
         uid: action.payload?.user?.uid,
         isNewUser: action.payload?.additionalUserInfo?.isNewUser
@@ -87,6 +87,27 @@ const accountReducer = (state = initialState, action: ActionPayload) => {
         }
       };
     }
+    case accountActions.updateUser.start:
+      return {
+        ...state,
+        loading: true
+      };
+    case accountActions.updateUser.success:
+      const updatedUser = {
+        ...action.payload
+      };
+
+      return {
+        ...state,
+        loading: false,
+        data: updatedUser
+      };
+    case accountActions.updateUser.error:
+      return {
+        ...state,
+        loading: false,
+        error: action.payload
+      };
     default:
       return state;
   }

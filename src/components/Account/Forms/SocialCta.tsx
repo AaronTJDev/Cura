@@ -18,7 +18,7 @@ const styles = StyleSheet.create({
     },
     shadowRadius: 4,
     shadowOpacity: 0.5,
-    elevation: 1,
+    elevation: 6,
     alignItems: 'center',
     justifyContent: 'center',
     backgroundColor: 'white',

@@ -1,25 +1,36 @@
 import { useEffect } from 'react';
 import EncryptedStorage from 'react-native-encrypted-storage';
 import auth, { FirebaseAuthTypes } from '@react-native-firebase/auth';
-import { ENCRYPTED_STORAGE_KEYS } from '../encryptedStorage';
-import { setUser } from '../../redux/account/actions';
 import { useDispatch } from 'react-redux';
 
-export type NormalizedUser = {
+/** Helpers */
+import { ENCRYPTED_STORAGE_KEYS } from '../encryptedStorage';
+import { setUser } from '../../redux/account/actions';
+import { fetchUserAccount } from '../datasource';
+import { logError } from './platform';
+
+export interface NormalizedAuthUser {
   uid: string;
   email: string | null;
-  metaData: {
+  metadata: {
     lastSignInTime?: string;
     creationTime?: string;
   };
   verified: boolean;
-};
+  dateOfBirth?: string;
+}
 
-export const normalizeUser = (user: FirebaseAuthTypes.User): NormalizedUser => {
+export interface FirestoreUser extends NormalizedAuthUser {
+  dateOfBirth: string;
+}
+
+export const normalizeAuthUser = (
+  user: FirebaseAuthTypes.User
+): NormalizedAuthUser => {
   return {
     uid: user.uid,
     email: user.email,
-    metaData: user.metadata,
+    metadata: user.metadata,
     verified: user.emailVerified
   };
 };
@@ -38,7 +49,8 @@ export const useAuth = () => {
     const unsubscribe = auth().onUserChanged(async (userData) => {
       if (userData) {
         try {
-          setUser(dispatch, normalizeUser(userData));
+          const user = await fetchUserAccount(userData.uid);
+          setUser(dispatch, user);
           const token = await userData?.getIdToken(true);
 
           EncryptedStorage.setItem(
@@ -48,13 +60,13 @@ export const useAuth = () => {
             })
           );
         } catch (err) {
-          console.log(err);
+          logError(err);
         }
       }
     });
 
     return () => unsubscribe();
-  }, []);
+  }, [dispatch]);
 };
 
 export const getUserToken = async () => {
@@ -68,6 +80,6 @@ export const getUserToken = async () => {
       throw new Error('User token not found.');
     }
   } catch (err) {
-    console.log(err);
+    logError(err);
   }
 };

@@ -1,8 +1,15 @@
 import axios from 'axios';
-import env from '../../env';
+import firestore from '@react-native-firebase/firestore';
 import EncryptedStorage from 'react-native-encrypted-storage/';
+import env from '../../env';
+
+/** Components */
 import { ISymptom } from '../components/SymptomSearchComponent/SearchResultList';
 import { IDisease } from '../components/SymptomSearchComponent/DiseasesModal';
+
+/** Helpers */
+import { FirestoreUser } from './helpers/auth';
+import { logError } from './helpers/platform';
 
 const instance = axios.create({
   baseURL: env.backendConfig.hostUrl,
@@ -27,7 +34,7 @@ instance.interceptors.request.use(
       }
       return config;
     } catch (err) {
-      console.log(err);
+      logError(err);
     }
   },
   function (error) {
@@ -68,5 +75,20 @@ export const fetchRelatedDiseases = async (
     return [];
   } catch (err) {
     throw new Error(`Error fetching related diseases: ${err}`);
+  }
+};
+
+export const fetchUserAccount = async (uid: string): Promise<FirestoreUser> => {
+  try {
+    // Reference to the Firestore collection
+    const collectionRef = firestore().collection('Users');
+    // Query to find document by uid
+    const query = collectionRef.where('uid', '==', uid);
+
+    return query.get().then((snapshot) => {
+      return snapshot?.docs?.[0]?.data() as FirestoreUser;
+    });
+  } catch (err) {
+    throw new Error(`Error fetching user account: ${err}`);
   }
 };

@@ -15,7 +15,7 @@ import { logError } from '../lib/helpers/platform';
 import { useNavigation } from '@react-navigation/native';
 import { useSelector } from 'react-redux';
 import { getIsLoggedIn } from '../redux/account/selectors';
-import DobForm from '../components/Account/Forms/DobForm';
+import { DobForm } from '../components/Account/Forms/DobForm';
 
 const AccountStack = createNativeStackNavigator();
 

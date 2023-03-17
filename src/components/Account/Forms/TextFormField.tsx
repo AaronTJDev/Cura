@@ -52,7 +52,8 @@ const styles = StyleSheet.create({
     fontFamily: fonts.ComfortaaBold,
     fontSize: 12,
     lineHeight: 18,
-    color: colors.main.black
+    color: colors.main.black,
+    height: 20
   },
   labelIcon: {
     flex: 1
@@ -61,7 +62,19 @@ const styles = StyleSheet.create({
     color: colors.indicators.error,
     fontSize: 10
   },
-  placeholder: {},
+  textInput: {
+    fontSize: 14,
+    justifyContent: 'flex-start',
+    alignItems: 'flex-start',
+    flex: 1,
+    width: '100%',
+    padding: 0
+  },
+  textInputContainer: {
+    flex: 1,
+    justifyContent: 'flex-start',
+    alignItems: 'flex-start'
+  },
   visible: {
     position: 'absolute',
     width: 40,
@@ -147,12 +160,16 @@ export const TextFormField: React.FC<FormFieldProps> = ({
         </Text>
         {!!error && <Text style={styles.labelError}>{error}</Text>}
       </Animated.View>
-      <TextInput
-        onChangeText={handleChange(fieldName)}
-        onBlur={handleBlur(fieldName)}
-        placeholder={placeholder}
-        secureTextEntry={secure && shouldShowSecureEntry}
-      />
+      <View style={styles.textInputContainer}>
+        <TextInput
+          style={styles.textInput}
+          onChangeText={handleChange(fieldName)}
+          onBlur={handleBlur(fieldName)}
+          placeholder={placeholder}
+          secureTextEntry={secure && shouldShowSecureEntry}
+          autoCapitalize="none"
+        />
+      </View>
       {fieldName === signupFormFieldKeys.password && (
         <TouchableOpacity
           style={styles.visible}

@@ -15,3 +15,7 @@ export const getIsNewUser = (state: RootStateOrAny) => {
 export const getIsAccountLoading = (state: RootStateOrAny) => {
   return state?.account?.loading;
 };
+
+export const getUid = (state: RootStateOrAny) => {
+  return state?.account?.data?.uid;
+};

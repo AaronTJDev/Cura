@@ -14,10 +14,15 @@ import {
   TouchableOpacity,
   View
 } from 'react-native';
+
+/** Components */
 import { SearchContext } from '../../screens/SymptomSearch';
+
+/** Helpers */
 import { SCREEN_HEIGHT } from '../../lib/constants';
 import { fetchRelatedDiseases } from '../../lib/datasource';
 import { colors, fonts } from '../../lib/styles';
+import { logError } from '../../lib/helpers/platform';
 
 const MODAL_HEIGHT = SCREEN_HEIGHT / 5;
 
@@ -94,7 +99,7 @@ const DiseasesModal = () => {
           if (diseaseData) setDiseases(diseaseData);
         })
         .catch((err) => {
-          console.log(err);
+          logError(err);
         });
     }
   }, [selectedSymptoms]);
