@@ -35,7 +35,7 @@ export default function AccountScreen() {
     } else if (!!completedFTUE && !isLoggedIn) {
       navigate(routeNames.account.SIGNIN);
     } else {
-      navigate(routeNames.account.ACCOUNT);
+      navigate(routeNames.account.SIGNUP);
     }
   }, []);
 

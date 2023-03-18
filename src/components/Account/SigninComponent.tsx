@@ -27,7 +27,7 @@ const stlyes = StyleSheet.create({
 
 export default function SigninComponent() {
   return (
-    <ScreenWrapper title={screenTitles.account.SIGNIN}>
+    <ScreenWrapper title={screenTitles.account.SIGNIN} hideBackButton>
       <Animated.View style={stlyes.container}>
         <View style={stlyes.textContainer}>
           <Text style={stlyes.title}>Welcome Back</Text>

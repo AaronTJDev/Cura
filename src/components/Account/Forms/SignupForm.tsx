@@ -49,21 +49,24 @@ const styles = StyleSheet.create({
     fontFamily: fonts.CrimsonProLight
   },
   socialCtaGroup: {
-    flex: 1,
+    flex: 2,
     flexDirection: 'row',
     justifyContent: 'space-between',
-    alignItems: 'center'
+    alignItems: 'center',
+    padding: 4
   },
   returningUserContainer: {
-    flex: 0.5,
+    flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    top: 24
+    alignSelf: 'center'
   },
   returningUser: {
     fontSize: 10,
     fontFamily: fonts.ComfortaaMedium,
-    color: colors.main.black
+    color: colors.main.black,
+    alignItems: 'center',
+    justifyContent: 'center'
   },
   returningUserCta: {
     color: colors.main.primaryLight

@@ -27,7 +27,11 @@ const stlyes = StyleSheet.create({
 
 export default function SignupComponent() {
   return (
-    <ScreenWrapper title={screenTitles.account.SIGNUP} hideBackButton>
+    <ScreenWrapper
+      title={screenTitles.account.SIGNUP}
+      hideBackButton
+      expandedContentArea
+    >
       <Animated.View style={stlyes.container}>
         <View style={stlyes.textContainer}>
           <Text style={stlyes.title}>Let's Get Started</Text>

@@ -7,7 +7,8 @@ import {
   TouchableOpacity,
   ImageBackground,
   ScrollView,
-  ViewStyle
+  ViewStyle,
+  KeyboardAvoidingView
 } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { FontAwesomeIcon as Icon } from '@fortawesome/react-native-fontawesome';
@@ -112,7 +113,7 @@ export const ScreenWrapper: React.FC<ScreenWrapperProps> = ({
   }, [navigation, title]);
 
   return (
-    <View
+    <KeyboardAvoidingView
       style={[
         styles.container,
         {
@@ -136,6 +137,6 @@ export const ScreenWrapper: React.FC<ScreenWrapperProps> = ({
           {children}
         </ScrollView>
       </ImageBackground>
-    </View>
+    </KeyboardAvoidingView>
   );
 };
