@@ -52,6 +52,7 @@ export const useAuth = () => {
           const user = await fetchUserAccount(userData.uid);
           setUser(dispatch, user);
           const token = await userData?.getIdToken(true);
+          console.log(userData, token);
 
           EncryptedStorage.setItem(
             ENCRYPTED_STORAGE_KEYS.CURA_USER_TOKEN,

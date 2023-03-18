@@ -37,7 +37,7 @@ export default function AccountScreen() {
     } else {
       navigate(routeNames.account.ACCOUNT);
     }
-  }, [isLoggedIn]);
+  }, []);
 
   useEffect(() => {
     handleAccountScreenRoutingOnLaunch().catch(logError);

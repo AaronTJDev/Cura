@@ -33,27 +33,40 @@ const styles = StyleSheet.create({
     backgroundColor: colors.main.primary,
     borderRadius: 14,
     justifyContent: 'center',
-    alignItems: 'center',
-    marginTop: 16
+    alignItems: 'center'
   },
   submitText: {
     fontFamily: fonts.ComfortaaBold,
     fontSize: 24,
     color: colors.main.white
   },
+  continueUsingTextContainer: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center'
+  },
   continueUsingText: {
-    alignSelf: 'center',
-    marginTop: 24,
     fontFamily: fonts.CrimsonProLight
   },
   socialCtaGroup: {
+    flex: 1,
     flexDirection: 'row',
     justifyContent: 'space-between',
+    alignItems: 'center'
+  },
+  returningUserContainer: {
+    flex: 0.5,
+    justifyContent: 'center',
     alignItems: 'center',
-    marginTop: 24,
-    backgroundColor: colors.main.white,
-    height: 32,
-    padding: 4
+    top: 24
+  },
+  returningUser: {
+    fontSize: 10,
+    fontFamily: fonts.ComfortaaMedium,
+    color: colors.main.black
+  },
+  returningUserCta: {
+    color: colors.main.primaryLight
   }
 });
 
@@ -105,6 +118,10 @@ export const SignupForm = () => {
     },
     [dispatch]
   );
+
+  const navigateToSignIn = () => {
+    navigate(routeNames.account.SIGNIN);
+  };
 
   return (
     <Formik
@@ -167,12 +184,23 @@ export const SignupForm = () => {
             >
               <Text style={styles.submitText}>Continue</Text>
             </TouchableOpacity>
-            <Text style={styles.continueUsingText}>Or continue using</Text>
+            <View style={styles.continueUsingTextContainer}>
+              <Text style={styles.continueUsingText}>Or continue using</Text>
+            </View>
             <View style={styles.socialCtaGroup}>
               {socialCtaImages.map((image, index) => (
                 <SocialCta key={`social-cta-${index}`} image={image} />
               ))}
             </View>
+            <TouchableOpacity
+              style={styles.returningUserContainer}
+              onPress={navigateToSignIn}
+            >
+              <Text style={styles.returningUser}>
+                Already have an account?
+                <Text style={styles.returningUserCta}> Sign In</Text>
+              </Text>
+            </TouchableOpacity>
           </View>
         );
       }}

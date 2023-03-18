@@ -8,12 +8,13 @@ import { useNavigation } from '@react-navigation/native';
 import { SocialCta } from './SocialCta';
 
 /** Helpers */
-import { createUserWithEmailAndPassword } from '../../../redux/account/actions';
+import { signin } from '../../../redux/account/actions';
 import { SigninSchema } from '../../../lib/validationSchemas';
 import { TextFormField } from './TextFormField';
 import { IndexableObject } from '../../../lib/types/forms';
 import { colors, fonts } from '../../../lib/styles';
 import { assetResolver } from '../../../lib/assetResolver';
+import { navigate, routeNames } from '../../../lib/helpers/navigation';
 
 interface SigninFormValues extends IndexableObject {
   email: string;
@@ -30,25 +31,39 @@ const styles = StyleSheet.create({
     backgroundColor: colors.main.primary,
     borderRadius: 14,
     justifyContent: 'center',
-    alignItems: 'center',
-    marginTop: 16
+    alignItems: 'center'
   },
   submitText: {
     fontFamily: fonts.ComfortaaBold,
     fontSize: 24,
     color: colors.main.white
   },
+  continueUsingTextContainer: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center'
+  },
   continueUsingText: {
-    alignSelf: 'center',
-    marginTop: 24,
     fontFamily: fonts.CrimsonProLight
   },
   socialCtaGroup: {
     flex: 1,
     flexDirection: 'row',
     justifyContent: 'space-between',
-    alignItems: 'center',
-    marginTop: 24
+    alignItems: 'center'
+  },
+  newUserContainer: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center'
+  },
+  newUser: {
+    fontSize: 10,
+    fontFamily: fonts.ComfortaaMedium,
+    color: colors.main.black
+  },
+  newUserCta: {
+    color: colors.main.primaryLight
   }
 });
 
@@ -73,11 +88,11 @@ export const SigninForm = () => {
     username: ''
   };
 
-  const handleCreateAccount = useCallback(
+  const handleSignIn = useCallback(
     async (values: SigninFormValues, { setFieldError, resetForm }: any) => {
       const { email, password } = values;
       try {
-        await createUserWithEmailAndPassword(dispatch, email, password);
+        await signin(dispatch, email, password);
         resetForm();
         navigation.goBack();
       } catch (err) {
@@ -88,10 +103,14 @@ export const SigninForm = () => {
     [dispatch]
   );
 
+  const navigateToSignUp = () => {
+    navigate(routeNames.account.SIGNUP);
+  };
+
   return (
     <Formik
       initialValues={initialValues}
-      onSubmit={handleCreateAccount}
+      onSubmit={handleSignIn}
       validationSchema={SigninSchema}
       validateOnChange={true}
       validateOnBlur={true}
@@ -117,15 +136,6 @@ export const SigninForm = () => {
             <TextFormField
               handleChange={handleChange}
               handleBlur={handleBlur}
-              fieldName={signupFormFieldKeys.username}
-              value={values[signupFormFieldKeys.username]}
-              error={handleError(signupFormFieldKeys.username)}
-              placeholder="Enter your username"
-              icon={'user'}
-            />
-            <TextFormField
-              handleChange={handleChange}
-              handleBlur={handleBlur}
               fieldName={signupFormFieldKeys.email}
               value={values[signupFormFieldKeys.email]}
               error={handleError(signupFormFieldKeys.email)}
@@ -148,12 +158,23 @@ export const SigninForm = () => {
             >
               <Text style={styles.submitText}>Continue</Text>
             </TouchableOpacity>
-            <Text style={styles.continueUsingText}>Or continue using</Text>
+            <View style={styles.continueUsingTextContainer}>
+              <Text style={styles.continueUsingText}>Or continue using</Text>
+            </View>
             <View style={styles.socialCtaGroup}>
               {socialCtaImages.map((image, index) => (
                 <SocialCta key={`social-cta-${index}`} image={image} />
               ))}
             </View>
+            <TouchableOpacity
+              style={styles.newUserContainer}
+              onPress={navigateToSignUp}
+            >
+              <Text style={styles.newUser}>
+                Don't have an account?
+                <Text style={styles.newUserCta}> Register Now</Text>
+              </Text>
+            </TouchableOpacity>
           </View>
         );
       }}
