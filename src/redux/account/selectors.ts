@@ -1,6 +1,7 @@
 import { RootStateOrAny } from 'react-redux';
+import { FirestoreUser } from '../../lib/helpers/auth';
 
-export const getAccount = (state: RootStateOrAny) => {
+export const getAccount = (state: RootStateOrAny): FirestoreUser => {
   return state?.account?.data;
 };
 

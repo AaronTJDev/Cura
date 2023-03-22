@@ -13,7 +13,9 @@ import {
   faEnvelope,
   faLock,
   faEye,
-  faEyeSlash
+  faEyeSlash,
+  faWallet,
+  faChevronRight
 } from '@fortawesome/free-solid-svg-icons';
 
 export const initiateIconLibrary = () => {
@@ -32,6 +34,8 @@ export const initiateIconLibrary = () => {
     faEnvelope,
     faLock,
     faEye,
-    faEyeSlash
+    faEyeSlash,
+    faWallet,
+    faChevronRight
   );
 };

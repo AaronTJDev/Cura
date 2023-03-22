@@ -4,6 +4,8 @@ export const colors = {
     primary: '#310428',
     primaryDark: '#564439',
     secondary: '#DAC6BE',
+    secondaryDark: '#7C6354',
+    secondaryLight: 'rgba(218,198,190,.1)',
     black: '#070707',
     white: '#FFFFFF',
     gray: '#F4F6F6',
@@ -59,4 +61,15 @@ export const fonts = {
   NunitoSansRegular: 'NunitoSans-Regular',
   NunitoSansSemiBold: 'NunitoSans-SemiBold',
   NunitoSansSemiBoldItalic: 'NunitoSans-SemiBoldItalic'
+};
+
+export const shadow = {
+  shadowColor: '#000',
+  shadowOffset: {
+    width: 0,
+    height: 1
+  },
+  shadowOpacity: 0.05,
+  shadowRadius: 4,
+  elevation: 2
 };

@@ -2,7 +2,7 @@ import React, { useCallback, useEffect } from 'react';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
 /** Components */
-import AccountComponent from '../components/Account/AccountComponent';
+import { AccountComponent } from '../components/Account/AccountComponent';
 import SignupComponent from '../components/Account/SignupComponent';
 import SigninComponent from '../components/Account/SigninComponent';
 
@@ -35,7 +35,7 @@ export default function AccountScreen() {
     } else if (!!completedFTUE && !isLoggedIn) {
       navigate(routeNames.account.SIGNIN);
     } else {
-      navigate(routeNames.account.SIGNUP);
+      navigate(routeNames.account.ACCOUNT);
     }
   }, []);
 

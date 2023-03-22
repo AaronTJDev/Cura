@@ -22,6 +22,7 @@ export interface NormalizedAuthUser {
 
 export interface FirestoreUser extends NormalizedAuthUser {
   dateOfBirth: string;
+  username: string;
 }
 
 export const normalizeAuthUser = (
