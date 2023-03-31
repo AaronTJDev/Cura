@@ -12,9 +12,7 @@ import { FontAwesomeIcon as Icon } from '@fortawesome/react-native-fontawesome';
 
 import { colors, fonts } from '../../../lib/styles';
 import { upperFirst } from 'lodash-es';
-import { IconProp } from '@fortawesome/fontawesome-svg-core';
 import { signupFormFieldKeys } from './SignupForm';
-import { alphanumericRegex } from '../../../lib/constants';
 
 interface FormFieldProps {
   handleChange: FieldInputProps<any>['onChange'];
@@ -27,19 +25,15 @@ interface FormFieldProps {
     | FormikErrors<any>[]
     | undefined;
   fieldName: string;
-  placeholder: string;
-  icon: IconProp;
+  placeholder?: string;
   secure?: boolean;
-  alphanumericOnly?: boolean;
+  disabled?: boolean;
+  label: string;
 }
 
 const styles = StyleSheet.create({
   container: {
     height: 68,
-    borderRadius: 14,
-    borderColor: colors.main.gray25,
-    borderWidth: 1,
-    padding: 12,
     marginBottom: 16
   },
   labelGroup: {
@@ -74,8 +68,14 @@ const styles = StyleSheet.create({
   },
   textInputContainer: {
     flex: 1,
+    width: '96%',
+    left: '2%',
     justifyContent: 'flex-start',
-    alignItems: 'flex-start'
+    alignItems: 'flex-start',
+    borderRadius: 14,
+    borderColor: colors.main.gray25,
+    borderWidth: 1,
+    padding: 12
   },
   visible: {
     position: 'absolute',
@@ -84,20 +84,20 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'flex-end',
     margin: 12,
-    right: 0
+    right: 12
   }
 });
 
-export const TextFormField: React.FC<FormFieldProps> = ({
+export const TextFormFieldB: React.FC<FormFieldProps> = ({
   handleBlur,
   handleChange,
   fieldName,
   placeholder,
-  icon,
   secure,
   error,
-  alphanumericOnly,
-  value
+  disabled,
+  value,
+  label
 }) => {
   const [shouldShowSecureEntry, setShouldShowSecureEntry] =
     useState<boolean>(true);
@@ -132,16 +132,6 @@ export const TextFormField: React.FC<FormFieldProps> = ({
     setShouldShowSecureEntry(!shouldShowSecureEntry);
   };
 
-  const handleChangeText = (text: string) => {
-    if (alphanumericOnly) {
-      if (alphanumericRegex.test(text) || text === '') {
-        handleChange(fieldName)(text);
-      }
-    } else {
-      handleChange(fieldName)(text);
-    }
-  };
-
   useEffect(() => {
     if (error) {
       shake();
@@ -156,37 +146,35 @@ export const TextFormField: React.FC<FormFieldProps> = ({
           { transform: [{ translateX: shakeAnimation }] }
         ]}
       >
-        <Icon
-          style={styles.labelIcon}
-          icon={icon}
-          color={!error ? colors.main.secondary : colors.indicators.error}
-          size={14}
-          secondaryColor={colors.main.black}
-          secondaryOpacity={1}
-        />
         <Text
           style={[
             styles.label,
             error ? { color: colors.indicators.error } : {}
           ]}
         >
-          {upperFirst(fieldName)}
+          {upperFirst(label)}
         </Text>
         {!!error && <Text style={styles.labelError}>{error}</Text>}
       </Animated.View>
-      <View style={styles.textInputContainer}>
+      <View
+        style={[
+          styles.textInputContainer,
+          disabled ? { backgroundColor: colors.main.gray10 } : {}
+        ]}
+      >
         <TextInput
           style={styles.textInput}
-          onChangeText={handleChangeText}
+          onChangeText={handleChange(fieldName)}
           onBlur={handleBlur(fieldName)}
           placeholder={placeholder}
           secureTextEntry={secure && shouldShowSecureEntry}
           autoCapitalize="none"
-          autoComplete={'off'}
+          editable={disabled ? false : true}
+          selectTextOnFocus={disabled ? true : true}
           value={value}
         />
       </View>
-      {fieldName === signupFormFieldKeys.password && (
+      {fieldName.toLowerCase().includes(signupFormFieldKeys.password) && (
         <TouchableOpacity
           style={styles.visible}
           onPress={toggleSecureVisibility}

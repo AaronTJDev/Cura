@@ -6,7 +6,7 @@ export const getAccount = (state: RootStateOrAny): FirestoreUser => {
 };
 
 export const getIsLoggedIn = (state: RootStateOrAny) => {
-  return !!state?.account?.data;
+  return !!state?.account?.data?.email;
 };
 
 export const getIsNewUser = (state: RootStateOrAny) => {

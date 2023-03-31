@@ -1,21 +1,22 @@
 import React, { useCallback, useEffect } from 'react';
+import AsyncStorage from '@react-native-community/async-storage';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
 /** Components */
 import { AccountComponent } from '../components/Account/AccountComponent';
+import { AccountEdit } from '../components/Account/Forms/AccountEdit';
+import { DobForm } from '../components/Account/Forms/DobForm';
+import { OnboardingModal } from '../components/Account/Onboarding/OnboardingModal';
 import SignupComponent from '../components/Account/SignupComponent';
 import SigninComponent from '../components/Account/SigninComponent';
 
 /** Helpers */
-import { navigate, routeNames } from '../lib/helpers/navigation';
-import { OnboardingModal } from '../components/Account/Onboarding/OnboardingModal';
-import AsyncStorage from '@react-native-community/async-storage';
+import { navigate, navigationRef, routeNames } from '../lib/helpers/navigation';
 import { AsyncStorageKeys } from '../lib/asyncStorage';
 import { logError } from '../lib/helpers/platform';
 import { useNavigation } from '@react-navigation/native';
 import { useSelector } from 'react-redux';
 import { getIsLoggedIn } from '../redux/account/selectors';
-import { DobForm } from '../components/Account/Forms/DobForm';
 
 const AccountStack = createNativeStackNavigator();
 
@@ -23,21 +24,30 @@ export default function AccountScreen() {
   const isLoggedIn = useSelector(getIsLoggedIn);
   const navigation = useNavigation();
 
+  const isSignUpScreens = () => {
+    return (
+      navigationRef.getCurrentRoute()?.name === 'dob' ||
+      navigationRef.getCurrentRoute()?.name === 'onboarding'
+    );
+  };
+
   const handleAccountScreenRoutingOnLaunch = useCallback(async () => {
     let completedFTUE = await AsyncStorage.getItem(
       AsyncStorageKeys.COMPLETED_FTUE
     );
 
-    if (!completedFTUE) {
-      navigate(routeNames.account.ONBOARDING_MODAL);
-    } else if (!completedFTUE && !isLoggedIn) {
-      navigate(routeNames.account.SIGNUP);
-    } else if (!!completedFTUE && !isLoggedIn) {
-      navigate(routeNames.account.SIGNIN);
-    } else {
-      navigate(routeNames.account.ACCOUNT);
+    if (!isSignUpScreens()) {
+      if (!completedFTUE) {
+        navigate(routeNames.account.ONBOARDING_MODAL);
+      } else if (!completedFTUE && !isLoggedIn) {
+        navigate(routeNames.account.SIGNUP);
+      } else if (!!completedFTUE && !isLoggedIn) {
+        navigate(routeNames.account.SIGNIN);
+      } else {
+        navigate(routeNames.account.ACCOUNT);
+      }
     }
-  }, []);
+  }, [isLoggedIn, navigation]);
 
   useEffect(() => {
     handleAccountScreenRoutingOnLaunch().catch(logError);
@@ -68,6 +78,10 @@ export default function AccountScreen() {
         <AccountStack.Screen
           name={routeNames.account.DOB}
           component={DobForm}
+        />
+        <AccountStack.Screen
+          name={routeNames.account.EDIT}
+          component={AccountEdit}
         />
       </AccountStack.Group>
       <AccountStack.Group

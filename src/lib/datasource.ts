@@ -81,7 +81,7 @@ export const fetchRelatedDiseases = async (
 export const fetchUserAccount = async (uid: string): Promise<FirestoreUser> => {
   try {
     // Reference to the Firestore collection
-    const collectionRef = firestore().collection('Users');
+    const collectionRef = firestore().collection('users');
     // Query to find document by uid
     const query = collectionRef.where('uid', '==', uid);
 

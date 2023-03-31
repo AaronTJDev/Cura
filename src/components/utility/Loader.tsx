@@ -1,9 +1,5 @@
 import React from 'react';
 import { ActivityIndicator, StyleSheet } from 'react-native';
-import { useSelector } from 'react-redux';
-
-/** Helpers */
-import { getIsAccountLoading } from '../../redux/account/selectors';
 
 const styles = StyleSheet.create({
   loader: {
@@ -14,8 +10,10 @@ const styles = StyleSheet.create({
   }
 });
 
-export default function Loader() {
-  const isAccountLoading = useSelector(getIsAccountLoading);
-
-  return <>{isAccountLoading && <ActivityIndicator style={styles.loader} />}</>;
+interface LoaderProps {
+  isLoading: boolean;
 }
+
+export const Loader: React.FC<LoaderProps> = ({ isLoading }) => {
+  return <>{isLoading && <ActivityIndicator style={styles.loader} />}</>;
+};

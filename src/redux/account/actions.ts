@@ -3,11 +3,13 @@ import auth from '@react-native-firebase/auth';
 import firestore, {
   FirebaseFirestoreTypes
 } from '@react-native-firebase/firestore';
+import EncryptedStorage from 'react-native-encrypted-storage';
 
 /** Helpers */
 import { accountActions } from './types';
 import { asyncAction, genericAction } from '../helpers';
 import { NormalizedAuthUser, normalizeAuthUser } from '../../lib/helpers/auth';
+import { ENCRYPTED_STORAGE_KEYS } from '../../lib/encryptedStorage';
 
 export const signin = (dispatch: Dispatch, email: string, password: string) => {
   const signinPromise = auth().signInWithEmailAndPassword(email, password);
@@ -25,23 +27,32 @@ export const createUserWithEmailAndPassword = async (
   email = email.toLowerCase();
 
   const accountCreatePromise = firestore()
-    .collection('Users')
+    .collection('users')
     .where('username', '==', username)
     .get()
     .then((snapshot) => {
+      console.log('found snapshot', snapshot);
       if (!snapshot.empty) {
         throw new Error(`User with username: ${username} already exists`);
       }
       return snapshot;
     })
     .then(() => {
-      return auth().createUserWithEmailAndPassword(email, password);
+      console.log('creating user');
+      return auth()
+        .createUserWithEmailAndPassword(email, password)
+        .then((user) => {
+          user.user.sendEmailVerification();
+          return user;
+        });
     })
     .then((userData) => {
+      console.log('trying to create user');
       if (userData.user) {
         firestore()
-          .collection('Users')
-          .add({
+          .collection('users')
+          .doc(userData.user.uid)
+          .set({
             ...normalizeAuthUser(userData.user),
             username
           });
@@ -57,6 +68,7 @@ export const logout = async (dispatch: Dispatch) => {
     .signOut()
     .then((res) => {
       console.log('result from logout', res);
+      EncryptedStorage.removeItem(ENCRYPTED_STORAGE_KEYS.CURA_USER_TOKEN);
     })
     .catch((err) => {
       console.log('error from logout', err);
@@ -75,7 +87,7 @@ export const updateUserInfo = async (
   userData: Partial<NormalizedAuthUser>
 ): Promise<FirebaseFirestoreTypes.DocumentData> => {
   // Reference to the Firestore collection
-  const collectionRef = firestore().collection('Users');
+  const collectionRef = firestore().collection('users');
   // Query to find document by uid
   const query = collectionRef.where('uid', '==', uid);
 

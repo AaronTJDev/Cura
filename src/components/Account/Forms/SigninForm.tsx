@@ -15,6 +15,7 @@ import { IndexableObject } from '../../../lib/types/forms';
 import { colors, fonts } from '../../../lib/styles';
 import { assetResolver } from '../../../lib/assetResolver';
 import { navigate, routeNames } from '../../../lib/helpers/navigation';
+import { toString } from 'lodash';
 
 interface SigninFormValues extends IndexableObject {
   email: string;
@@ -97,8 +98,18 @@ export const SigninForm = () => {
         resetForm();
         navigation.goBack();
       } catch (err) {
-        setFieldError('email', 'Email already in use');
-        throw err;
+        const stringErr = toString(err);
+        if (stringErr.includes('[auth/wrong-password]')) {
+          setFieldError(
+            signupFormFieldKeys.password,
+            'Incorrect credentials provided'
+          );
+        } else if (stringErr.includes('[auth/user-not-found]')) {
+          setFieldError(
+            signupFormFieldKeys.email,
+            'Credentials provided were not found or incorrect.'
+          );
+        }
       }
     },
     [dispatch]

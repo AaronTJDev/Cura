@@ -8,7 +8,7 @@ import { navigationRef } from './lib/helpers/navigation';
 
 /** Components */
 import MainNavigation from './components/MainNavigation';
-import Loader from './components/utility/Loader';
+import { GlobalLoader } from './components/utility/GlobalLoader';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
 const App = () => {
@@ -17,7 +17,7 @@ const App = () => {
       <Provider store={store}>
         <SafeAreaView style={{ flex: 1 }}>
           <MainNavigation />
-          <Loader />
+          <GlobalLoader />
         </SafeAreaView>
       </Provider>
     </NavigationContainer>

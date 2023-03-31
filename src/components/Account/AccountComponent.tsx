@@ -1,13 +1,18 @@
 import React from 'react';
 import { Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
-import { useSelector } from 'react-redux';
-import { screenTitles } from '../../lib/helpers/navigation';
+import { useDispatch, useSelector } from 'react-redux';
+import {
+  navigate,
+  routeNames,
+  screenTitles
+} from '../../lib/helpers/navigation';
 import { colors, fonts, shadow } from '../../lib/styles';
 import { getAccount } from '../../redux/account/selectors';
 import { FontAwesomeIcon as Icon } from '@fortawesome/react-native-fontawesome';
 
 /** Helpers */
 import { ScreenWrapper } from '../utility/ScreenWrapper';
+import { logout } from '../../redux/account/actions';
 
 const styles = StyleSheet.create({
   container: {
@@ -124,7 +129,7 @@ const styles = StyleSheet.create({
     color: colors.main.gray5
   },
   subscriptionTextBold: {
-    fontFamily: fonts.CrimsonProBold
+    fontFamily: fonts.CrimsonProRegular
   },
   divider: {
     width: '80%',
@@ -148,6 +153,7 @@ const styles = StyleSheet.create({
 });
 
 export const AccountComponent = () => {
+  const dispatch = useDispatch();
   const { username, dateOfBirth } = useSelector(getAccount);
 
   const getAge = () => {
@@ -164,6 +170,14 @@ export const AccountComponent = () => {
     }
 
     return age + ' years old';
+  };
+
+  const navigateToGeneralSettings = () => {
+    navigate(routeNames.account.EDIT);
+  };
+
+  const signout = () => {
+    logout(dispatch).catch();
   };
 
   // @todo Refactor into smaller components
@@ -193,7 +207,10 @@ export const AccountComponent = () => {
             </View>
           </View>
         </View>
-        <TouchableOpacity style={styles.settingsContainer}>
+        <TouchableOpacity
+          style={styles.settingsContainer}
+          onPress={navigateToGeneralSettings}
+        >
           <View style={styles.settingsIconContainer}>
             <Icon
               style={styles.settingsIcon}
@@ -203,6 +220,25 @@ export const AccountComponent = () => {
             />
           </View>
           <Text style={styles.settingsText}>General Settings</Text>
+          <View style={styles.settingsChevron}>
+            <Icon
+              style={styles.settingsIcon}
+              icon={'chevron-right'}
+              color={colors.main.secondaryDark}
+              size={18}
+            />
+          </View>
+        </TouchableOpacity>
+        <TouchableOpacity style={styles.settingsContainer} onPress={signout}>
+          <View style={styles.settingsIconContainer}>
+            <Icon
+              style={styles.settingsIcon}
+              icon={'user'}
+              color={colors.main.secondaryDark}
+              size={18}
+            />
+          </View>
+          <Text style={styles.settingsText}>Signout</Text>
           <View style={styles.settingsChevron}>
             <Icon
               style={styles.settingsIcon}

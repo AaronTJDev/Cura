@@ -4,6 +4,8 @@ import { Dimensions } from 'react-native';
 export const SCREEN_HEIGHT = toSafeInteger(Dimensions.get('screen').height);
 export const SCREEN_WIDTH = toSafeInteger(Dimensions.get('screen').width);
 
+export const alphanumericRegex = /^[a-z0-9]+$/i;
+
 export const SEARCH_INPUT_DEBOUNCE_TIME = 300;
 
 export enum FOOD_CATEGORY_TITLES {

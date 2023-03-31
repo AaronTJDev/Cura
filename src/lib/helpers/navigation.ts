@@ -14,7 +14,8 @@ export const routeNames = {
     SIGNUP: 'signup',
     SIGNIN: 'signin',
     ONBOARDING_MODAL: 'onboarding',
-    DOB: 'dob'
+    DOB: 'dob',
+    EDIT: 'account-edit'
   },
   search: {},
   home: {

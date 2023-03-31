@@ -131,8 +131,8 @@ export const SignupForm = () => {
       initialValues={initialValues}
       onSubmit={handleCreateAccount}
       validationSchema={SignupSchema}
-      validateOnChange={true}
-      validateOnBlur={true}
+      validateOnBlur
+      validateOnChange
     >
       {({
         handleChange,
@@ -161,6 +161,7 @@ export const SignupForm = () => {
               error={handleError(signupFormFieldKeys.username)}
               placeholder="Enter your username"
               icon={'user'}
+              alphanumericOnly
             />
             <TextFormField
               handleChange={handleChange}

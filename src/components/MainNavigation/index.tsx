@@ -1,9 +1,12 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { StyleSheet } from 'react-native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { IconProp } from '@fortawesome/fontawesome-svg-core';
 import { FontAwesomeIcon as Icon } from '@fortawesome/react-native-fontawesome';
 import { upperFirst } from 'lodash-es';
+import EncryptedStorage from 'react-native-encrypted-storage';
+import auth from '@react-native-firebase/auth';
+import { useDispatch } from 'react-redux';
 
 /** Components */
 import AccountScreen from '../../screens/AccountScreen';
@@ -11,9 +14,11 @@ import SymptomSearch from '../../screens/SymptomSearch';
 
 /** Helpers */
 import { colors, fonts } from '../../lib/styles';
-import { isAndroid } from '../../lib/helpers/platform';
-import { useAuth } from '../../lib/helpers/auth';
+import { isAndroid, logError } from '../../lib/helpers/platform';
 import { routeNames } from '../../lib/helpers/navigation';
+import { ENCRYPTED_STORAGE_KEYS } from '../../lib/encryptedStorage';
+import { setUser } from '../../redux/account/actions';
+import { fetchUserAccount } from '../../lib/datasource';
 
 interface ITab {
   icon: IconProp;
@@ -37,7 +42,32 @@ const EmptyRender = () => <></>;
 
 export default function MainNavigation() {
   const Tab = createBottomTabNavigator();
-  useAuth();
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    console.log('mounting root');
+    const unsubscribe = auth().onUserChanged(async (userData) => {
+      if (userData) {
+        try {
+          const user = await fetchUserAccount(userData.uid);
+          // console.log('USER IS EQUAL TO REDUX', isEqual(user, reduxUser), user, reduxUser);
+          await setUser(dispatch, user);
+          const token = await userData?.getIdToken(true);
+
+          await EncryptedStorage.setItem(
+            ENCRYPTED_STORAGE_KEYS.CURA_USER_TOKEN,
+            JSON.stringify({
+              token: token
+            })
+          );
+        } catch (err) {
+          logError(err);
+        }
+      }
+    });
+
+    return () => unsubscribe();
+  }, []);
 
   const tabs = [
     {
