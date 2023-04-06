@@ -1,5 +1,7 @@
 import axios from 'axios';
-import firestore from '@react-native-firebase/firestore';
+import firestore, {
+  FirebaseFirestoreTypes
+} from '@react-native-firebase/firestore';
 import EncryptedStorage from 'react-native-encrypted-storage/';
 import env from '../../env';
 
@@ -8,7 +10,6 @@ import { ISymptom } from '../components/SymptomSearchComponent/SearchResultList'
 import { IDisease } from '../components/SymptomSearchComponent/DiseasesModal';
 
 /** Helpers */
-import { FirestoreUser } from './helpers/auth';
 import { logError } from './helpers/platform';
 
 const instance = axios.create({
@@ -78,16 +79,17 @@ export const fetchRelatedDiseases = async (
   }
 };
 
-export const fetchUserAccount = async (uid: string): Promise<FirestoreUser> => {
+export const fetchUserAccount = async (
+  uid: string
+): Promise<FirebaseFirestoreTypes.DocumentData | undefined> => {
   try {
     // Reference to the Firestore collection
-    const collectionRef = firestore().collection('users');
-    // Query to find document by uid
-    const query = collectionRef.where('uid', '==', uid);
+    const collectionRef = firestore().collection('users').doc(uid);
 
-    return query.get().then((snapshot) => {
-      return snapshot?.docs?.[0]?.data() as FirestoreUser;
-    });
+    const doc = await collectionRef.get();
+    const user = doc.data() || {};
+
+    return user;
   } catch (err) {
     throw new Error(`Error fetching user account: ${err}`);
   }

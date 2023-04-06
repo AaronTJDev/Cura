@@ -18,17 +18,26 @@ import { useNavigation } from '@react-navigation/native';
 import { useSelector } from 'react-redux';
 import { getIsLoggedIn } from '../redux/account/selectors';
 
-const AccountStack = createNativeStackNavigator();
+export type AccountStackParamList = {
+  dob: {
+    user: any;
+  };
+  account: undefined;
+  signup: undefined;
+  signin: undefined;
+  account_edit: undefined;
+  onboarding: undefined;
+};
+
+const AccountStack = createNativeStackNavigator<AccountStackParamList>();
 
 export default function AccountScreen() {
   const isLoggedIn = useSelector(getIsLoggedIn);
   const navigation = useNavigation();
 
   const isSignUpScreens = () => {
-    return (
-      navigationRef.getCurrentRoute()?.name === 'dob' ||
-      navigationRef.getCurrentRoute()?.name === 'onboarding'
-    );
+    const currentRoute = navigationRef.getCurrentRoute()?.name;
+    return currentRoute === 'dob' || currentRoute === 'onboarding';
   };
 
   const handleAccountScreenRoutingOnLaunch = useCallback(async () => {

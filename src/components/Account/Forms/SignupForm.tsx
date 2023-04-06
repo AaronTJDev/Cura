@@ -15,7 +15,10 @@ import { colors, fonts } from '../../../lib/styles';
 import { assetResolver } from '../../../lib/assetResolver';
 import { logError } from '../../../lib/helpers/platform';
 import { navigate, routeNames } from '../../../lib/helpers/navigation';
-import { authErrorsFromServer } from '../../../lib/helpers/auth';
+import {
+  authErrorsFromServer,
+  normalizeAuthUser
+} from '../../../lib/helpers/auth';
 import { toString } from 'lodash-es';
 
 interface SignupFormValues extends IndexableObject {
@@ -97,13 +100,14 @@ export const SignupForm = () => {
     async (values: SignupFormValues, { setFieldError }: any) => {
       const { email, password, username } = values;
       try {
-        await createUserWithEmailAndPassword(
+        const user = await createUserWithEmailAndPassword(
           dispatch,
           email,
           password,
           username
         );
-        navigate(routeNames.account.DOB);
+
+        navigate(routeNames.account.DOB, { user: normalizeAuthUser(user) });
       } catch (err: any) {
         const errMsg = toString(err);
         if (errMsg?.includes?.(authErrorsFromServer.emailInUse)) {

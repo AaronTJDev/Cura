@@ -1,5 +1,5 @@
 import { Dispatch } from 'redux';
-import auth from '@react-native-firebase/auth';
+import auth, { FirebaseAuthTypes } from '@react-native-firebase/auth';
 import firestore, {
   FirebaseFirestoreTypes
 } from '@react-native-firebase/firestore';
@@ -8,8 +8,9 @@ import EncryptedStorage from 'react-native-encrypted-storage';
 /** Helpers */
 import { accountActions } from './types';
 import { asyncAction, genericAction } from '../helpers';
-import { NormalizedAuthUser, normalizeAuthUser } from '../../lib/helpers/auth';
+import { FirestoreUser, handleCheckUsername } from '../../lib/helpers/auth';
 import { ENCRYPTED_STORAGE_KEYS } from '../../lib/encryptedStorage';
+import { logError } from '../../lib/helpers/platform';
 
 export const signin = (dispatch: Dispatch, email: string, password: string) => {
   const signinPromise = auth().signInWithEmailAndPassword(email, password);
@@ -22,42 +23,20 @@ export const createUserWithEmailAndPassword = async (
   email: string,
   password: string,
   username: string
-): Promise<any> => {
+): Promise<FirebaseAuthTypes.User> => {
   username = username.toLowerCase();
   email = email.toLowerCase();
 
-  const accountCreatePromise = firestore()
-    .collection('users')
-    .where('username', '==', username)
-    .get()
-    .then((snapshot) => {
-      console.log('found snapshot', snapshot);
-      if (!snapshot.empty) {
-        throw new Error(`User with username: ${username} already exists`);
+  const accountCreatePromise = handleCheckUsername(username).then(
+    (userExists) => {
+      if (!userExists) {
+        return auth()
+          .createUserWithEmailAndPassword(email, password)
+          .then((res) => res.user);
       }
-      return snapshot;
-    })
-    .then(() => {
-      console.log('creating user');
-      return auth()
-        .createUserWithEmailAndPassword(email, password)
-        .then((user) => {
-          user.user.sendEmailVerification();
-          return user;
-        });
-    })
-    .then((userData) => {
-      console.log('trying to create user');
-      if (userData.user) {
-        firestore()
-          .collection('users')
-          .doc(userData.user.uid)
-          .set({
-            ...normalizeAuthUser(userData.user),
-            username
-          });
-      }
-    });
+      throw new Error('User not found');
+    }
+  );
 
   asyncAction(accountCreatePromise, accountActions.createAccount, dispatch);
   return accountCreatePromise;
@@ -66,43 +45,50 @@ export const createUserWithEmailAndPassword = async (
 export const logout = async (dispatch: Dispatch) => {
   const logoutPromise = auth()
     .signOut()
-    .then((res) => {
-      console.log('result from logout', res);
+    .then(() => {
       EncryptedStorage.removeItem(ENCRYPTED_STORAGE_KEYS.CURA_USER_TOKEN);
     })
     .catch((err) => {
-      console.log('error from logout', err);
+      logError(err);
     });
   asyncAction(logoutPromise, accountActions.logout, dispatch);
   return logoutPromise;
 };
 
-export const setUser = (dispatch: Dispatch, user: NormalizedAuthUser) => {
+export const setUser = (
+  dispatch: Dispatch,
+  user: FirestoreUser | FirebaseFirestoreTypes.DocumentData | undefined
+) => {
   genericAction(accountActions.setUser, user, dispatch);
 };
 
 export const updateUserInfo = async (
   dispatch: Dispatch,
   uid: string,
-  userData: Partial<NormalizedAuthUser>
-): Promise<FirebaseFirestoreTypes.DocumentData> => {
+  userData: Partial<FirestoreUser>
+): Promise<FirebaseFirestoreTypes.DocumentData | undefined> => {
   // Reference to the Firestore collection
-  const collectionRef = firestore().collection('users');
-  // Query to find document by uid
-  const query = collectionRef.where('uid', '==', uid);
+  const collectionRef = firestore().collection('users').doc(uid);
+  const setOptions: FirebaseFirestoreTypes.SetOptions = {
+    mergeFields: Object.keys(userData)
+  };
 
   // Update the document
-  await query.get({ source: 'server' }).then((snapshot) => {
-    const userDoc = snapshot?.docs?.[0];
-    collectionRef.doc(userDoc.id).update({
-      ...userData
-    });
-  });
+  await collectionRef.set(
+    {
+      ...userData,
+      uid
+    },
+    setOptions
+  );
 
   // Fetch the updated user
-  const updateUserPromise = query.get({ source: 'server' }).then((snapshot) => {
-    return snapshot?.docs?.[0]?.data();
-  });
+  const updateUserPromise = collectionRef
+    .get({ source: 'server' })
+    .then((snapshot) => {
+      console.log('updated user', snapshot, snapshot.data());
+      return snapshot.data();
+    });
 
   asyncAction(updateUserPromise, accountActions.updateUser, dispatch);
   return updateUserPromise;

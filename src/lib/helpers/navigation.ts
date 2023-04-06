@@ -8,15 +8,17 @@ export function navigate(name: string, options?: any) {
   }
 }
 
+enum AccountRouteNames {
+  ACCOUNT = 'account',
+  SIGNUP = 'signup',
+  SIGNIN = 'signin',
+  ONBOARDING_MODAL = 'onboarding',
+  DOB = 'dob',
+  EDIT = 'account_edit'
+}
+
 export const routeNames = {
-  account: {
-    ACCOUNT: 'account',
-    SIGNUP: 'signup',
-    SIGNIN: 'signin',
-    ONBOARDING_MODAL: 'onboarding',
-    DOB: 'dob',
-    EDIT: 'account-edit'
-  },
+  account: AccountRouteNames,
   search: {},
   home: {
     HOME: 'HOME'

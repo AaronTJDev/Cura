@@ -4,6 +4,8 @@ import { FirebaseAuthTypes } from '@react-native-firebase/auth';
 /** Helpers */
 import { ENCRYPTED_STORAGE_KEYS } from '../encryptedStorage';
 import { logError } from './platform';
+import { firebase } from '@react-native-firebase/functions';
+import { FirebaseFirestoreTypes } from '@react-native-firebase/firestore';
 
 export interface NormalizedAuthUser {
   uid: string;
@@ -22,7 +24,7 @@ export interface FirestoreUser extends NormalizedAuthUser {
 }
 
 export const normalizeAuthUser = (
-  user: FirebaseAuthTypes.User
+  user: FirebaseAuthTypes.User | FirebaseFirestoreTypes.DocumentData
 ): NormalizedAuthUser => {
   return {
     uid: user.uid,
@@ -51,5 +53,20 @@ export const getUserToken = async () => {
     }
   } catch (err) {
     logError(err);
+  }
+};
+
+export const handleCheckUsername = async (
+  username: string
+): Promise<Boolean> => {
+  const checkUsername = firebase
+    .functions(firebase.app())
+    .httpsCallable('checkUsername');
+  try {
+    const result = await checkUsername({ username });
+    return result.data.isUsernameTaken;
+  } catch (err) {
+    logError(err);
+    return false;
   }
 };

@@ -8,6 +8,7 @@ import {
 } from 'react-native';
 import { Picker } from 'react-native-wheel-pick';
 import AsyncStorage from '@react-native-community/async-storage';
+import { NativeStackScreenProps } from '@react-navigation/native-stack';
 
 /** Components */
 import { ScreenWrapper } from '../../utility/ScreenWrapper';
@@ -19,11 +20,11 @@ import {
   screenTitles
 } from '../../../lib/helpers/navigation';
 import { colors, fonts } from '../../../lib/styles';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { updateUserInfo } from '../../../redux/account/actions';
-import { getUid } from '../../../redux/account/selectors';
 import { AsyncStorageKeys } from '../../../lib/asyncStorage';
 import { logError } from '../../../lib/helpers/platform';
+import { AccountStackParamList } from '../../../screens/AccountScreen';
 
 const styles = StyleSheet.create({
   container: {
@@ -119,13 +120,19 @@ const months = [
   'December'
 ];
 
+type DobFormProps = NativeStackScreenProps<
+  AccountStackParamList,
+  'dob',
+  'AccountStack'
+>;
+
 const getMonthAsInteger = (month: string) => months.indexOf(month) + 1;
 
-export const DobForm = () => {
+export const DobForm: React.FC<DobFormProps> = ({ route }) => {
   const dispatch = useDispatch();
-  const uid = useSelector(getUid);
   const [year, setYear] = useState<number>(medianYear);
   const [month, setMonth] = useState<string>(months[0]);
+  const { user } = route.params;
 
   const getDateOfBirth = () => `${year}/${getMonthAsInteger(month)}`;
 
@@ -135,8 +142,12 @@ export const DobForm = () => {
   };
 
   const handleSubmit = async () => {
+    const { uid } = user;
     try {
-      await updateUserInfo(dispatch, uid, { dateOfBirth: getDateOfBirth() });
+      await updateUserInfo(dispatch, uid, {
+        dateOfBirth: getDateOfBirth(),
+        ...user
+      });
       await handleGoBack();
     } catch (err) {
       logError(err);

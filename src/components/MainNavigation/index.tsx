@@ -45,12 +45,10 @@ export default function MainNavigation() {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    console.log('mounting root');
     const unsubscribe = auth().onUserChanged(async (userData) => {
       if (userData) {
         try {
-          const user = await fetchUserAccount(userData.uid);
-          // console.log('USER IS EQUAL TO REDUX', isEqual(user, reduxUser), user, reduxUser);
+          const user = (await fetchUserAccount(userData.uid)) || {};
           await setUser(dispatch, user);
           const token = await userData?.getIdToken(true);
 
