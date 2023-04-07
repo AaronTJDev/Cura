@@ -25,6 +25,7 @@ import { updateUserInfo } from '../../../redux/account/actions';
 import { AsyncStorageKeys } from '../../../lib/asyncStorage';
 import { logError } from '../../../lib/helpers/platform';
 import { AccountStackParamList } from '../../../screens/AccountScreen';
+import { toString } from 'lodash-es';
 
 const styles = StyleSheet.create({
   container: {
@@ -97,14 +98,13 @@ const getYearsData = () => {
   const maxYear = new Date().getFullYear();
 
   for (let i = minYear, x = 1; i < maxYear; i++, x++) {
-    years.push(i);
+    years.push(toString(i));
   }
 
   return years;
 };
 
 const years = getYearsData();
-const medianYear = years[Math.round(years.length / 2)];
 const months = [
   'January',
   'February',
@@ -130,9 +130,9 @@ const getMonthAsInteger = (month: string) => months.indexOf(month) + 1;
 
 export const DobForm: React.FC<DobFormProps> = ({ route }) => {
   const dispatch = useDispatch();
-  const [year, setYear] = useState<number>(medianYear);
+  const [year, setYear] = useState<string>('1990');
   const [month, setMonth] = useState<string>(months[0]);
-  const { user } = route.params;
+  const { user } = route.params || {};
 
   const getDateOfBirth = () => `${year}/${getMonthAsInteger(month)}`;
 
@@ -142,15 +142,17 @@ export const DobForm: React.FC<DobFormProps> = ({ route }) => {
   };
 
   const handleSubmit = async () => {
-    const { uid } = user;
-    try {
-      await updateUserInfo(dispatch, uid, {
-        dateOfBirth: getDateOfBirth(),
-        ...user
-      });
-      await handleGoBack();
-    } catch (err) {
-      logError(err);
+    if (!!user) {
+      const { uid } = user;
+      try {
+        await updateUserInfo(dispatch, uid, {
+          dateOfBirth: getDateOfBirth(),
+          ...user
+        });
+        await handleGoBack();
+      } catch (err) {
+        logError(err);
+      }
     }
   };
 
