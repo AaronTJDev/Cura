@@ -15,8 +15,7 @@ import { ISymptom } from '../components/SymptomSearch/SearchResultList';
 import { fetchSuggestions } from '../lib/datasource';
 import { SEARCH_INPUT_DEBOUNCE_TIME } from '../lib/constants';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import { ScreenWrapper } from '../components/utility/ScreenWrapper';
-import { screenTitles } from '../lib/helpers/navigation';
+import { routeNames } from '../lib/helpers/navigation';
 import { logError } from '../lib/helpers/platform';
 
 interface ISearchContext {
@@ -38,9 +37,8 @@ interface ISearchContext {
 }
 
 export type SearchStackParamList = {
-  Search: undefined;
-  Disease: undefined;
-  SymptomInfo: {
+  search: undefined;
+  symptom_info: {
     symptom: ISymptom;
   };
 };
@@ -61,7 +59,7 @@ export const SearchContext = React.createContext<ISearchContext>({
 
 const SearchStack = createNativeStackNavigator<SearchStackParamList>();
 
-const SymptomSearch = () => {
+const SymptomSearchScreen = () => {
   const [query, setQuery] = useState<string>('');
   const [suggestions, setSuggestions] = useState<ISymptom[]>([]);
   const [isLoading, setIsLoading] = useState<boolean>(false);
@@ -94,36 +92,29 @@ const SymptomSearch = () => {
   }, [query]);
 
   return (
-    <ScreenWrapper title={screenTitles.account.SYMPTOM_SEARCH}>
-      <SearchContext.Provider
-        value={{
-          query,
-          suggestions,
-          selectedSymptoms,
-          setQuery,
-          setSuggestions,
-          setTextInputBlurred,
-          setTextInputTouched,
-          setSelectedSymptoms,
-          isLoading,
-          isBlurred: textInputBlurred,
-          isTouched: textInputTouched
-        }}
-      >
-        <SearchStack.Navigator
-          initialRouteName="Search"
-          screenOptions={{
-            headerShown: false
-          }}
-        >
-          <SearchStack.Screen
-            name="Search"
-            component={SymptomSearchComponent}
-          />
-        </SearchStack.Navigator>
-      </SearchContext.Provider>
-    </ScreenWrapper>
+    <SearchContext.Provider
+      value={{
+        query,
+        suggestions,
+        selectedSymptoms,
+        setQuery,
+        setSuggestions,
+        setTextInputBlurred,
+        setTextInputTouched,
+        setSelectedSymptoms,
+        isLoading,
+        isBlurred: textInputBlurred,
+        isTouched: textInputTouched
+      }}
+    >
+      <SearchStack.Navigator initialRouteName={routeNames.search.SEARCH}>
+        <SearchStack.Screen
+          name={routeNames.search.SEARCH}
+          component={SymptomSearchComponent}
+        />
+      </SearchStack.Navigator>
+    </SearchContext.Provider>
   );
 };
 
-export default SymptomSearch;
+export default SymptomSearchScreen;

@@ -17,9 +17,13 @@ enum AccountRouteNames {
   EDIT = 'account_edit'
 }
 
+enum SymptomSearchRouteNames {
+  SEARCH = 'search'
+}
+
 export const routeNames = {
   account: AccountRouteNames,
-  search: {},
+  search: SymptomSearchRouteNames,
   home: {
     HOME: 'HOME'
   }
@@ -31,6 +35,9 @@ export const screenTitles = {
     SIGNUP: 'Sign Up',
     SYMPTOM_SEARCH: 'Symptom Search',
     ACCOUNT: 'Account'
+  },
+  symptomSearch: {
+    SEARCH: 'Symptom Search'
   }
 };
 

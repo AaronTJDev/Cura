@@ -10,7 +10,7 @@ import { useDispatch } from 'react-redux';
 
 /** Components */
 import AccountScreen from '../../screens/AccountScreen';
-import SymptomSearch from '../../screens/SymptomSearchScreen';
+import SymptomSearchScreen from '../../screens/SymptomSearchScreen';
 
 /** Helpers */
 import { colors, fonts } from '../../lib/styles';
@@ -71,7 +71,7 @@ export default function MainNavigation() {
     {
       icon: 'home',
       tabBarLabel: 'Home',
-      component: SymptomSearch
+      component: SymptomSearchScreen
     },
     {
       icon: 'search',
