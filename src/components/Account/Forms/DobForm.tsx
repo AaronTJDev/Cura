@@ -142,7 +142,7 @@ export const DobForm: React.FC<DobFormProps> = ({ route }) => {
   };
 
   const handleSubmit = async () => {
-    if (!!user) {
+    if (user) {
       const { uid } = user;
       try {
         await updateUserInfo(dispatch, uid, {

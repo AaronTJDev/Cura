@@ -8,8 +8,8 @@ import React, {
 import { debounce } from 'lodash-es';
 
 //** Components **/
-import SymptomSearchComponent from '../components/SymptomSearchComponent';
-import { ISymptom } from '../components/SymptomSearchComponent/SearchResultList';
+import SymptomSearchComponent from '../components/SymptomSearch';
+import { ISymptom } from '../components/SymptomSearch/SearchResultList';
 
 //** Helpers **/
 import { fetchSuggestions } from '../lib/datasource';

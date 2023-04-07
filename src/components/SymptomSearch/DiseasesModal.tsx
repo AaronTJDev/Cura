@@ -16,7 +16,7 @@ import {
 } from 'react-native';
 
 /** Components */
-import { SearchContext } from '../../screens/SymptomSearch';
+import { SearchContext } from '../../screens/SymptomSearchScreen';
 
 /** Helpers */
 import { SCREEN_HEIGHT } from '../../lib/constants';

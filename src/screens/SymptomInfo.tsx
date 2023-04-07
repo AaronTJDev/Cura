@@ -5,7 +5,7 @@ import { upperFirst } from 'lodash';
 // *** Helpers ***//
 import { colors, fonts } from '../lib/styles';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
-import { SearchStackParamList } from './SymptomSearch';
+import { SearchStackParamList } from './SymptomSearchScreen';
 import { ScreenWrapper } from '../components/utility/ScreenWrapper';
 
 const styles = StyleSheet.create({

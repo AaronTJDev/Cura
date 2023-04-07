@@ -2,7 +2,7 @@ import React, { useContext } from 'react';
 import { StyleSheet, View } from 'react-native';
 import { SCREEN_HEIGHT } from '../../lib/constants';
 import { colors } from '../../lib/styles';
-import { SearchContext } from '../../screens/SymptomSearch';
+import { SearchContext } from '../../screens/SymptomSearchScreen';
 import { ON_BLUR_OFFSET, Search } from './Search';
 import SearchResultList from './SearchResultList';
 

@@ -10,7 +10,7 @@ import { useDispatch } from 'react-redux';
 
 /** Components */
 import AccountScreen from '../../screens/AccountScreen';
-import SymptomSearch from '../../screens/SymptomSearch';
+import SymptomSearch from '../../screens/SymptomSearchScreen';
 
 /** Helpers */
 import { colors, fonts } from '../../lib/styles';

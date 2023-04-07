@@ -3,7 +3,7 @@ import { Formik } from 'formik';
 
 //** Helpers **/
 import { SearchSchema } from '../../lib/validationSchemas';
-import { SearchContext } from '../../screens/SymptomSearch';
+import { SearchContext } from '../../screens/SymptomSearchScreen';
 
 const initialValues = {
   query: ''

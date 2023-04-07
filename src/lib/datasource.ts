@@ -6,8 +6,8 @@ import EncryptedStorage from 'react-native-encrypted-storage/';
 import env from '../../env';
 
 /** Components */
-import { ISymptom } from '../components/SymptomSearchComponent/SearchResultList';
-import { IDisease } from '../components/SymptomSearchComponent/DiseasesModal';
+import { ISymptom } from '../components/SymptomSearch/SearchResultList';
+import { IDisease } from '../components/SymptomSearch/DiseasesModal';
 
 /** Helpers */
 import { logError } from './helpers/platform';
