@@ -17,7 +17,8 @@ import {
   faWallet,
   faChevronRight,
   faBars,
-  faFilter
+  faFilter,
+  faMagnifyingGlass
 } from '@fortawesome/free-solid-svg-icons';
 
 export const initiateIconLibrary = () => {
@@ -40,6 +41,7 @@ export const initiateIconLibrary = () => {
     faWallet,
     faChevronRight,
     faBars,
-    faFilter
+    faFilter,
+    faMagnifyingGlass
   );
 };

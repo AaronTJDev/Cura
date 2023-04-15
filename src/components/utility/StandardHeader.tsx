@@ -10,7 +10,6 @@ import { SCREEN_HEIGHT } from '../../lib/constants';
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: 'green',
     height: 200,
     width: '100%',
     top: 250

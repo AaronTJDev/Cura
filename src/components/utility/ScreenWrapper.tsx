@@ -118,7 +118,7 @@ export const ScreenWrapper: React.FC<ScreenWrapperProps> = ({
         <ScrollView
           style={[
             styles.scrollViewContainer,
-            expandedContentArea ? { marginTop: SCREEN_HEIGHT / 6 } : {}
+            expandedContentArea ? { marginTop: SCREEN_HEIGHT / 7 } : {}
           ]}
           contentContainerStyle={styles.container}
         >

@@ -11,6 +11,7 @@ import { IDisease } from '../components/SymptomSearch/DiseasesModal';
 
 /** Helpers */
 import { logError } from './helpers/platform';
+import { ENCRYPTED_STORAGE_KEYS } from './encryptedStorage';
 
 const instance = axios.create({
   baseURL: env.backendConfig.hostUrl,
@@ -22,7 +23,7 @@ const instance = axios.create({
 instance.interceptors.request.use(
   async function (config) {
     try {
-      const session = await EncryptedStorage.getItem('user_session');
+      const session = await EncryptedStorage.getItem(ENCRYPTED_STORAGE_KEYS.CURA_USER_TOKEN);
 
       if (!session || !config) {
         throw new Error('No user session found.');

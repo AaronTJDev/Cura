@@ -40,6 +40,13 @@ const styles = StyleSheet.create({
 
 const EmptyRender = () => <></>;
 
+export enum TAB_NAMES {
+  SEARCH = 'Search',
+  SCAN = 'Scan',
+  EXPLORE = 'Explore',
+  ACCOUNT = 'Account'
+}
+
 export default function MainNavigation() {
   const Tab = createBottomTabNavigator();
   const dispatch = useDispatch();
@@ -70,22 +77,22 @@ export default function MainNavigation() {
   const tabs = [
     {
       icon: 'home',
-      tabBarLabel: 'Home',
+      tabBarLabel: TAB_NAMES.SEARCH,
       component: SymptomSearchScreen
     },
     {
       icon: 'search',
-      tabBarLabel: 'Scan',
+      tabBarLabel: TAB_NAMES.SCAN,
       component: EmptyRender
     },
     {
       icon: 'newspaper',
-      tabBarLabel: 'Explore',
+      tabBarLabel: TAB_NAMES.EXPLORE,
       component: EmptyRender
     },
     {
       icon: 'user',
-      tabBarLabel: 'Account',
+      tabBarLabel: TAB_NAMES.ACCOUNT,
       component: AccountScreen
     }
   ];

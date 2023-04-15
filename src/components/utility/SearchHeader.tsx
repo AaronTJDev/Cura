@@ -23,7 +23,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     paddingHorizontal: 24,
     paddingVertical: 32,
-    marginTop: toSafeInteger(SCREEN_HEIGHT * 0.05),
+    marginTop: toSafeInteger(SCREEN_HEIGHT * 0.025),
     bottom: 0
   },
   iconContainer: {
@@ -36,8 +36,8 @@ const styles = StyleSheet.create({
   iconCta: {
     paddingHorizontal: 16,
     backgroundColor: colors.main.white,
-    height: 48,
-    width: 48,
+    height: 40,
+    width: 40,
     justifyContent: 'center',
     alignItems: 'center',
     borderRadius: 48
@@ -64,13 +64,13 @@ const SearchHeader = (props: SearchHeaderProps) => {
     <View style={styles.header}>
       <View style={styles.iconContainer}>
         <TouchableOpacity style={styles.iconCta} onPress={renderSort}>
-          <Icon icon="bars" color={colors.main.secondary} size={20} />
+          <Icon icon="bars" color={colors.main.secondary} size={16} />
         </TouchableOpacity>
       </View>
       <Text style={styles.title}>{title}</Text>
       <View style={[styles.iconContainer, styles.iconRight]}>
         <TouchableOpacity style={styles.iconCta} onPress={renderFilter}>
-          <Icon icon="filter" color={colors.main.secondary} size={20} />
+          <Icon icon="filter" color={colors.main.secondary} size={16} />
         </TouchableOpacity>
       </View>
     </View>

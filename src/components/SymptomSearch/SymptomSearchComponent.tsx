@@ -1,16 +1,14 @@
 import React, { useContext } from 'react';
-
-/** Components */
-import { Search } from './Search';
-import { SearchContext } from '../../screens/SymptomSearchScreen';
-import SearchResultList from './SearchResultList';
+import { StyleSheet, View } from 'react-native';
 
 /** Helpers */
 import { ScreenWrapper } from '../utility/ScreenWrapper';
 import { screenTitles } from '../../lib/helpers/navigation';
 
+import { SearchBar } from './SearchBar';
+import { SearchResultList } from './SearchResultList';
+
 export const SymptomSearchComponent = () => {
-  const { suggestions } = useContext(SearchContext);
   return (
     <ScreenWrapper
       title={screenTitles.symptomSearch.SEARCH}
@@ -18,10 +16,8 @@ export const SymptomSearchComponent = () => {
       hideBackButton
       mode={'search'}
     >
-      <Search />
-      <SearchResultList suggestions={suggestions} />
+      <SearchBar />
+      <SearchResultList suggestions={[]}/>
     </ScreenWrapper>
   );
 };
-
-export default SymptomSearchComponent;

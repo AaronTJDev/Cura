@@ -1,6 +1,6 @@
 const shared = {
   backendConfig: {
-    hostUrl: 'https://pantrywise-98f83.uw.r.appspot.com/'
+    hostUrl: 'https://cura-a5ce4.wl.r.appspot.com/'
   }
 };
 

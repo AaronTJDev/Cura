@@ -17,6 +17,7 @@ import { logError } from '../lib/helpers/platform';
 import { useNavigation } from '@react-navigation/native';
 import { useSelector } from 'react-redux';
 import { getIsLoggedIn } from '../redux/account/selectors';
+import { TAB_NAMES } from '../components/MainNavigation';
 
 export type AccountStackParamList = {
   dob: {
@@ -54,6 +55,7 @@ export default function AccountScreen() {
         navigate(routeNames.account.SIGNIN);
       } else {
         navigate(routeNames.account.ACCOUNT);
+        navigate(TAB_NAMES.SEARCH, { screen: routeNames.search.SEARCH });
       }
     }
   }, [isLoggedIn, navigation]);

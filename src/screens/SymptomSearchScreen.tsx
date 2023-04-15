@@ -8,7 +8,7 @@ import React, {
 import { debounce } from 'lodash-es';
 
 //** Components **/
-import SymptomSearchComponent from '../components/SymptomSearch';
+import { SymptomSearchComponent } from '../components/SymptomSearch/SymptomSearchComponent';
 import { ISymptom } from '../components/SymptomSearch/SearchResultList';
 
 //** Helpers **/
