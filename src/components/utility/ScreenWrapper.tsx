@@ -36,6 +36,7 @@ type ScreenWrapperProps = {
   expandedContentArea?: boolean;
   style?: AnimatedStyle<ViewStyle>;
   mode?: 'standard' | 'search';
+  scrollEnabled?: boolean;
 };
 
 const styles = StyleSheet.create({
@@ -63,7 +64,8 @@ export const ScreenWrapper: React.FC<ScreenWrapperProps> = ({
   hideHeader,
   hideBackButton,
   expandedContentArea,
-  mode
+  mode,
+  scrollEnabled = true
 }) => {
   const navigation = useNavigation();
   const insets = useSafeAreaInsets();
@@ -121,6 +123,8 @@ export const ScreenWrapper: React.FC<ScreenWrapperProps> = ({
             expandedContentArea ? { marginTop: SCREEN_HEIGHT / 7 } : {}
           ]}
           contentContainerStyle={styles.container}
+          nestedScrollEnabled
+          scrollEnabled={scrollEnabled}
         >
           {children}
         </ScrollView>

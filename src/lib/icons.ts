@@ -18,7 +18,8 @@ import {
   faChevronRight,
   faBars,
   faFilter,
-  faMagnifyingGlass
+  faMagnifyingGlass,
+  faCheckCircle
 } from '@fortawesome/free-solid-svg-icons';
 
 export const initiateIconLibrary = () => {
@@ -42,6 +43,7 @@ export const initiateIconLibrary = () => {
     faChevronRight,
     faBars,
     faFilter,
-    faMagnifyingGlass
+    faMagnifyingGlass,
+    faCheckCircle
   );
 };

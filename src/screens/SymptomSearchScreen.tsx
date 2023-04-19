@@ -71,18 +71,20 @@ const SymptomSearchScreen = () => {
 
   const getSuggestions = debounce(
     useCallback(async () => {
-      setIsLoading(true);
-      fetchSuggestions(query)
-        .then((res) => {
-          setSuggestions(res);
-        })
-        .catch((err) => {
-          logError(err);
-          setSuggestions([]);
-        })
-        .finally(() => {
-          setIsLoading(false);
-        });
+      if (query?.length > 0) {
+        setIsLoading(true);
+        fetchSuggestions(query)
+          .then((res) => {
+            setSuggestions(res);
+          })
+          .catch((err) => {
+            logError(err);
+            setSuggestions([]);
+          })
+          .finally(() => {
+            setIsLoading(false);
+          });
+      }
     }, [query]),
     SEARCH_INPUT_DEBOUNCE_TIME
   );

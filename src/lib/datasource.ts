@@ -23,7 +23,9 @@ const instance = axios.create({
 instance.interceptors.request.use(
   async function (config) {
     try {
-      const session = await EncryptedStorage.getItem(ENCRYPTED_STORAGE_KEYS.CURA_USER_TOKEN);
+      const session = await EncryptedStorage.getItem(
+        ENCRYPTED_STORAGE_KEYS.CURA_USER_TOKEN
+      );
 
       if (!session || !config) {
         throw new Error('No user session found.');
