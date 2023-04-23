@@ -1,11 +1,11 @@
-import React, { useMemo } from 'react';
+import React, { useCallback, useContext, useState } from 'react';
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 
 //** Helpers **/
 import { colors, fonts } from '../../lib/styles';
 import { ISymptom } from './SearchResultList';
-import { upperFirst } from 'lodash-es';
 import { FontAwesomeIcon as Icon } from '@fortawesome/react-native-fontawesome';
+import { SearchContext } from '../../screens/SymptomSearchScreen';
 
 const styles = StyleSheet.create({
   searchResult: {
@@ -39,27 +39,38 @@ interface SearchResultProps {
 export const SearchResult: React.FC<SearchResultProps> = ({
   data,
   index,
-  activeIndex,
-  setActiveIndex,
   isLastItem
 }) => {
-  const isActive = useMemo(() => activeIndex === index, [activeIndex]);
-  console.log('DATA', data);
+  const { selectedSymptoms, setSelectedSymptoms } = useContext(SearchContext);
+  const [isActive, setIsActive] = useState<boolean>(false);
 
-  const handleGoToSymptomInfo = () => {
-    setActiveIndex?.(index);
-  };
+  // write a function to toggle items in a set using setSelectedSymptoms
+  // if the item is already in the set, remove it
+  // if the item is not in the set, add it
+  const toggleSelectedSymptom = useCallback(() => {
+    if (setSelectedSymptoms) {
+      if (selectedSymptoms?.has(data.name)) {
+        selectedSymptoms.delete(data.name);
+        const updated = new Set(selectedSymptoms);
+        setSelectedSymptoms(updated);
+        setIsActive(false);
+      } else {
+        setIsActive(true);
+        setSelectedSymptoms(new Set(selectedSymptoms?.add(data.name)));
+      }
+    }
+  }, [selectedSymptoms, setSelectedSymptoms]);
 
   return (
     <View
-      key={data.id}
+      key={`sr-${index}`}
       style={[styles.searchResult, isLastItem ? { borderBottomWidth: 0 } : {}]}
     >
       <TouchableOpacity
         style={styles.searchTextRow}
-        onPress={handleGoToSymptomInfo}
+        onPress={toggleSelectedSymptom}
       >
-        <Text style={styles.searchResultText}>{upperFirst(data.name)}</Text>
+        <Text style={styles.searchResultText}>{data.name}</Text>
         {isActive && (
           <Icon
             icon={'check-circle'}

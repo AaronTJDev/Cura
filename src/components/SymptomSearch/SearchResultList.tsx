@@ -1,6 +1,7 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect, useRef } from 'react';
 import {
   ActivityIndicator,
+  Animated,
   ScrollView,
   StyleSheet,
   Text,
@@ -15,6 +16,7 @@ import { SearchResult } from './SearchResult';
 
 //** Helpers **/
 import { colors, fonts } from '../../lib/styles';
+import { navigate, routeNames } from '../../lib/helpers/navigation';
 
 const styles = StyleSheet.create({
   container: {
@@ -71,8 +73,23 @@ interface SearchResultListProps {
 export const SearchResultList: React.FC<SearchResultListProps> = ({
   suggestions
 }) => {
-  const { isLoading } = useContext(SearchContext);
-  const [activeIndex, setActiveIndex] = useState<number | undefined>();
+  const { isLoading, selectedSymptoms } = useContext(SearchContext);
+  const ctaAnimation = useRef(new Animated.Value(0)).current;
+
+  const handleContinue = () => {
+    if (selectedSymptoms) {
+      const symptoms = Array.from(selectedSymptoms);
+      navigate(routeNames.search.FOOD_SUGGESTIONS, { symptoms });
+    }
+  };
+
+  useEffect(() => {
+    Animated.timing(ctaAnimation, {
+      useNativeDriver: true,
+      toValue: selectedSymptoms?.size ? 1 : 0,
+      duration: 300
+    }).start();
+  }, [selectedSymptoms]);
 
   return (
     <View style={styles.container}>
@@ -81,18 +98,20 @@ export const SearchResultList: React.FC<SearchResultListProps> = ({
         contentInset={{ bottom: 80 }}
       >
         {isLoading && <ActivityIndicatorView />}
-        {suggestions?.length >= 0 &&
+        {suggestions?.length >= 0 ? (
           suggestions.map((suggestion: ISymptom, index) => {
             return (
               <SearchResult
+                key={`sr-${index}`}
                 data={suggestion}
                 index={index}
-                setActiveIndex={setActiveIndex}
-                activeIndex={activeIndex}
                 isLastItem={index === suggestions.length - 1}
               />
             );
-          })}
+          })
+        ) : (
+          <></>
+        )}
       </ScrollView>
       <BlurView
         style={styles.blur}
@@ -100,9 +119,27 @@ export const SearchResultList: React.FC<SearchResultListProps> = ({
         blurRadius={10}
         blurType={'light'}
       >
-        <TouchableOpacity style={styles.continueCta}>
-          <Text style={styles.continueCtaText}>Continue</Text>
-        </TouchableOpacity>
+        <Animated.View
+          style={{
+            width: '100%',
+            height: 80,
+            justifyContent: 'center',
+            alignItems: 'center',
+            opacity: ctaAnimation,
+            transform: [
+              {
+                translateY: ctaAnimation.interpolate({
+                  inputRange: [0, 1],
+                  outputRange: [20, 0]
+                })
+              }
+            ]
+          }}
+        >
+          <TouchableOpacity style={styles.continueCta} onPress={handleContinue}>
+            <Text style={styles.continueCtaText}>Continue</Text>
+          </TouchableOpacity>
+        </Animated.View>
       </BlurView>
     </View>
   );

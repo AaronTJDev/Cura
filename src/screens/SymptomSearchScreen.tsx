@@ -17,6 +17,7 @@ import { SEARCH_INPUT_DEBOUNCE_TIME } from '../lib/constants';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { routeNames } from '../lib/helpers/navigation';
 import { logError } from '../lib/helpers/platform';
+import { FoodSuggestionComponent } from '../components/FoodSuggestions/FoodSuggestionComponent';
 
 interface ISearchContext {
   query: string;
@@ -38,8 +39,8 @@ interface ISearchContext {
 
 export type SearchStackParamList = {
   search: undefined;
-  symptom_info: {
-    symptom: ISymptom;
+  food_suggestions: {
+    symptoms: ISymptom[];
   };
 };
 
@@ -84,6 +85,8 @@ const SymptomSearchScreen = () => {
           .finally(() => {
             setIsLoading(false);
           });
+      } else {
+        setSuggestions([]);
       }
     }, [query]),
     SEARCH_INPUT_DEBOUNCE_TIME
@@ -113,6 +116,10 @@ const SymptomSearchScreen = () => {
         <SearchStack.Screen
           name={routeNames.search.SEARCH}
           component={SymptomSearchComponent}
+        />
+        <SearchStack.Screen
+          name={routeNames.search.FOOD_SUGGESTIONS}
+          component={FoodSuggestionComponent}
         />
       </SearchStack.Navigator>
     </SearchContext.Provider>

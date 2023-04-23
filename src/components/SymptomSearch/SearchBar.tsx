@@ -41,9 +41,9 @@ const initialValues = {
 
 export const SearchBar = () => {
   const {
-    setQuery
-    // setTextInputTouched,
-    // setTextInputBlurred,
+    setQuery,
+    setTextInputTouched,
+    setTextInputBlurred
     // isTouched,
     // isBlurred,
     // suggestions,
@@ -61,17 +61,21 @@ export const SearchBar = () => {
       onSubmit={handleSubmit}
     >
       {({ handleBlur, setFieldValue, values }) => {
-        // const handleAnimationOnFocus = () => {
-        //   setTextInputTouched(true);
-        //   setTextInputBlurred(false);
-        // };
-        // const handleAnimationOnBlur = () => {
-        //   setTextInputTouched(false);
-        //   setTextInputBlurred(true);
-        //   handleBlur('query');
-        // };
+        const handleAnimationOnFocus = () => {
+          setTextInputTouched(true);
+          setTextInputBlurred(false);
+        };
+
+        const handleAnimationOnBlur = () => {
+          if (!(values['query'].length > 0)) {
+            setTextInputTouched(false);
+            setTextInputBlurred(true);
+            handleBlur('query');
+          }
+        };
 
         const onChange = (text: string) => {
+          setTextInputTouched(true);
           setFieldValue('query', text);
           setQuery(text);
         };
@@ -82,7 +86,8 @@ export const SearchBar = () => {
               <TextInput
                 style={styles.textInput}
                 value={values['query']}
-                onBlur={handleBlur('query')}
+                onBlur={handleAnimationOnBlur}
+                onFocus={handleAnimationOnFocus}
                 onChangeText={onChange}
                 underlineColorAndroid="transparent"
                 keyboardType={isIos ? 'default' : 'visible-password'}
