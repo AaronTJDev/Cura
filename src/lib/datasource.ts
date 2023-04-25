@@ -12,6 +12,7 @@ import { IDisease } from '../components/SymptomSearch/DiseasesModal';
 /** Helpers */
 import { logError } from './helpers/platform';
 import { ENCRYPTED_STORAGE_KEYS } from './encryptedStorage';
+import { Nutrient } from './types/database';
 
 const instance = axios.create({
   baseURL: env.backendConfig.hostUrl,
@@ -95,5 +96,32 @@ export const fetchUserAccount = async (
     return user;
   } catch (err) {
     throw new Error(`Error fetching user account: ${err}`);
+  }
+};
+
+// type fetchFoodSuggestionOptions = {
+//   symptoms: string[];
+//   filters?: string[];
+//   page?: number;
+//   limit?: number;
+// };
+
+// export const fetchFoodSuggestions = async (
+//   options: fetchFoodSuggestionOptions
+// ): Promise<any> => {};
+
+export const fetchNutrients = async (
+  symptoms: string[]
+): Promise<Nutrient[]> => {
+  try {
+    const urls = symptoms.map(
+      (symptom) => `symptoms/nutrients?symptomName=${symptom}`
+    );
+    const response = await Promise.all(urls.map((url) => instance.get(url)));
+    const nutrients = response.map((res) => res.data);
+
+    return nutrients;
+  } catch (err) {
+    throw new Error(`Error fetching nutrients: ${err}`);
   }
 };

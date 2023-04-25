@@ -16,6 +16,7 @@ import { SCREEN_HEIGHT } from '../../lib/constants';
 import StandardHeader from './StandardHeader';
 import { NativeStackHeaderProps } from '@react-navigation/native-stack';
 import SearchHeader from './SearchHeader';
+import MiddleHeader from './MiddleHeader';
 
 type MaybeAnimated<T> = T | Animated.Value;
 type AnimatedScalar = string | number;
@@ -35,7 +36,7 @@ type ScreenWrapperProps = {
   hideBackButton?: boolean;
   expandedContentArea?: boolean;
   style?: AnimatedStyle<ViewStyle>;
-  mode?: 'standard' | 'search';
+  mode?: 'standard' | 'search' | 'middle';
   scrollEnabled?: boolean;
 };
 
@@ -82,6 +83,8 @@ export const ScreenWrapper: React.FC<ScreenWrapperProps> = ({
             {...props}
           />
         );
+      case 'middle':
+        return <MiddleHeader title={title} {...props} />;
       default:
         return (
           <StandardHeader

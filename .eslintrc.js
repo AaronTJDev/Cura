@@ -12,7 +12,8 @@ module.exports = {
         'no-undef': 'off',
         'dot-notation': 'off',
         'react-hooks/exhaustive-deps': 'off',
-        'react-native/no-inline-styles': 0
+        'react-native/no-inline-styles': 0,
+        'no-bitwise': 'off'
       }
     }
   ]

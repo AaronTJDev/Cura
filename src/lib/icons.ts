@@ -19,7 +19,8 @@ import {
   faBars,
   faFilter,
   faMagnifyingGlass,
-  faCheckCircle
+  faCheckCircle,
+  faTimesCircle
 } from '@fortawesome/free-solid-svg-icons';
 
 export const initiateIconLibrary = () => {
@@ -44,6 +45,7 @@ export const initiateIconLibrary = () => {
     faBars,
     faFilter,
     faMagnifyingGlass,
-    faCheckCircle
+    faCheckCircle,
+    faTimesCircle
   );
 };

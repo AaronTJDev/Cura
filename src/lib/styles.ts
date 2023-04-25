@@ -1,3 +1,17 @@
+// Write a function to convert hex to rgba with alpha
+export const hexToRgba = (hex: string, alpha: string) => {
+  // Convert the hex string to a number
+  const hexNum = parseInt(hex.slice(1), 16);
+
+  // Extract the red, green, and blue components
+  const red = (hexNum >> 16) & 255;
+  const green = (hexNum >> 8) & 255;
+  const blue = hexNum & 255;
+
+  // Return the rgba color string
+  return `rgba(${red}, ${green}, ${blue}, ${alpha})`;
+};
+
 export const colors = {
   main: {
     primaryLight: '#99585A',
