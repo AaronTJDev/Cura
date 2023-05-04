@@ -12,7 +12,7 @@ import { IDisease } from '../components/SymptomSearch/DiseasesModal';
 /** Helpers */
 import { logError } from './helpers/platform';
 import { ENCRYPTED_STORAGE_KEYS } from './encryptedStorage';
-import { Nutrient } from './types/database';
+import { Food, Nutrient } from './types/database';
 
 const instance = axios.create({
   baseURL: env.backendConfig.hostUrl,
@@ -99,20 +99,38 @@ export const fetchUserAccount = async (
   }
 };
 
-// type fetchFoodSuggestionOptions = {
-//   symptoms: string[];
-//   filters?: string[];
-//   page?: number;
-//   limit?: number;
-// };
+type fetchFoodSuggestionOptions = {
+  nutrients: string[];
+  filters?: string[];
+  page?: number;
+  limit?: number;
+};
 
-// export const fetchFoodSuggestions = async (
-//   options: fetchFoodSuggestionOptions
-// ): Promise<any> => {};
+export const fetchFoodSuggestions = async (
+  options: fetchFoodSuggestionOptions
+): Promise<Food[]> => {
+  try {
+    const { nutrients, filters, page, limit } = options;
+    const url = 'nutrients/food/';
+    
+    const response = await instance.post<any, Food[]>(
+      url,
+      JSON.stringify({ nutrientName: nutrients, filters, page, limit })
+    );
+
+    if (response) {
+      const foods = response;
+      return foods;
+    }
+    return [];
+  } catch (err) {
+    throw new Error(`Error fetching food suggestions: ${err}`);
+  }
+};
 
 export const fetchNutrients = async (
   symptoms: string[]
-): Promise<Nutrient[]> => {
+): Promise<Nutrient[][]> => {
   try {
     const urls = symptoms.map(
       (symptom) => `symptoms/nutrients?symptomName=${symptom}`

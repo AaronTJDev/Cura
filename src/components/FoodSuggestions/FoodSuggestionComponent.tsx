@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import {
   FlatList,
   StyleSheet,
@@ -13,7 +13,11 @@ import { FontAwesomeIcon as Icon } from '@fortawesome/react-native-fontawesome';
 import { ScreenWrapper } from '../utility/ScreenWrapper';
 import { screenTitles } from '../../lib/helpers/navigation';
 import { colors, hexToRgba } from '../../lib/styles';
-import { fetchNutrients } from '../../lib/datasource';
+import { fetchFoodSuggestions, fetchNutrients } from '../../lib/datasource';
+import { SearchContext } from '../../screens/SymptomSearchScreen';
+import { logError } from '../../lib/helpers/platform';
+import { Food } from '../../lib/types/database';
+import { mutateNutrientsArray } from '../../lib/helpers/api';
 
 interface FoodSuggestionComponentProps {
   route?: RouteProp<{ params: { symptoms: string[] } }>;
@@ -49,27 +53,44 @@ const styles = StyleSheet.create({
 export const FoodSuggestionComponent: React.FC<
   FoodSuggestionComponentProps
 > = ({ route }) => {
-  const [symptoms, setSymptoms] = useState<string[]>([]);
+  const { selectedSymptoms, setSelectedSymptoms } = useContext(SearchContext);
+  const [suggestions, setSuggestions] = useState<Food[]>([]);
   const navigation = useNavigation();
 
   const handleRemoveSymptom = (symptomName: string) => () => {
-    setSymptoms(symptoms.filter((symptom) => symptom !== symptomName));
-    if (symptoms.length === 1) {
+    selectedSymptoms?.delete(symptomName);
+    const updated = selectedSymptoms;
+    setSelectedSymptoms?.(new Set(updated));
+    if (selectedSymptoms?.size === 0) {
       navigation.goBack();
     }
   };
 
-  useEffect(() => {
-    const params = route?.params;
-    const selectedSymptoms = params?.symptoms || [];
-    fetchNutrients(selectedSymptoms);
-  }, []);
+  const getFoodSuggestions = async (selectedSymptoms: Set<string>): Promise<Food[]> => {
+    try {
+      const symptoms = Array.from(selectedSymptoms);
+      const nutrients = await fetchNutrients(symptoms);
+      const nutrientNames: string[] = [];
+      
+      nutrients.forEach((nutrientsArr) => {
+        return nutrientsArr.forEach((nutrient) => nutrientNames.push(nutrient.name));
+      });
+      const suggestions = await fetchFoodSuggestions({ nutrients: nutrientNames });
+      return suggestions || [];
+    } catch(err) {
+      logError(err);
+      return [];
+    }
+  };
+
 
   useEffect(() => {
-    const params = route?.params;
-    const selectedSymptoms = params?.symptoms || [];
-    setSymptoms(selectedSymptoms);
-  }, [route?.params?.symptoms]);
+    if (!!selectedSymptoms?.size) {
+      getFoodSuggestions(selectedSymptoms).then((suggestions) => {
+        setSuggestions(suggestions);
+      }).catch(logError);
+    }
+  }, [selectedSymptoms]);
 
   const renderSymptomPill = (symptom: string) => {
     return (
@@ -97,7 +118,7 @@ export const FoodSuggestionComponent: React.FC<
     >
       <View style={styles.container}>
         <FlatList
-          data={symptoms}
+          data={selectedSymptoms ? Array.from(selectedSymptoms) : []}
           renderItem={(data) => renderSymptomPill(data.item)}
           keyExtractor={(item) => item}
           contentContainerStyle={styles.symptomPillContainer}

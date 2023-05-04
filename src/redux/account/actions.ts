@@ -86,7 +86,6 @@ export const updateUserInfo = async (
   const updateUserPromise = collectionRef
     .get({ source: 'server' })
     .then((snapshot) => {
-      console.log('updated user', snapshot, snapshot.data());
       return snapshot.data();
     });
 

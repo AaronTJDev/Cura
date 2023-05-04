@@ -1,4 +1,4 @@
-import React, { useCallback, useContext, useState } from 'react';
+import React, { useCallback, useContext, useEffect, useState } from 'react';
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 
 //** Helpers **/
@@ -47,19 +47,25 @@ export const SearchResult: React.FC<SearchResultProps> = ({
   // write a function to toggle items in a set using setSelectedSymptoms
   // if the item is already in the set, remove it
   // if the item is not in the set, add it
-  const toggleSelectedSymptom = useCallback(() => {
+  const toggleSelectedSymptom = () => {
     if (setSelectedSymptoms) {
       if (selectedSymptoms?.has(data.name)) {
         selectedSymptoms.delete(data.name);
         const updated = new Set(selectedSymptoms);
         setSelectedSymptoms(updated);
-        setIsActive(false);
       } else {
-        setIsActive(true);
         setSelectedSymptoms(new Set(selectedSymptoms?.add(data.name)));
       }
     }
-  }, [selectedSymptoms, setSelectedSymptoms]);
+  };
+
+  useEffect(() => {
+    if (selectedSymptoms?.has(data.name)) {
+      setIsActive(true);
+    } else {
+      setIsActive(false);
+    }
+  }, [selectedSymptoms?.size]);
 
   return (
     <View
