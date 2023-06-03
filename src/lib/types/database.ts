@@ -7,8 +7,13 @@ export type Food = {
   gtinUpc: string | number;
   ingredients: string;
   marketCountry: string;
-  servingSize: string | number;
+  servingSize: {
+    low: string | number;
+    high: string | number;
+  };
   servingSizeUnit: string;
+  imageUri: string;
+  matchedKey: string;
 };
 
 interface INutrientSymptomRelation {

@@ -1,8 +1,9 @@
-import axios from 'axios';
+import axios, { AxiosResponse } from 'axios';
 import firestore, {
   FirebaseFirestoreTypes
 } from '@react-native-firebase/firestore';
 import EncryptedStorage from 'react-native-encrypted-storage/';
+import { Dictionary, mapValuesSeries } from 'async';
 import env from '../../env';
 
 /** Components */
@@ -100,7 +101,7 @@ export const fetchUserAccount = async (
 };
 
 type fetchFoodSuggestionOptions = {
-  nutrients: string[];
+  symptomMap: { [key: string]: string[] };
   filters?: string[];
   page?: number;
   limit?: number;
@@ -108,21 +109,53 @@ type fetchFoodSuggestionOptions = {
 
 export const fetchFoodSuggestions = async (
   options: fetchFoodSuggestionOptions
-): Promise<Food[]> => {
+): Promise<Dictionary<Food[]>> => {
   try {
-    const { nutrients, filters, page, limit } = options;
+    const { symptomMap, filters, page, limit } = options;
     const url = 'nutrients/food/';
-    
-    const response = await instance.post<any, Food[]>(
-      url,
-      JSON.stringify({ nutrientName: nutrients, filters, page, limit })
+
+    // const promises = Object.keys(symptomMap).map(async (symptomKey) => {
+    //   const nutrients = symptomMap[symptomKey];
+    //   return instance.post<any, Food[]>(url, JSON.stringify({
+    //     nutrientName: nutrients,
+    //     filters,
+    //     page,
+    //     limit,
+    //     symptomKey
+    //   }));
+    // });
+
+    const response = await mapValuesSeries(
+      symptomMap,
+      (nutrients, symptomKey, cb) => {
+        instance
+          .post<any, AxiosResponse<Food[]>>(
+            url,
+            JSON.stringify({
+              nutrientName: nutrients,
+              filters,
+              page,
+              limit,
+              symptomKey
+            })
+          )
+          .then((res) => {
+            cb(null, res.data);
+          })
+          .catch((err) => {
+            cb(err);
+          });
+      }
     );
 
+    console.log('RSPONSE', response);
+
     if (response) {
-      const foods = response;
+      const foods = response as Dictionary<Food[]>;
       return foods;
     }
-    return [];
+
+    return {};
   } catch (err) {
     throw new Error(`Error fetching food suggestions: ${err}`);
   }

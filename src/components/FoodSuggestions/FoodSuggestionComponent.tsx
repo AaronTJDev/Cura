@@ -18,6 +18,8 @@ import { SearchContext } from '../../screens/SymptomSearchScreen';
 import { logError } from '../../lib/helpers/platform';
 import { Food } from '../../lib/types/database';
 import { mutateNutrientsArray } from '../../lib/helpers/api';
+import ContentGrid from './ContentGrid';
+import { Dictionary } from 'async';
 
 interface FoodSuggestionComponentProps {
   route?: RouteProp<{ params: { symptoms: string[] } }>;
@@ -28,7 +30,8 @@ const styles = StyleSheet.create({
     flex: 1
   },
   symptomPillContainer: {
-    flexDirection: 'row'
+    flexDirection: 'row',
+    height: 60
   },
   symptomPill: {
     backgroundColor: hexToRgba(colors.main.primary, '0.1'),
@@ -52,9 +55,9 @@ const styles = StyleSheet.create({
 
 export const FoodSuggestionComponent: React.FC<
   FoodSuggestionComponentProps
-> = ({ route }) => {
+> = () => {
   const { selectedSymptoms, setSelectedSymptoms } = useContext(SearchContext);
-  const [suggestions, setSuggestions] = useState<Food[]>([]);
+  const [suggestions, setSuggestions] = useState<Dictionary<Food[]>>({});
   const navigation = useNavigation();
 
   const handleRemoveSymptom = (symptomName: string) => () => {
@@ -66,29 +69,36 @@ export const FoodSuggestionComponent: React.FC<
     }
   };
 
-  const getFoodSuggestions = async (selectedSymptoms: Set<string>): Promise<Food[]> => {
+  const getFoodSuggestions = async (
+    selectedSymptoms: Set<string>
+  ): Promise<Dictionary<Food[]>> => {
     try {
+      // NEED TO UPDATE THIS FUNCTION
+      // It should fire each group of nutrients with a single request
+      // the symptom key will be fired along with a list of nutrients
+      // the response will be an array of foods that match the nutrients
+      // they will each have a symptom key so they can be matched in the grid
+      // the grid will be segmented by the symptom key
+      // the grid will be a flatlist of foods
       const symptoms = Array.from(selectedSymptoms);
       const nutrients = await fetchNutrients(symptoms);
-      const nutrientNames: string[] = [];
-      
-      nutrients.forEach((nutrientsArr) => {
-        return nutrientsArr.forEach((nutrient) => nutrientNames.push(nutrient.name));
-      });
-      const suggestions = await fetchFoodSuggestions({ nutrients: nutrientNames });
-      return suggestions || [];
-    } catch(err) {
+      const symptomMap = mutateNutrientsArray(nutrients);
+
+      const suggestions = await fetchFoodSuggestions({ symptomMap });
+      return suggestions || {};
+    } catch (err) {
       logError(err);
-      return [];
+      return {};
     }
   };
 
-
   useEffect(() => {
-    if (!!selectedSymptoms?.size) {
-      getFoodSuggestions(selectedSymptoms).then((suggestions) => {
-        setSuggestions(suggestions);
-      }).catch(logError);
+    if (selectedSymptoms?.size) {
+      getFoodSuggestions(selectedSymptoms)
+        .then((suggestions) => {
+          setSuggestions(suggestions);
+        })
+        .catch(logError);
     }
   }, [selectedSymptoms]);
 
@@ -125,6 +135,7 @@ export const FoodSuggestionComponent: React.FC<
           horizontal
           showsHorizontalScrollIndicator={false}
         />
+        <ContentGrid items={suggestions} />
       </View>
     </ScreenWrapper>
   );

@@ -1,7 +1,5 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { View, Text } from 'react-native';
-import Carousel from 'react-native-reanimated-carousel';
-import axios from 'axios';
 import { Food } from '../../lib/types/database';
 
 interface FoodCategoryCarouselProps {
@@ -9,21 +7,12 @@ interface FoodCategoryCarouselProps {
   foodItems: Food[];
 }
 
-export const FoodCategoryCarousel: React.FC<FoodCategoryCarouselProps> = ({ category, foodItems }) => {
-  const [loadingMore, setLoadingMore] = useState(false);
-  const [items, setItems] = useState(() => foodItems.filter((item) => item.brandedFoodCategory === category));
-
-  const handleEndReached = () => {
-    if (!loadingMore) {
-      setLoadingMore(true);
-      setLoadingMore(false);
-    }
-  };
-
+export const FoodCategoryCarousel: React.FC<FoodCategoryCarouselProps> = ({
+  category
+}) => {
   return (
     <View>
       <Text>{category}</Text>
     </View>
   );
 };
-
