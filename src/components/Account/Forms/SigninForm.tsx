@@ -170,14 +170,20 @@ export const SigninForm = () => {
             >
               <Text style={styles.submitText}>Continue</Text>
             </TouchableOpacity>
-            <View style={styles.continueUsingTextContainer}>
-              <Text style={styles.continueUsingText}>Or continue using</Text>
-            </View>
-            <View style={styles.socialCtaGroup}>
-              {socialCtaImages.map((image, index) => (
-                <SocialCta key={`social-cta-${index}`} image={image} />
-              ))}
-            </View>
+            {false && (
+              <>
+                <View style={styles.continueUsingTextContainer}>
+                  <Text style={styles.continueUsingText}>
+                    Or continue using
+                  </Text>
+                </View>
+                <View style={styles.socialCtaGroup}>
+                  {socialCtaImages.map((image, index) => (
+                    <SocialCta key={`social-cta-${index}`} image={image} />
+                  ))}
+                </View>
+              </>
+            )}
             <TouchableOpacity
               style={styles.newUserContainer}
               onPress={navigateToSignUp}
