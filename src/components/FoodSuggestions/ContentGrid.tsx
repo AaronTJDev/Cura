@@ -43,7 +43,8 @@ const ContentGrid = ({ items, itemsPerPage = 20 }: ContentGridProps) => {
               flex: 1,
               marginHorizontal: 5,
               flexDirection: 'row',
-              flexWrap: 'wrap'
+              flexWrap: 'wrap',
+              justifyContent: 'space-between'
             }}
           >
             {foods.map((food) => (
@@ -61,7 +62,11 @@ const ContentGrid = ({ items, itemsPerPage = 20 }: ContentGridProps) => {
     });
   };
 
-  return <ScrollView style={styles.container}>{renderCards()}</ScrollView>;
+  return (
+    <ScrollView style={styles.container} showsVerticalScrollIndicator={false}>
+      {renderCards()}
+    </ScrollView>
+  );
 };
 
 export default ContentGrid;

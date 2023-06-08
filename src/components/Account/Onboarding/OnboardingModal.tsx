@@ -33,7 +33,7 @@ const styles = StyleSheet.create({
     width: '100%'
   },
   carouselImageContainer: {
-    flex: 3,
+    flex: 4,
     backgroundColor: 'white',
     alignItems: 'center'
   },
@@ -84,21 +84,21 @@ type OnboardingPages = Omit<OnboardingPageProps, 'currentPage'>;
 const onboardingPages: OnboardingPages[] = [
   {
     paragraphText:
-      'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus blandit dictum quam. Mauris pretium elit ac odio lacinia.',
+      'Discover symptom-specific food recommendations to nourish your body and alleviate discomfort.',
     buttonText: 'Next',
     image: assetResolver.images.onboardingA,
     page: 0
   },
   {
     paragraphText:
-      'Mauris faucibus non nisl porta bibendum. Nunc nisl libero, blandit et eleifend a, bibendum at nunc phasellus convallis.',
+      'Explore a curated list of foods that can support your health goals and help you to make informed choices for a happier, healthier you.',
     buttonText: 'Next',
     image: assetResolver.images.onboardingB,
     page: 1
   },
   {
     paragraphText:
-      'Quis tristique sem cursus nec. Cras at scelerisque urna. Vivamus id turpis, bibendum odio eget, imperdiet mi.',
+      'The information provided within this app is not a substitute for professional medical advice, diagnosis, or treatment. Please consult a qualified healthcare professional before making any decisions or taking any actions based on the information provided. For a comprehensive understanding of our policies, including our medical disclaimer, privacy policy, and terms of use, please refer to the respective links provided.',
     buttonText: 'Get Started',
     image: assetResolver.images.onboardingC,
     page: 2
@@ -143,9 +143,11 @@ const OnboardingPage: React.FC<OnboardingPageProps> = ({
       <View style={styles.carouselImageContainer}>
         <Image style={styles.carouselImage} source={image} resizeMode="cover" />
       </View>
-      <View style={styles.carouselTextContainer}>
-        <Text style={styles.carouselText}>{paragraphText}</Text>
-      </View>
+      <ScrollView style={{ top: 64 }}>
+        <View style={styles.carouselTextContainer}>
+          <Text style={styles.carouselText}>{paragraphText}</Text>
+        </View>
+      </ScrollView>
     </Animated.View>
   );
 };
