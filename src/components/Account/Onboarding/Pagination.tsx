@@ -4,10 +4,12 @@ import { colors } from '../../../lib/styles';
 
 const styles = StyleSheet.create({
   paginationContainer: {
-    flex: 0.1,
+    height: 10,
     flexDirection: 'row',
     justifyContent: 'center',
-    alignItems: 'center'
+    alignItems: 'center',
+    backgroundColor: 'transparent',
+    paddingVertical: 20
   },
   paginationStep: {
     backgroundColor: colors.main.gray10,

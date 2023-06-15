@@ -38,7 +38,7 @@ const styles = StyleSheet.create({
   }
 });
 
-const EmptyRender = () => <></>;
+// const EmptyRender = () => <></>;
 
 export enum TAB_NAMES {
   SEARCH = 'Search',
@@ -80,16 +80,16 @@ export default function MainNavigation() {
       tabBarLabel: TAB_NAMES.SEARCH,
       component: SymptomSearchScreen
     },
-    {
-      icon: 'search',
-      tabBarLabel: TAB_NAMES.SCAN,
-      component: EmptyRender
-    },
-    {
-      icon: 'newspaper',
-      tabBarLabel: TAB_NAMES.EXPLORE,
-      component: EmptyRender
-    },
+    // {
+    //   icon: 'search',
+    //   tabBarLabel: TAB_NAMES.SCAN,
+    //   component: EmptyRender
+    // },
+    // {
+    //   icon: 'newspaper',
+    //   tabBarLabel: TAB_NAMES.EXPLORE,
+    //   component: EmptyRender
+    // },
     {
       icon: 'user',
       tabBarLabel: TAB_NAMES.ACCOUNT,
