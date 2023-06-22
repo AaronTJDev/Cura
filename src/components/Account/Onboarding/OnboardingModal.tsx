@@ -90,7 +90,7 @@ const styles = StyleSheet.create({
     paddingVertical: 8,
     marginTop: 40,
     justifyContent: 'space-between',
-    alignContent: 'space-between'
+    alignContent: 'space-between',
   },
   consentText: {
     flex: 4,
@@ -150,9 +150,11 @@ const OnboardingPage: React.FC<OnboardingPageProps> = ({
 }) => {
   const translateX = useRef(new Animated.Value(0)).current;
   const opacity = useRef(new Animated.Value(0)).current;
+  const [showContent, setShowContent] = useState<boolean>(false);
 
   useEffect(() => {
     const isSelectedPage = page === currentPage;
+    setShowContent(false);
 
     Animated.timing(translateX, {
       useNativeDriver: true,
@@ -164,7 +166,7 @@ const OnboardingPage: React.FC<OnboardingPageProps> = ({
       toValue: isSelectedPage ? 1 : 0,
       duration: 500,
       easing: Easing.exp
-    }).start();
+    }).start(() => setShowContent(true));
   }, [currentPage]);
 
   return (
@@ -184,7 +186,7 @@ const OnboardingPage: React.FC<OnboardingPageProps> = ({
         <View style={styles.carouselTextContainer}>
           <Text style={styles.carouselText}>{paragraphText}</Text>
         </View>
-        {currentPage === 2 && (
+        {currentPage === 2 && showContent && (
           <>
             <View style={styles.consentContainer}>
               <Checkbox onChange={onChange} isChecked={!!isChecked} />
@@ -195,7 +197,9 @@ const OnboardingPage: React.FC<OnboardingPageProps> = ({
                 documents.
               </Text>
             </View>
-            <Footer />
+            <View style={{ position: 'absolute', bottom: 0 }}>
+              <Footer />
+            </View>
           </>
         )}
       </ScrollView>

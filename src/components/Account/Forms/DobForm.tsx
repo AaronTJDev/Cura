@@ -7,7 +7,6 @@ import {
   View
 } from 'react-native';
 import { Picker } from 'react-native-wheel-pick';
-import AsyncStorage from '@react-native-community/async-storage';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 
 /** Components */
@@ -22,10 +21,11 @@ import {
 import { colors, fonts } from '../../../lib/styles';
 import { useDispatch } from 'react-redux';
 import { updateUserInfo } from '../../../redux/account/actions';
-import { AsyncStorageKeys } from '../../../lib/asyncStorage';
 import { logError } from '../../../lib/helpers/platform';
 import { AccountStackParamList } from '../../../screens/AccountScreen';
 import { toString } from 'lodash-es';
+import AsyncStorage from '@react-native-community/async-storage';
+import { AsyncStorageKeys } from '../../../lib/asyncStorage';
 
 const styles = StyleSheet.create({
   container: {
