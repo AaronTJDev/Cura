@@ -66,7 +66,7 @@ const SubscriptionModal = () => {
 
   const handleGetSubscriptionProducts = async (): Promise<void> => {
     const subscriptionProducts = await getSubscriptionProducts();
-    if (!!subscriptionProducts) {
+    if (subscriptionProducts) {
       setPlans(subscriptionProducts);
     }
   };
