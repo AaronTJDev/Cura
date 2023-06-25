@@ -18,6 +18,7 @@ import { useNavigation } from '@react-navigation/native';
 import { useSelector } from 'react-redux';
 import { getIsLoggedIn } from '../redux/account/selectors';
 import { TAB_NAMES } from '../components/MainNavigation';
+import SubscriptionModal from '../components/Subscription/SubscriptionModal';
 
 export type AccountStackParamList = {
   dob: {
@@ -28,6 +29,7 @@ export type AccountStackParamList = {
   signin: undefined;
   account_edit: undefined;
   onboarding: undefined;
+  subscription: undefined;
 };
 
 const AccountStack = createNativeStackNavigator<AccountStackParamList>();
@@ -104,6 +106,10 @@ export default function AccountScreen() {
         <AccountStack.Screen
           name={routeNames.account.ONBOARDING_MODAL}
           component={OnboardingModal}
+        />
+        <AccountStack.Screen
+          name={routeNames.account.SUBSCRIPTION_MODAL}
+          component={SubscriptionModal}
         />
       </AccountStack.Group>
     </AccountStack.Navigator>

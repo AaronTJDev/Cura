@@ -158,7 +158,7 @@ export const AccountComponent = () => {
 
   const getAge = () => {
     const today = new Date();
-    const birthDate = new Date(dateOfBirth);
+    const birthDate = new Date(dateOfBirth?.replace('/', '-'));
     let age = today.getFullYear() - birthDate.getFullYear();
     const monthDifference = today.getMonth() - birthDate.getMonth();
 
@@ -174,6 +174,10 @@ export const AccountComponent = () => {
 
   const navigateToGeneralSettings = () => {
     navigate(routeNames.account.EDIT);
+  };
+
+  const openSubscriptionModal = () => {
+    navigate(routeNames.account.SUBSCRIPTION_MODAL);
   };
 
   const signout = () => {
@@ -267,7 +271,10 @@ export const AccountComponent = () => {
             <View style={styles.divider} />
           </View>
           <View style={styles.ctaContainer}>
-            <TouchableOpacity style={styles.manageSubscriptionCta}>
+            <TouchableOpacity
+              style={styles.manageSubscriptionCta}
+              onPress={openSubscriptionModal}
+            >
               <Text style={styles.manageSubscriptionText}>
                 Manage My Subscription
               </Text>

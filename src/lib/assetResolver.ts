@@ -16,7 +16,8 @@ export const assetResolver = {
     onboardingC: require('../../assets/images/undraw_medical_care_movn.png'),
     facebook: require('../../assets/images/facebook.png'),
     google: require('../../assets/images/google.png'),
-    apple: require('../../assets/images/apple.png')
+    apple: require('../../assets/images/apple.png'),
+    wavyBg: require('../../assets/images/wavy_bg.png')
   },
   lottie: {
     loader: require('../../assets/animations/loader.json')

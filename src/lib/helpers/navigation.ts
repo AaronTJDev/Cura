@@ -14,7 +14,8 @@ enum AccountRouteNames {
   SIGNIN = 'signin',
   ONBOARDING_MODAL = 'onboarding',
   DOB = 'dob',
-  EDIT = 'account_edit'
+  EDIT = 'account_edit',
+  SUBSCRIPTION_MODAL = 'subscription'
 }
 
 export enum SymptomSearchRouteNames {

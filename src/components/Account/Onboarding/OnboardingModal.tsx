@@ -19,6 +19,8 @@ import { OnboardingLogo } from './OnboardingLogo';
 import { Pagination } from './Pagination';
 import Checkbox from '../../utility/Checkbox';
 import Footer from '../../utility/Footer';
+import AsyncStorage from '@react-native-community/async-storage';
+import { AsyncStorageKeys } from '../../../lib/asyncStorage';
 
 const styles = StyleSheet.create({
   container: {
@@ -90,7 +92,7 @@ const styles = StyleSheet.create({
     paddingVertical: 8,
     marginTop: 40,
     justifyContent: 'space-between',
-    alignContent: 'space-between',
+    alignContent: 'space-between'
   },
   consentText: {
     flex: 4,
@@ -213,10 +215,11 @@ export const OnboardingModal: React.FC = () => {
 
   const navigation = useNavigation();
 
-  const handleNext = () => {
+  const handleNext = async () => {
     if (currentPage !== 2) {
       setCurrentPage((curr) => curr + 1);
     } else {
+      await AsyncStorage.setItem(AsyncStorageKeys.COMPLETED_FTUE, 'true');
       navigation.goBack();
       navigate(routeNames.account.SIGNUP);
     }

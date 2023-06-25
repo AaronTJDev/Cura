@@ -16,8 +16,6 @@ import { colors, fonts } from '../../../lib/styles';
 import { assetResolver } from '../../../lib/assetResolver';
 import { navigate, routeNames } from '../../../lib/helpers/navigation';
 import { toString } from 'lodash';
-import AsyncStorage from '@react-native-community/async-storage';
-import { AsyncStorageKeys } from '../../../lib/asyncStorage';
 
 interface SigninFormValues extends IndexableObject {
   email: string;
@@ -97,7 +95,6 @@ export const SigninForm = () => {
       const { email, password } = values;
       try {
         await signin(dispatch, email, password);
-        await AsyncStorage.setItem(AsyncStorageKeys.COMPLETED_FTUE, 'true');
         resetForm();
         navigation.goBack();
       } catch (err) {

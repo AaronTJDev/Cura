@@ -24,8 +24,6 @@ import { updateUserInfo } from '../../../redux/account/actions';
 import { logError } from '../../../lib/helpers/platform';
 import { AccountStackParamList } from '../../../screens/AccountScreen';
 import { toString } from 'lodash-es';
-import AsyncStorage from '@react-native-community/async-storage';
-import { AsyncStorageKeys } from '../../../lib/asyncStorage';
 
 const styles = StyleSheet.create({
   container: {
@@ -137,7 +135,6 @@ export const DobForm: React.FC<DobFormProps> = ({ route }) => {
   const getDateOfBirth = () => `${year}/${getMonthAsInteger(month)}`;
 
   const handleGoBack = async () => {
-    await AsyncStorage.setItem(AsyncStorageKeys.COMPLETED_FTUE, 'true');
     navigate(routeNames.account.ACCOUNT);
   };
 

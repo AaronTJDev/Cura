@@ -78,6 +78,7 @@ const accountEditFormLabels = {
 export const AccountEdit: React.FC<AccountEditProps> = () => {
   const dispatch = useDispatch();
   const accountInfo = useSelector(getAccount);
+
   const initialValues: AccountEditFormValues = {
     email: accountInfo.email ?? '',
     username: accountInfo.username ?? '',
@@ -170,15 +171,17 @@ export const AccountEdit: React.FC<AccountEditProps> = () => {
 
           return (
             <View style={styles.container}>
-              <TextFormFieldB
-                handleBlur={handleBlur}
-                handleChange={handleChange}
-                fieldName={accountEditFormFieldKeys.username}
-                error={handleError(accountEditFormFieldKeys.username)}
-                value={values[accountEditFormFieldKeys.username]}
-                disabled
-                label={accountEditFormLabels.username}
-              />
+              {/*
+                <TextFormFieldB
+                  handleBlur={handleBlur}
+                  handleChange={handleChange}
+                  fieldName={accountEditFormFieldKeys.username}
+                  error={handleError(accountEditFormFieldKeys.username)}
+                  value={values[accountEditFormFieldKeys.username]}
+                  disabled
+                  label={accountEditFormLabels.username}
+                />
+              */}
               <TextFormFieldB
                 handleBlur={handleBlur}
                 handleChange={handleChange}
