@@ -6,7 +6,7 @@ import { Food } from '../../lib/types/database';
 
 const styles = StyleSheet.create({
   container: {
-    borderRadius: 10,
+    borderRadius: 5,
     flexWrap: 'nowrap',
     height: 240,
     width: 140,
@@ -14,7 +14,7 @@ const styles = StyleSheet.create({
     margin: 10
   },
   image: {
-    borderRadius: 10,
+    borderRadius: 5,
     position: 'absolute',
     height: '100%',
     width: '100%'

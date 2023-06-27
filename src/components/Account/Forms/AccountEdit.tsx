@@ -41,9 +41,9 @@ const styles = StyleSheet.create({
     flex: 1
   },
   submitContainer: {
-    height: 60,
+    height: 50,
     backgroundColor: colors.main.primary,
-    borderRadius: 14,
+    borderRadius: 5,
     justifyContent: 'center',
     alignItems: 'center',
     top: 24

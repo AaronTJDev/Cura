@@ -14,7 +14,7 @@ import { IDisease } from '../components/SymptomSearch/DiseasesModal';
 import { logError } from './helpers/platform';
 import { ENCRYPTED_STORAGE_KEYS } from './encryptedStorage';
 import { Food, Nutrient } from './types/database';
-import { Plan } from './types/subscription';
+import { IPlan } from './types/subscription';
 
 const instance = axios.create({
   baseURL: env.backendConfig.hostUrl,
@@ -178,7 +178,7 @@ export const fetchNutrients = async (
   }
 };
 
-export const getSubscriptionProducts = async (): Promise<Plan[]> => {
+export const getSubscriptionProducts = async (): Promise<IPlan[]> => {
   try {
     const url = 'plans';
     const response = await instance.get(url);

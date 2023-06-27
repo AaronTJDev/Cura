@@ -66,10 +66,10 @@ const styles = StyleSheet.create({
     flex: 1
   },
   submitCta: {
-    height: 60,
+    height: 50,
     width: '100%',
     backgroundColor: colors.main.primary,
-    borderRadius: 14,
+    borderRadius: 5,
     justifyContent: 'center',
     alignItems: 'center'
   },

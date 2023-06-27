@@ -23,7 +23,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     margin: 2,
     backgroundColor: colors.main.white,
-    borderRadius: 10,
+    borderRadius: 5,
     ...shadow
   },
   profileImgContainer: {
@@ -33,7 +33,7 @@ const styles = StyleSheet.create({
   profileImg: {
     flex: 1,
     resizeMode: 'contain',
-    borderRadius: 14
+    borderRadius: 5
   },
   profileTextGroup: {
     flex: 3,
@@ -82,7 +82,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     padding: 16,
-    borderRadius: 10,
+    borderRadius: 5,
     ...shadow
   },
   settingsIconContainer: {
@@ -108,7 +108,7 @@ const styles = StyleSheet.create({
     height: 160,
     alignItems: 'center',
     backgroundColor: colors.main.white,
-    borderRadius: 14,
+    borderRadius: 5,
     margin: 4,
     ...shadow
   },

@@ -72,7 +72,7 @@ const styles = StyleSheet.create({
     left: '2%',
     justifyContent: 'flex-start',
     alignItems: 'flex-start',
-    borderRadius: 14,
+    borderRadius: 5,
     borderColor: colors.main.gray25,
     borderWidth: 1,
     padding: 12

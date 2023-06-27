@@ -36,7 +36,7 @@ interface FormFieldProps {
 const styles = StyleSheet.create({
   container: {
     height: 68,
-    borderRadius: 14,
+    borderRadius: 5,
     borderColor: colors.main.gray25,
     borderWidth: 1,
     padding: 12,

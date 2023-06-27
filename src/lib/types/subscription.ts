@@ -1,4 +1,4 @@
-export type Plan = {
+export interface IPlan {
   active: boolean;
   attributes: string[];
   created: number;
@@ -8,7 +8,8 @@ export type Plan = {
   images: string[];
   livemode: false;
   metadata: {
-    preferred?: boolean;
+    preferred?: string;
+    priceText?: string;
   };
   name: string;
   object: string;
@@ -17,10 +18,10 @@ export type Plan = {
   type: string;
   updated: number;
   url: string;
-};
+}
 
 export type PlanResponse = {
-  data: Plan[];
+  data: IPlan[];
   has_more: boolean;
   object: string;
   url: string;

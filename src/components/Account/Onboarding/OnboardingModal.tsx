@@ -70,7 +70,7 @@ const styles = StyleSheet.create({
     width: '92%',
     height: 50,
     backgroundColor: colors.main.primary,
-    borderRadius: 14,
+    borderRadius: 5,
     justifyContent: 'center'
   },
   carouselButtonText: {
@@ -85,7 +85,7 @@ const styles = StyleSheet.create({
     alignItems: 'center'
   },
   consentContainer: {
-    height: 60,
+    height: 50,
     width: '100%',
     flexDirection: 'row',
     paddingHorizontal: 40,
