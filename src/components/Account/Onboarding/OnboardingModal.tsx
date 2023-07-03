@@ -99,7 +99,8 @@ const styles = StyleSheet.create({
     marginLeft: 16,
     top: -2,
     fontFamily: fonts.CrimsonProMedium,
-    fontSize: 12
+    fontSize: 12,
+    height: 300
   }
 });
 

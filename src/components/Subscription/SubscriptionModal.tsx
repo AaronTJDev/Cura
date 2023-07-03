@@ -1,3 +1,4 @@
+// @ts-nocheck
 import React, { useEffect, useState } from 'react';
 import { Image, StyleSheet, Text, View } from 'react-native';
 
@@ -8,11 +9,25 @@ import Footer from '../utility/Footer';
 import { assetResolver } from '../../lib/assetResolver';
 import { SCREEN_HEIGHT } from '../../lib/constants';
 import { colors, fonts } from '../../lib/styles';
-import { getSubscriptionProducts } from '../../lib/datasource';
+import {
+  createStripeCustomer,
+  createSubscription,
+  getSubscriptionProducts
+} from '../../lib/datasource';
 import { logError } from '../../lib/helpers/platform';
 import { IPlan } from '../../lib/types/subscription';
 import { Plan } from './Plan';
 import CTA from '../utility/CTA';
+import { Loader } from '../utility/Loader';
+import {
+  AddressDetails,
+  AddressSheet,
+  AddressSheetError,
+  StripeError,
+  useStripe
+} from '@stripe/stripe-react-native';
+import { useSelector } from 'react-redux';
+import { getAccount } from '../../redux/account/selectors';
 
 const styles = StyleSheet.create({
   container: {
@@ -85,20 +100,35 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
     width: '100%',
     top: 24
+  },
+  loaderWrap: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center'
   }
 });
 
 const SubscriptionModal = () => {
-  // const { initPaymentSheet, presentPaymentSheet } = useStripe();
+  const { initPaymentSheet } = useStripe();
+
+  const account = useSelector(getAccount);
+
   const [plans, setPlans] = useState<IPlan[] | undefined>();
   const [selectedPlan, setSelectedPlan] = useState<IPlan>();
-  // const [showAddressForm, setShowAddressForm] = useState<boolean>(false);
+  const [loading, setLoading] = useState<boolean>(false);
+  // const [clientSecret, setClientSecret] = useState<string>('');
+  const [showAddressForm, setShowAddressForm] = useState<boolean>(false);
+  const [address, setAddress] = useState<AddressDetails>();
+  const [, setAddressError] = useState<string>('');
 
   const handleGetSubscriptionProducts = async (): Promise<void> => {
+    setLoading(true);
     const subscriptionProducts = await getSubscriptionProducts();
-    const preferredPlan = subscriptionProducts.find(
+
+    const preferredPlan = subscriptionProducts?.find(
       (product) => product.metadata.preferred
     );
+
     if (preferredPlan) {
       const preferredPlanIndex = subscriptionProducts.indexOf(preferredPlan);
       if (preferredPlanIndex < 1 && !!subscriptionProducts.length) {
@@ -114,13 +144,44 @@ const SubscriptionModal = () => {
     }
   };
 
-  // const setCustomerAddress = () => {};
-  //
-  // const initStripePaymentSheet = async () => {};
-  //
+  const handleShowAddressForm = () => {
+    setShowAddressForm(true);
+  };
+
+  const handleDismissAdressForm = (addressDetails: AddressDetails) => {
+    setAddress(addressDetails);
+    setShowAddressForm(false);
+  };
+
+  const handleAddressFormError = (error: StripeError<AddressSheetError>) => {
+    setAddressError(error.message);
+    setShowAddressForm(false);
+  };
+
+  const initStripePaymentSheet = async () => {
+    if (!!selectedPlan && !!account?.email && !!address?.address) {
+      const { id: stripeCustomerId } = await createStripeCustomer(
+        account.email,
+        address.address,
+        { internalId: account.uid }
+      );
+
+      const { clientSecret } = await createSubscription(
+        stripeCustomerId,
+        selectedPlan?.default_price
+      );
+
+      const initPaymentSheetResult = await initPaymentSheet({
+        merchantDisplayName: 'Cura',
+        customerId: account.uid,
+        paymentIntentClientSecret: clientSecret
+      });
+      console.log('init payment sheet result', initPaymentSheetResult);
+    }
+  };
+
   // const openPaymentSheet = async () => {
   //   const { error } = await presentPaymentSheet();
-  //
   //   if (error) {
   //     console.log('Error processing payment', error);
   //   } else {
@@ -137,9 +198,16 @@ const SubscriptionModal = () => {
 
   useEffect(() => {
     if (plans?.length) {
+      console.log('PLANS', plans);
       setSelectedPlan(plans[1]);
     }
   }, [plans]);
+
+  useEffect(() => {
+    if (address?.address) {
+      initStripePaymentSheet().catch(logError);
+    }
+  }, [address]);
 
   return (
     <View style={styles.container}>
@@ -161,13 +229,19 @@ const SubscriptionModal = () => {
       </View>
       <View style={styles.plansWrapper}>
         <Image source={assetResolver.images.wavyBg} style={styles.plansBg} />
-        {/*
+
         <AddressSheet
-          onSubmit={() => {}}
-          onError={() => {}}
+          onSubmit={handleDismissAdressForm}
+          onError={handleAddressFormError}
           visible={showAddressForm}
+          sheetTitle="Billing Address"
         />
-        */}
+
+        {loading && (
+          <View style={styles.loaderWrap}>
+            <Loader isLoading={loading} />
+          </View>
+        )}
         {!!plans?.length &&
           plans.map((plan) => (
             <Plan
@@ -178,7 +252,12 @@ const SubscriptionModal = () => {
             />
           ))}
       </View>
-      <CTA isEnabled isDarkTheme onPress={() => {}} text={'Continue'} />
+      <CTA
+        isEnabled
+        isDarkTheme
+        onPress={handleShowAddressForm}
+        text={'Continue'}
+      />
       <View style={styles.footer}>
         <Footer />
       </View>

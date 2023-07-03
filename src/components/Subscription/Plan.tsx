@@ -103,7 +103,7 @@ export const Plan: React.FC<IPlanProps> = (props) => {
         styles.container,
         !!metadata?.preferred && styles.preferredContainer
       ]}
-      key={id}
+      key={`${id}-${name}`}
       onPress={handleSelectPlan}
     >
       {!!metadata.preferred && (

@@ -99,7 +99,7 @@ export default function AccountScreen() {
       </AccountStack.Group>
       <AccountStack.Group
         screenOptions={{
-          presentation: 'modal',
+          presentation: 'formSheet',
           headerShown: false
         }}
       >

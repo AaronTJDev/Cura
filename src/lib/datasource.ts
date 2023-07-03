@@ -4,6 +4,7 @@ import firestore, {
 } from '@react-native-firebase/firestore';
 import EncryptedStorage from 'react-native-encrypted-storage/';
 import { Dictionary, mapValuesSeries } from 'async';
+import { Address } from '@stripe/stripe-react-native';
 import env from '../../env';
 
 /** Components */
@@ -14,7 +15,11 @@ import { IDisease } from '../components/SymptomSearch/DiseasesModal';
 import { logError } from './helpers/platform';
 import { ENCRYPTED_STORAGE_KEYS } from './encryptedStorage';
 import { Food, Nutrient } from './types/database';
-import { IPlan } from './types/subscription';
+import {
+  CreateSubscriptionResponse,
+  CustomerResponse,
+  IPlan
+} from './types/subscription';
 
 const instance = axios.create({
   baseURL: env.backendConfig.hostUrl,
@@ -185,5 +190,60 @@ export const getSubscriptionProducts = async (): Promise<IPlan[]> => {
     return response.data.data;
   } catch (err) {
     throw new Error(`Error fetching plans: ${err}`);
+  }
+};
+
+export const createStripeCustomer = async (
+  email: string,
+  address: Address,
+  metadata: {
+    internalId: string;
+  }
+): Promise<CustomerResponse> => {
+  let postal_code = '';
+  if (address.postalCode) {
+    postal_code = address.postalCode;
+    delete address.postalCode;
+    console.log('POSTAL CODE', postal_code);
+  }
+
+  try {
+    const url = 'create-customer';
+    const response = await instance.post(url, {
+      email,
+      address: {
+        ...address,
+        postal_code: address.postalCode
+      },
+      metadata
+    });
+    return response.data;
+  } catch (err) {
+    throw new Error(`Error creating stripe customer: ${err}`);
+  }
+};
+
+export const createSubscription = async (
+  customerId: string,
+  planId: string
+): Promise<CreateSubscriptionResponse> => {
+  try {
+    const url = 'create-subscription';
+    const response = await instance.post(
+      url,
+      JSON.stringify({
+        customerId: customerId,
+        priceId: planId
+      }),
+      {
+        headers: {
+          Accept: '*/*',
+          'Content-Type': 'application/json'
+        }
+      }
+    );
+    return response.data;
+  } catch (err) {
+    throw new Error(`Error creating subscription: ${err}`);
   }
 };
