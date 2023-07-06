@@ -50,7 +50,7 @@ const styles = StyleSheet.create({
     borderTopLeftRadius: 28,
     borderTopRightRadius: 28,
     paddingHorizontal: 24,
-    paddingVertical: SCREEN_HEIGHT / 24,
+    paddingTop: SCREEN_HEIGHT / 24,
     marginTop: SCREEN_HEIGHT / 5
   },
   imageBg: {

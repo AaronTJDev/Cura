@@ -125,6 +125,7 @@ export const FoodSuggestionComponent: React.FC<
       title={screenTitles.symptomSearch.FOOD_SUGGESTIONS}
       mode="middle"
       expandedContentArea
+      scrollEnabled={false}
     >
       <View style={styles.container}>
         <FlatList

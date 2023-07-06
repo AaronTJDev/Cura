@@ -1,69 +1,40 @@
 import { startCase } from 'lodash-es';
 import React from 'react';
-import { View, Text, Image, StyleSheet } from 'react-native';
-import { fonts } from '../../lib/styles';
+import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
+import { colors, fonts } from '../../lib/styles';
 import { Food } from '../../lib/types/database';
 
 const styles = StyleSheet.create({
   container: {
-    borderRadius: 5,
-    flexWrap: 'nowrap',
-    height: 240,
-    width: 140,
-    justifyContent: 'flex-end',
-    margin: 10
-  },
-  image: {
-    borderRadius: 5,
-    position: 'absolute',
-    height: '100%',
-    width: '100%'
-  },
-  textContainer: {
-    justifyContent: 'flex-start',
-    alignItems: 'flex-start',
-    flex: 2
+    flex: 1
   },
   title: {
     fontFamily: fonts.ComfortaaBold,
-    fontSize: 12,
-    marginTop: 16,
-    color: 'black',
+    fontSize: 14,
+    color: colors.main.primaryLight,
     flex: 1,
-    flexWrap: 'wrap',
-    width: '100%'
+    marginVertical: 8
   },
-  subtitle: {
-    fontFamily: fonts.CrimsonProLight,
-    flex: 1
+  divider: {
+    borderBottomColor: colors.main.gray10,
+    borderBottomWidth: 1
   }
 });
 
 interface ContentCardProps {
   data: Food;
-  imageUri: string;
+  isLast: boolean;
 }
 
-const ContentCard = ({ data, imageUri }: ContentCardProps) => {
-  console.log('data', data);
-
+const ContentCard = ({ data, isLast }: ContentCardProps) => {
   return (
     <View style={styles.container}>
-      <View style={{ flex: 3 }}>
-        <Image
-          source={{ uri: imageUri }}
-          style={styles.image}
-          resizeMode="cover"
-        />
-      </View>
-      <View style={styles.textContainer}>
-        <Text numberOfLines={2} ellipsizeMode="tail" style={styles.title}>
+      <TouchableOpacity>
+        <Text ellipsizeMode="tail" style={styles.title}>
           {startCase(data.description.toLowerCase())}
         </Text>
-        <Text style={styles.subtitle}>{`${
-          data.servingSize?.low
-        } of your RDA of ${startCase(data.matchedKey)}`}</Text>
-      </View>
+      </TouchableOpacity>
+      <View style={[styles.divider, isLast && { borderBottomWidth: 0 }]} />
     </View>
   );
 };
